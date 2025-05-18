@@ -1,0 +1,147 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: $indent-32;
+  height: max-content;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: $color-gray-extra-light;
+  @include grid-columns-span((large: 5));
+
+  @include screen-medium-up {
+    padding-left: $indent-56;
+    padding-right: $indent-56;
+  }
+
+  .label {
+    background-color: $color-bluemarin;
+  }
+
+  &.coupon {
+    .label {
+      background-color: $color-violet;
+    }
+
+    .body {
+      padding-right: calc($indent-96 + 4px);
+    }
+  }
+
+  &::after {
+    @extend %border-gradient;
+    pointer-events: none;
+  }
+}
+
+.label {
+  height: max-content;
+  padding: 4px 12px;
+  @include typo-make-tiny;
+  text-transform: uppercase;
+  color: $color-white;
+  border-radius: 8px;
+}
+
+.header,
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 8px $indent-40;
+  @include typo-make-small;
+  line-height: calc(1em + 4px);
+
+  @include screen-medium-up {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  span {
+    pointer-events: none;
+  }
+}
+
+.activeButton {
+  pointer-events: none;
+  background: $color-bluemarin;
+
+  &:before, &:after {
+    opacity: 0;
+  }
+}
+
+.buttons {
+  gap: 0 $indent-16;
+}
+
+.body {
+  margin-bottom: $indent-32;
+}
+
+.logo {
+  margin-top: calc($indent-80 + $indent-8);
+  object-fit: contain;
+  max-width: 160px;
+  max-height: 160px;
+  height: 160px;
+  width: 160px;
+}
+
+.title {
+  margin-top: $indent-32;
+  @include typo-make-h2($isHeading: true);
+  font-weight: 700;
+}
+
+.footer {
+  display: flex;
+  gap: $indent-16 0;
+  flex-wrap: wrap;
+}
+
+.header, .footer, .body {
+  z-index: 1;
+}
+
+.last {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 $indent-32;
+  background-color: $color-white;
+  padding-left: $indent-16;
+  margin-right: $indent-32;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    gap: 0 $indent-16;
+    border-radius: 12px;
+  }
+
+  .wallet {
+    height: 100%;
+    pointer-events: none;
+    @include screen-small-down {
+      @include typo-medium-text;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+  }
+}
+
+.lastNumber {
+  @include typo-make-small;
+  color: $color-blue-gray;
+  white-space: nowrap;
+
+  span {
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,29 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.pageContainer {
+  @include grid;
+  @include grid-container;
+  margin-bottom: $indent-80;
+}
+
+.header {
+  @include grid-columns-span-all;
+  display: flex;
+  justify-content: space-between;
+  margin-top: $indent-40;
+  align-items: flex-end;
+
+  @include screen-medium-up {
+    margin-top: 0;
+  }
+}
+
+.title {
+  margin-top: calc($indent-24);
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}

@@ -1,0 +1,69 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+  align-items: start;
+
+  padding-top: calc($indent-96 + $indent-32);
+  padding-bottom: $indent-80;
+
+  @include screen-medium-down {
+    padding-top: calc(88px + 28px);
+  }
+
+  @include screen-small-down {
+    padding-top: calc(48px + 28px);
+  }
+
+  overflow-x: hidden;
+
+  .backLink {
+    @include grid-columns-span((medium: 1));
+  
+    @include screen-small-down {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.column {
+  @include grid-columns-span((large: 5));
+
+  &:last-child {
+    @include grid-columns-span((large: 6, huge: 5));
+  }
+}
+
+.productMainInfo {
+  margin-bottom: $indent-16;
+}
+
+.sliderProducts {
+  @include grid-columns-span-all;
+  margin-top: $indent-64;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    margin-right: calc(-1 * $grid-padding-size);
+    margin-left: calc(-1 * $grid-padding-size);
+    @include grid-container;
+  }
+
+}
+
+.copyright {
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: $indent-24;
+}
+
+.socialLink {
+  .socialSvg {
+    width: 24px;
+    height: 24px;
+    fill: $color-gray-blue;
+  }
+}

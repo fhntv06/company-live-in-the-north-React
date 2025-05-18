@@ -1,0 +1,128 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  background: $color-gray-extra-light;
+  border-radius: 16px;
+  gap: 0;
+  transition: background .1s linear;
+
+  &:hover {
+    .add::after {
+      opacity: 1;
+    }
+
+    svg {
+      transform: rotate(90deg);
+    }
+
+    stop {
+      stop-color: $color-violet;
+    }
+  }
+}
+
+.discussionContainer {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.users {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-right: $indent-12;
+}
+
+.avatar {
+  border-radius: 50%;
+
+  div {
+    @include typo-make-small;
+    font-weight: 500;
+    height: 32px;
+    width: 32px; 
+  }
+
+
+  &:nth-child(1) {
+    background: $color-bluemarin;
+  }
+
+  &:nth-child(2) {
+    background: $color-orange;
+    margin-left: -11px;
+  }
+
+  &:nth-child(3) {
+    background: $color-violet;
+    margin-left: -11px;
+  } 
+}
+
+.container,
+.discussionContainer {
+  .avatar {
+    @include typo-make-small;
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.text {
+  @include typo-make-small;
+  display: flex;
+  flex-direction: column;
+  line-height: 14px;
+  color: $color-gray-middle;
+}
+
+.add {
+  width: 64px;
+  height: 64px;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 16px;
+  transition: opacity .1s linear;
+
+  &::before,
+  &::after {
+    @extend %border-gradient;
+  }
+
+  &::after {
+    background: $color-violet;
+    opacity: 0;
+  }
+
+  svg {
+    height: 18px;
+    width: 18px;
+    transition: fill .1s linear, transform .1s linear;
+
+    stop {
+      transition: stop-color .1s linear;
+    }
+  }
+}
+
+.discussionBtn {
+  margin-left: auto;
+  position: relative;
+
+  &:hover {
+    & svg {
+      fill: $color-bluemarin;
+      stop {
+        stop-color: $color-bluemarin;
+      }
+    }
+  }
+}
+

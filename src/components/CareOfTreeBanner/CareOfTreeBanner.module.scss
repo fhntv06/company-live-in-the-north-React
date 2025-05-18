@@ -1,0 +1,45 @@
+
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders';
+
+  .banner {
+    background-color: #D2EAFF;
+    background-image: url('../../images/elka_header_bg.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 50%;
+    border-radius: 16px;
+    min-height: 180px;
+    padding: $indent-40 $indent-48;
+    grid-column: -1 / 1;
+    position: relative;
+
+    &:last-child {
+      margin-bottom: $indent-64;
+    }
+  }
+  
+  .bannerTag {
+    color: $color-dark-color;
+    text-transform: uppercase;
+    @include typo-make-tiny;
+  }
+  
+  .bannerDescription {
+    color: $color-discussion-text;
+    @include typo-make-h5($isHeading: true);
+    margin-top: $indent-56;
+
+    & + .bannerDescription {
+      margin-top: $indent-32;
+    }
+  }
+
+  .bannerLink {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }

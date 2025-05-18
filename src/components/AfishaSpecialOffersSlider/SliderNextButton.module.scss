@@ -1,0 +1,51 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  top: 50%;
+  right: $indent-56;
+  transform: translateY(-50%);
+  z-index: 1;
+  border: 1px solid $color-white;
+  width: 92px;
+  height: 42px;
+  border-radius: 16px;
+  padding-right: 24px;
+  transform-origin: left center;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  @include screen-small-down {
+    display: none;
+  }
+
+  &:hover {
+    background-color: rgba($color-white, 0.3);
+    transform: scaleX(1.04) translateY(-50%);
+  }
+
+  &:active {
+    background-color: rgba($color-white, 0.5);
+  }
+
+  &.contrast {
+    border-color: $color-gray-deep;
+
+    .icon {
+      fill: $color-gray-deep
+    }
+  }
+}
+
+.icon {
+  width: 9px;
+  height: 16px;
+  fill: $color-white;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}

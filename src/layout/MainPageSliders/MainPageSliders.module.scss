@@ -1,0 +1,20 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapperMobileCard {
+  display: flex;
+  @include grid-container;
+  margin-bottom: $indent-16;
+
+  @include screen-large-up {
+    display: none;
+  }
+}
+
+.mainSlider {
+  :global(.swiper-slide:first-child) {
+    @include screen-medium-down {
+      display: none;
+    }
+  }
+}

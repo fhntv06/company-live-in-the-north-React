@@ -1,0 +1,85 @@
+@use '../../../styles/placeholders' as *;
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+
+.card {
+  @include indent-vertical-pair(12);
+  @include grid;
+  @include grid-columns-span-all;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 16px;
+  transition: background-color .1s linear;
+
+  &:hover {
+    background-color: $color-gray-light;
+  }
+
+  &:active {
+    background-color: $color-white;
+  }
+
+  @include screen-large-down {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.wrapper {
+  grid-column: span 3;
+  padding-left: 56px;
+
+  @include screen-large-down {
+    grid-column: span 5;
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    padding-right: $indent-56;
+  }
+}
+
+.name {
+  @include typo-make-text;
+  margin-bottom: $indent-8;
+  font-weight: 500;
+  color: $color-black;
+}
+
+.img {
+  width: 40px;
+  height: 40px;
+  margin-right: $indent-8;
+  border-radius: 8px;
+}
+
+.textBlock {
+  flex-direction: column;
+}
+
+.info,
+.textBlock {
+  display: flex;
+  gap: 0;
+}
+
+.text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;  
+  margin-bottom: 4px;
+}
+
+.text * {
+  all: unset !important;
+}
+
+.text,
+.text * {
+    @include typo-make-small;
+    color: rgba($color-black,.5);
+}
+
+.page {
+  @include typo-make-tiny;
+  color: $color-bluemarin;
+}

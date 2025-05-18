@@ -1,0 +1,77 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.calendar {
+  display: flex;
+  gap: 0;
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 12, huge: 11))
+  };
+
+
+  &.searchOpen {
+    @include screen-small-down {
+      display: flex;
+      flex-direction: column;
+      row-gap: $indent-16;
+    }
+  }
+}
+
+.calendars {
+  display: flex;
+  @include grid-columns-span((medium: 2, huge: 1));
+  margin-top: 32px;
+  position: relative;
+
+  @include screen-small-down {
+    margin-top: 0;
+  }
+}
+
+.calendarMini {
+  margin-right: $indent-64;
+
+  @include screen-small-down {
+    margin-right: 0;
+    padding: 0;
+  }
+
+  &.opacity {
+    opacity: 0;
+  }
+}
+
+.line {
+  @include grid-columns-span((small: 5, medium: 10));
+  padding-left: 30px;
+  margin-left: -30px;
+
+  @include screen-small-down {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.calendarLine {
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.search {
+  margin-top: $indent-16;
+  margin-right: 30px;
+
+  @include screen-small-down {
+    margin: 0;
+  }
+}
+
+.modalCalendar {
+  padding: 0;
+}

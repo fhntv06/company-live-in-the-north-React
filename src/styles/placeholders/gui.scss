@@ -1,0 +1,366 @@
+////
+/// Placeholders for the common GUI elements
+/// @group components
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+
+@use '../variables' as *;
+@use './grid';
+@use '../mixins' as *;
+@use './typography';
+@use '../mixins/media-queries' as *;
+
+/// A base styles for the custom link's underline.
+%link-underline-base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: currentColor;
+  transition: background-color 0.1s linear, opacity 0.1s linear;
+  content: "";
+  opacity: 0.2;
+}
+
+/// A placeholder for the links with an optional active state.
+/// The link content must be small in width.
+%menu-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: color 0.1s linear;
+
+  &:before,
+  &:after {
+    @extend %link-underline-base;
+  }
+
+  &:before {
+    opacity: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    height: 8px;
+    bottom: -12px;
+
+    @include screen-medium-up {
+      height: 12px;
+      bottom: -20px;
+    }
+
+    @include screen-large-up {
+      height: 16px;
+      bottom: -24px;
+    }
+  }
+
+  &:after {
+    height: 1px;
+    opacity: 0.2;
+  }
+
+  &:hover {
+    //color: $color-azure;
+
+    &:after {
+      opacity: 0.4;
+    }
+  }
+}
+
+/// A placeholder for the active state of the %menu-link.
+%menu-link-active {
+  color: currentColor;
+
+  &:before {
+    opacity: 1;
+  }
+
+  &:after {
+    opacity: 0;
+    transition-duration: 0.05s;
+  }
+}
+
+/// A placeholder for the base link styles.
+%link-base {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  text-decoration: none;
+  transition: color 0.1s linear, background-color 0.1s linear, border-color 0.1s linear;
+  cursor: pointer;
+  width: fit-content;
+
+  &:hover {
+    color: $color-bluemarin-light;
+  }
+
+  &:active {
+    color: $color-bluemarin-extra-light;
+  }
+
+  &.active {
+    color: $color-bluemarin;
+  }
+}
+
+%link-manufacturer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:after {
+    position: relative;
+    margin-left: 8px;
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml;utf8,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.75 3L2 3C1.44772 3 1 3.44772 1 4V8C1 8.55228 1.44772 9 2 9H6C6.55228 9 7 8.55228 7 8V5.25' stroke='%23687682'/><path d='M6 1H9V4' stroke='%23687682'/><path d='M9 1L4 6' stroke='%23687682'/></svg>");
+    content: "";
+    transition: .1s background-image;
+  }
+  &:hover {
+    &:after {
+      background-image: url("data:image/svg+xml;utf8,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.75 3L2 3C1.44772 3 1 3.44772 1 4V8C1 8.55228 1.44772 9 2 9H6C6.55228 9 7 8.55228 7 8V5.25' stroke='%232daa76'/><path d='M6 1H9V4' stroke='%232daa76'/><path d='M9 1L4 6' stroke='%232daa76'/></svg>");
+    }
+  }
+  &:active {
+    &:after {
+      background-image: url("data:image/svg+xml;utf8,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.75 3L2 3C1.44772 3 1 3.44772 1 4V8C1 8.55228 1.44772 9 2 9H6C6.55228 9 7 8.55228 7 8V5.25' stroke='%2324bf7e'/><path d='M6 1H9V4' stroke='%2324bf7e'/><path d='M9 1L4 6' stroke='%2324bf7e'/></svg>");
+    }
+  }
+}
+
+/// A placeholder for the base multiline links.
+%link-multiline-base {
+  @include link-multiline-base;
+  //display: inline;
+  //text-decoration: none;
+  //transition: color 0.1s linear, border-color 0.1s linear;
+  //border-bottom: 1px solid rgba($color-bluemarin, 0.2);
+  //
+  //&:hover, &:focus {
+  //  color: $color-bluemarin-light;
+  //  border-bottom-color: rgba($color-bluemarin-light, 0.2);
+  //}
+}
+
+/// A placeholder for the links with dashed underlines.
+%dashed-underline-link {
+  @extend %link-base;
+  border-bottom: 1px dashed rgba(38, 175, 205, 0.2);
+
+  &:hover {
+    border-bottom: 1px dashed rgba(32, 197, 233, 0.4);
+  }
+
+  &:active {
+    border-bottom: 1px dashed $color-bluemarin-extra-light;
+  }
+}
+
+/// A placeholder for the links with sparse dashed underlines.
+// TODO: fix an issue with "The target selector was not found" sass error
+// %sparse-dashed-underline-link {
+//   @extend %dashed-underline-link;
+//   @extend %label-text;
+// }
+%sparse-dashed-underline-link {
+  @extend %link-base !optional;
+  @extend %label-text !optional;
+
+  &:after {
+    @extend %sparse-dashed-underline-pattern-mask;
+  }
+}
+
+%scrollbar {
+  &::-webkit-scrollbar {
+    width: 3px;
+    background: $color-white;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 100px;
+    background: $color-bluemarin;
+    border-radius: 4px;
+  }
+  scrollbar-width: thin;
+  scrollbar-color: $color-bluemarin $color-white;
+}
+
+%button-base {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  border-radius: 16px;
+  text-transform: uppercase;
+  transition-property: opacity, color, border-color, fill, transform;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+
+  @include screen-small-down {
+    border-radius: 12px;
+  }
+}
+
+%border-gradient {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+  -webkit-mask:
+  linear-gradient($color-white 0 0) padding-box,
+  linear-gradient($color-white 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-repeat: no-repeat;
+  transition: inherit;
+  background-clip: border-box;
+  background-origin: border-box;
+  pointer-events: none;
+}
+
+%text-gradient {
+  background-clip: text;
+  text-transform: uppercase;
+  transition: background-image .1s;
+  background-size: 100%;
+  background-repeat: repeat;
+  background-image: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+%background-gradient-violet {
+  background: linear-gradient(270deg, #87D9E6 -29%, #8994F8 22%, #B392F4 76%, #EBC2C6 127%);
+  
+}
+
+%background-gradient-purpur {
+  background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33%, #B392F4 68%, #EBC2C6 100%);
+}
+
+%background-gradient-store {
+  background: linear-gradient(270deg, #E7BECB 0%, #BF9DEB 49.72%, #A293F6 100%);
+}
+
+ %typo-unordered-text-list {
+   > li:before {
+     position: absolute;
+     left: 0;
+     top: 10px;
+     height: 1px;
+     width: 10px;
+     background-color: currentColor;
+     content: '';
+   }
+ }
+
+/// A placeholder for the unordered list styles (the second level).
+ %typo-unordered-text-list-nested {
+   > li > ul > li:before {
+     position: absolute;
+     left: 0;
+     top: 12px;
+
+     height: 1px;
+     width: 14px;
+     content: '';
+   }
+ }
+
+/// A placeholder for the ordered list styles (the first level).
+ %typo-ordered-text-list {
+   counter-reset: ol-counter ol-custom-number;
+
+   // TODO: revisit styles
+   // styles for the lists with the custom starting number (like 2.1.1):
+   @for $i from 1 through 10 {
+     &[data-custom-number-#{$i}] {
+       counter-reset: ol-counter ol-custom-number $i;
+     }
+   }
+
+   > li:before {
+     position: absolute;
+     left: 0;
+     top: 0;
+     counter-increment: ol-counter;
+     content: attr(data-counter) counter(ol-counter) '.';
+   }
+
+   // Small "visual compensation":
+   > li:nth-child(n + 10) {
+     &:before {
+       margin-left: -8px;
+     }
+   }
+   > li:nth-child(11) {
+     &:before {
+       margin-left: -6px;
+     }
+   }
+
+   //TODO: revisit styles
+   //styles for the lists with the custom starting number (like 2.1.1):
+   &[data-custom-number] {
+     padding-left: $indent-12;
+
+     > li:before {
+       margin-left: calc(-1 * $indent-12);
+       content: counter(ol-custom-number) '.' counter(ol-counter) '.';
+     }
+   }
+ }
+
+/// A placeholder for the ordered list styles (the second level).
+ %typo-ordered-text-list-nested {
+   // TODO: list-style-type: lower-russian isn't supported for now — generate
+   // ordered list styles manually:
+   $letters: (а б в г д е ж з и к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я);
+   > li > ol > li {
+     @for $i from 1 through length($letters) {
+       &:nth-child(#{$i}):before {
+         content: '#{nth($letters, $i)})';
+       }
+     }
+     &:before {
+       position: absolute;
+       left: 0;
+       top: 0;
+     }
+   }
+
+  // TODO: revisit styles
+  // styles for the lists with the custom starting number (like 2.1.1):
+   &[data-custom-number] {
+     > li > ol {
+       padding-left: $indent-24;
+       counter-reset: ol-nested-counter;
+
+       > li:before {
+         margin-left: calc(-1 * $indent-24);
+         counter-increment: ol-nested-counter;
+         content: counter(ol-custom-number) '.' counter(ol-counter) '.' counter(ol-nested-counter) '.';
+       }
+
+       > li:nth-child(n + 10):before {
+         margin-left: calc(-1 * $indent-32);
+       }
+     }
+   }
+ }
+
+ %card-shadow {
+  box-shadow: 0px 8px 48px rgba(0, 16, 94, 0.2);
+ }
+ 

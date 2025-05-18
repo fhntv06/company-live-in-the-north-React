@@ -1,0 +1,251 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders' as *;
+
+
+.left {
+  margin-right: calc($grid-gutter-size * -1);
+  @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 2));
+  }
+
+  @include screen-medium-down {
+    @include grid-columns-span-all;
+    padding: 0 $indent-16;
+    margin-right: 0;
+  }
+}
+
+.center {
+  @include grid-columns-span((large: 4, huge: 4));
+  // padding-left: $indent-64;
+  position: relative;
+
+  @include screen-medium-down {
+    padding: 0 $indent-16;
+    margin-bottom: $indent-12;
+  }
+
+  &::before {
+    content: '';
+    @include screen-large-up {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      right: calc($grid-gutter-size * -.5);
+      background-color: $color-gray-light;
+    }
+  }
+
+  .header {
+    @include typo-make-middle;
+    margin-bottom: 4px;
+    color: $color-black;
+
+    @include screen-medium-down {
+      @include typo-make-big-text;
+      margin-bottom: $indent-8;
+      font-weight: 600;
+    }
+  }
+
+  .text {
+    margin-bottom: $indent-32;
+
+    @include screen-medium-down {
+      margin-bottom: $indent-12;
+    }
+  }
+}
+
+.info {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 6, huge: 6));
+  }
+
+  @include screen-large-up {
+    padding-left: $indent-64;
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.text {
+  @include typo-make-text;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-24;
+  }
+}
+
+.topRow {
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 6));
+  }
+
+  // @include grid-columns-span((large: 7));
+  
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  // padding-left: $indent-64;
+
+  @include screen-medium-down {
+    padding: 0 $indent-16;
+  }
+
+  .title {
+    @include grid-columns-span((large: 4));
+
+    @include typo-make-big-text;
+    font-weight: 600;
+  
+    margin-top: $indent-8;
+    margin-bottom: $indent-32;
+
+    @include screen-medium-down {
+      margin-top: 0;
+      margin-bottom: $indent-20;
+      @include typo-make-big-text;
+      text-transform: none;
+      font-weight: 600;
+    }
+  }
+}
+
+.right {
+  @include grid-columns-span((large: 2, huge: 2));
+
+  @include screen-medium-down {
+    padding: 0 $indent-16;
+  }
+
+
+  .headerRow {
+    @include screen-large-up {
+      display: none;
+    }  
+  }
+}
+
+.title {
+  @include typo-make-h2;
+  margin-bottom: $indent-16;
+  font-weight: 700;
+  color: $color-black;
+
+  @include screen-medium-down {
+    @include typo-make-h1;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+  }
+}
+
+.row {
+  @include typo-medium-text;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: $indent-16;
+  color: $color-black;
+
+  @include screen-medium-down {
+    margin-bottom: 0;
+
+    &:not(:last-of-type){
+      margin-bottom: $indent-12;
+    }
+
+    &:first-child {
+      margin-bottom: $indent-16;
+    }
+    
+    span:nth-child(2) {
+      font-weight: 500;
+    }
+  }
+}
+
+.headerRow {
+  @include screen-medium-down {
+    opacity: 1;
+    margin-bottom: $indent-16;
+  }
+}
+
+.yamalCoinMobileText {
+  color: $color-black;
+  @include typo-make-h4;
+  font-weight: 600;
+}
+
+.svgCoin {
+  width: 12px;
+  height: 12px;
+  fill: $color-black;
+}
+
+.btnWrapper {
+  margin-top: $indent-24;
+  margin-bottom: $indent-32;
+  padding: 0 $indent-16;
+
+  button {
+    width: 100%;
+  }
+}
+
+.closeButton {
+  margin-right: $indent-8;
+}
+
+.yamalIconWrapper {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+
+    svg {
+      fill: $color-white;
+    }  
+
+    &::before,
+    &::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    &::after {
+      @extend %background-gradient-violet;
+    }
+  
+    &::before {
+      @extend %background-gradient-purpur;
+    }
+}
+
+.yamalCoinDesktopWrapper {
+  @include typo-make-big-text;
+  font-weight: 600;
+  @include grid-columns-span((large: 2));
+  display: flex;
+  justify-content: space-between;
+  @include screen-medium-down {
+    display: none;
+  }
+}

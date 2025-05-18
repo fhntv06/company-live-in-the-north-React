@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders';
+
+.button {
+  @include typo-make-small;
+  @include grid-columns-span-all;
+  @extend %link-base;
+  display: flex;
+  color: $color-blue-gray;
+  align-items: center;
+  gap: $indent-16;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  svg {
+    width: 9px;
+    height: 16px;
+    stroke: currentColor;
+    transform: rotate(180deg);
+  }
+
+  &.contrast {
+    color: $color-white;
+
+    &:hover {
+      color: $color-bluemarin-light;
+    }
+  }
+}

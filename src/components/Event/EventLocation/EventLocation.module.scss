@@ -1,0 +1,19 @@
+@use '../../../styles/mixins/typography' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.button {
+  @include typo-make-small;
+  opacity: 0.8;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  fill: $color-white;
+}

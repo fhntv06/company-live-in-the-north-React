@@ -1,0 +1,33 @@
+////
+/// A set of functions to simplify the creation of typography styles.
+/// @group typography
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+
+@use './nearest-multiple' as *;
+
+/// Calculates the line-height value for the heading according to the design system.
+/// @param {Length} $size - The heading font-size value.
+/// @return {Length} The line-height value.
+/// @example
+///   h1 {
+///     line-height: heading-line-height($heading-h1-size-mobile);
+///   }
+///   ...
+@function heading-line-height($size) {
+  @return nearest-multiple($size * 1.25, 4);
+}
+
+/// Calculates the line-height value for the text according to the design system.
+/// @param {Length} $size - The text font-size value.
+/// @return {Length} The line-height value.
+/// @example
+///   p {
+///     line-height: text-line-height(16px);
+///   }
+///   ...
+@function text-line-height($size) {
+  @return nearest-multiple($size * 1.5, 4);
+}
+

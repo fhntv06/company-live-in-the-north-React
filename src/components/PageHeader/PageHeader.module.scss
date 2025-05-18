@@ -1,0 +1,76 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  @include grid;
+  @include grid-container;
+  padding-bottom: $indent-64;
+  border-radius: 0 0 16px 16px;
+  padding-top: calc(96px + $indent-24 + $indent-8);
+
+  background-color: $color-gray-light;
+  grid-template-rows: max-content;
+  min-height: 400px;
+
+  @include screen-small-down {
+    padding-top: 74px;
+  }
+
+  &.compact {
+    min-height: unset;
+  }
+}
+
+.row {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((small: 6, medium: 12, large: 11));
+    }
+  }
+}
+
+.backLink {
+  @include grid-columns-span((small: 3, medium: 6, large: 12));
+}
+
+.controllersWrapper {
+
+  @include grid-with-offset((medium: 6)) {
+    @include grid-columns-span((small: 3, medium: 6));
+  }
+  display: flex;
+  gap: $indent-24;
+  align-items: center;
+  justify-content: flex-end;
+
+  @include screen-medium-up {
+    display: none;
+  }
+}
+
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+  transition: fill 0.2s linear;
+
+  &:hover {
+    fill: $color-bluemarin-light;
+  }
+}
+
+.gradientIcon {
+  width: 24px;
+  height: 24px;
+  transition: fill 0.2s linear, stroke 0.2s linear;
+
+  &:hover {
+    fill: $color-bluemarin-light;
+    color: $color-bluemarin-light;
+
+    path {
+      stroke: $color-bluemarin-light
+    }
+  }
+}

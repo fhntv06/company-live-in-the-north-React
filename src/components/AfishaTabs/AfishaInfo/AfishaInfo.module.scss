@@ -1,0 +1,192 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/variables/grid.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-columns-span-all;
+  margin-top: $indent-32;
+
+  .image,
+  .video {
+    @include grid-with-offset((medium: 1)) {
+      @include grid-columns-span((medium: 11, large: 10, huge: 9));
+    }
+    aspect-ratio: 16/9;
+    width: 100%;
+    object-fit: cover;
+
+    margin-bottom: $indent-48;
+  }
+
+  p {
+    @include typo-make-text;
+  }
+
+  ul,
+  ol,
+  h3,
+  h4,
+  p {
+    @include grid-with-offset((medium: 2, huge: 3)) {
+      @include grid-columns-span((medium: 8, large: 6, huge: 5));
+    }
+  }
+
+  blockquote,
+  h2,
+  figure {
+    @include grid-with-offset((medium: 1, huge: 2)) {
+      @include grid-columns-span((medium: 10, large: 8, huge: 7));
+    }
+  }
+
+  figure {
+    > img {
+      aspect-ratio: 16/9;
+      width: 100%;
+    }
+
+    margin-top: $indent-56;
+    margin-bottom: $indent-48;
+  }
+
+  i {
+    @include grid-with-offset((medium: 2, huge: 3)) {
+      @include grid-columns-span((medium: 5, large: 4, huge: 3));
+    }
+  }
+
+  @include screen-small-down {
+    display: block;
+  }
+
+  ul {
+    > li {
+      position: relative;
+      padding-left: 34px;
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+    @extend %typo-unordered-text-list;
+
+    ul {
+      @extend %typo-unordered-text-list-nested;
+    }
+  }
+
+  ul + ol,
+  ul + ol,
+  ol + ul,
+  ol + ol,
+  ul + p,
+  ol + p,
+  p:not([class]):not(:empty) + p:not(:empty),
+  p:not([class]) + ol,
+  p:not([class]) + ul {
+    margin-top: $indent-16;
+  }
+
+  ol {
+    > li {
+      position: relative;
+      padding-left: 34px;
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+
+    @extend %typo-ordered-text-list;
+
+    ol {
+      @extend %typo-unordered-text-list-nested
+    }
+  }
+
+  h2 {
+    margin-top: $indent-64;
+    margin-bottom: $indent-32;
+  }
+
+  h4 {
+    @include typo-make-h4;
+    margin-top: $indent-48;
+    margin-bottom: $indent-32;
+  }
+
+  .lead {
+    @include grid-with-offset((medium: 3)) {
+      @include grid-columns-span((medium: 6));
+    }
+    margin-bottom: $indent-64;
+  }
+
+  blockquote,
+  blockquote > p,
+  .lead {
+    @include typo-make-h3;
+  }
+
+  blockquote + ul,
+  blockquote + ol,
+  blockquote + p:not([class]) {
+    margin-top: $indent-64;
+  }
+
+  ul + blockquote,
+  ol + blockquote,
+  p + blockquote {
+    margin-top: $indent-48;
+  }
+}
+
+.bottom {
+  @include grid-with-offset((medium: 0, large: 1)) {
+    @include grid-columns-span((medium: 12, large: 9, huge: 7));
+  }
+  margin-top: $indent-80;
+  display: flex;
+  align-items: center;
+  gap: $indent-24;
+
+  @include screen-small-down {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  .button {
+    padding: $indent-16 $indent-56 $indent-16 $indent-24;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: $indent-8;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .organize {
+    @include typo-medium-text;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    span {
+      color: $color-gray-deep;
+    }
+
+    b {
+      color: $color-black;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-40;
+  padding-bottom: calc($indent-96 + $indent-80);
+}
+
+.content,
+.row {
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin-top: calc($indent-24);
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.select {
+  @include screen-small-down {
+    display: none;
+  }
+
+  border-radius: 16px;
+
+  :global(.select--button--is-open) {
+    :global(.button--gray)::after {
+      background-color: $color-white;
+      border-radius: 16px;
+    }
+  }
+
+  &:has(:global(.select--button--is-open)),
+  &:hover {
+    box-shadow: -50px 0 80px 0 rgba(255,193,148,.12),
+    0 24px 80px 0 rgba(81,102,245,.12),
+    12px 24px 80px 0 rgba(153,99,239,.12),
+    32px 0 80px 0 rgba(85,232,211,.12);
+  }
+
+  &:hover,
+  :global(.select--button--is-open) {
+
+    :global(.button--gray) {
+      background-color: transparent;
+    }
+
+    :global(.select__single-value) {
+      color: $color-blue-light;
+    }
+
+    :global(.select__dropdown-icon) {
+      fill: $color-blue-light;
+    }
+  }
+}
+
+.content {
+  flex-direction: column;
+  margin: 0 calc($grid-padding-size * -1);
+  margin-top: $indent-32;
+}
+
+.notification {
+  @include screen-small-down {
+    margin-left: calc(-1 * $grid-padding-size);
+    margin-right: calc(-1 * $grid-padding-size);
+  }
+
+  + .notification {
+    margin-top: 8px;
+  }
+}
+
+.buttonWrapper {
+  margin-top: $indent-48;    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @include screen-small-down {
+    padding: 0 $grid-padding-size;
+  }
+}
+
+.button {
+  @include screen-small-down {
+    width: 100%;
+  }
+}
+

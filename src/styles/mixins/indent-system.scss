@@ -1,0 +1,147 @@
+////
+/// Mixins for simplifying the usage of the indent system.
+/// @access public
+/// @group layout
+/// @author Daniil Filippov <d.filippov@make.st>
+/// @link http://standart.gov.design/design/layout
+////
+
+@use "sass:math";
+@use "media-queries" as *;
+@use "../variables/indent-system.scss" as *;
+@use "../functions/strip-unit" as *;
+
+
+/// Base mixin for the indent system adaptation.
+/// @access private
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+/// @param {List} $properties-list - The list of properties to apply the indent values.
+@mixin indent-base($value, $properties-list) {
+  $px: if($value > 0, 1px, -1px);
+  $indent-value: math.abs(strip-unit($value));
+
+  @each $property in $properties-list {
+    #{$property}: (map-get($indents-mobile, $indent-value) or $indent-value) * $px;
+  }
+
+  @include screen-medium-up {
+    @each $property in $properties-list {
+      #{$property}: $indent-value * $px;
+    }
+  }
+}
+
+
+/// Adds the inner top indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-top($value) {
+  @include indent-base($value, padding-top);
+}
+/// Adds the inner right indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-right($value) {
+  @include indent-base($value, padding-right);
+}
+/// Adds the inner bottom indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-bottom($value) {
+  @include indent-base($value, padding-bottom);
+}
+/// Adds the inner left indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-left($value) {
+  @include indent-base($value, padding-left);
+}
+/// Adds the inner top and bottom indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-vertical-pair($value) {
+  @include indent-base($value, padding-top padding-bottom);
+}
+/// Adds the inner left and right indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-horizontal-pair($value) {
+  @include indent-base($value, padding-left padding-right);
+}
+/// Adds the inner indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-all($value) {
+  @include indent-base($value, padding);
+}
+
+
+/// Adds the outer top indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-top($value) {
+  @include indent-base($value, margin-top);
+}
+/// Adds the outer right indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-right($value) {
+  @include indent-base($value, margin-right);
+}
+/// Adds the outer bottom indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-bottom($value) {
+  @include indent-base($value, margin-bottom);
+}
+/// Adds the outer left indent for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-left($value) {
+  @include indent-base($value, margin-left);
+}
+/// Adds the outer top and bottom indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-vertical-pair($value) {
+  @include indent-base($value, margin-top margin-bottom);
+}
+/// Adds the outer left and right indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-horizontal-pair($value) {
+  @include indent-base($value, margin-left margin-right);
+}
+/// Adds the outer indents for the element according to the design system.
+/// @param {Number|Length} $value - The desktop indent value (unitless or in pixels).
+/// Must be specified as the key of the [$indents-mobile](#variable-indents-mobile) map.
+@mixin indent-outer-all($value) {
+  @include indent-base($value, margin);
+}
+
+
+/// @alias indent-top
+@mixin indent-inner-top($value) {
+  @include indent-top($value);
+}
+/// @alias indent-right
+@mixin indent-inner-right($value) {
+  @include indent-right($value);
+}
+/// @alias indent-bottom
+@mixin indent-inner-bottom($value) {
+  @include indent-bottom($value);
+}
+/// @alias indent-left
+@mixin indent-inner-left($value) {
+  @include indent-left($value);
+}
+/// @alias indent-vertical-pair
+@mixin indent-inner-vertical-pair($value) {
+  @include indent-vertical-pair($value);
+}
+/// @alias indent-horizontal-pair
+@mixin indent-inner-horizontal-pair($value) {
+  @include indent-horizontal-pair($value);
+}

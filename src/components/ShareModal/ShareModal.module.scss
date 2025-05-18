@@ -1,0 +1,132 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-with-offset((huge: 1)) {
+      @include grid-columns-span((large: 8, huge: 6));
+    }
+  }
+
+  @include screen-large-down {
+    padding: 0 $indent-36;
+  }
+
+  @include screen-medium-down {
+    padding-bottom: calc($indent-24 + $indent-8);
+  }
+
+  color: $color-blue-gray;
+}
+
+.row {
+  @include grid-columns-span-all;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $indent-24;
+
+  .title {
+    @include typo-make-h4;
+    font-weight: 600;
+  }
+}
+
+.linkRow {
+  @include grid-with-inner-context {
+    @include grid-columns-span((huge: 5));
+  }
+
+  margin-bottom: $indent-24;
+}
+
+.clipboard {
+  @include grid-columns-span-all;
+
+  display: flex;
+  align-items: center;
+  gap: $indent-16;
+
+  border-radius: 16px;
+  border: 1px solid $color-gray;
+
+  padding: 16px;
+  cursor: pointer;
+
+  .link {
+    all: unset;
+    width: 100%;
+    color: $color-gray-deep;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .clipBoardButton {
+    padding-right: $indent-20;
+    display: flex;
+    align-items: center;
+    transition: transform .2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      .clipBoardIcon {
+        stroke: $color-violet;
+      }
+    }
+  }
+
+  .clipBoardIcon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+  }
+}
+
+.textRow {
+  @include grid-columns-span((large: 4, huge: 3));
+  @include typo-make-text;
+
+  margin-bottom: $indent-20;
+}
+
+.socialRow {
+  display: flex;
+  column-gap: $indent-16;
+}
+
+.socialLink {
+  border-radius: 50%;
+  padding: calc($indent-20 / 4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: fit-content;
+  background: linear-gradient(270deg, #E7BECB 0%, #BF9DEB 49.72%, #A293F6 100%), $color-violet;
+
+  transition: transform .2s linear;
+
+  &:active,
+  &:hover {
+    background: $color-violet;
+    transform: scale(1.025);
+  }
+
+  .socialSvg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.close > svg {
+  fill: $color-blue-gray;
+}

@@ -1,0 +1,220 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders';
+
+.wrapper {
+  position: relative;
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 12, large: 6));
+  }
+  padding: $indent-32 $indent-32;
+  border-radius: 16px;
+  z-index: 5;
+
+  @include screen-medium-up {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &:before,
+  &:after {
+    left: 0;
+    @include screen-large-up {
+      left: $indent-64;
+    }
+  }
+
+  &:before {
+    @extend %border-gradient;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    background-color: $color-white;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .avatar {
+    @include grid-columns-span((large: 1));
+    min-width: 48px;
+    @include screen-large-up {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
+}
+
+.avatarWrapper {
+  @include screen-medium-only {
+    display: flex;
+    justify-content: flex-end;
+    grid-column: span 2;
+  }
+}
+
+.header {
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 1, large: 1)) {
+      @include grid-columns-span((medium: 10, large: 5));
+    }
+  }
+
+  @include screen-small-down {
+    display: flex;
+    border-bottom: 1px solid $color-gray;
+    padding-bottom: $indent-20;
+  }
+}
+
+.editIcon {
+  width: 24px;
+  height: 24px;
+  fill: $color-bluemarin;
+}
+
+
+.nameWrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 4));
+  }
+  flex-grow: 1;
+}
+
+.content {
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 2, large: 2)) {
+      @include grid-columns-span((medium: 9, large: 4));
+    }
+  }
+}
+
+.name {
+  @include typo-make-h4;
+  @include screen-medium-up {
+    @include typo-make-h2;
+    margin-bottom: $indent-12;
+  }
+}
+
+.name,
+.birthdate,
+.position {
+  @include grid-columns-span((medium: 3));
+}
+
+.birthdate,
+.text {
+  white-space: pre-wrap;
+  @include typo-make-text;
+  color: $color-blue-gray;
+}
+
+.position {
+  @include typo-make-small;
+  line-height: 16px;
+  color: $color-blue-gray;
+  margin-top: $indent-20;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: $indent-24;
+  margin-bottom: $indent-24;
+  row-gap: $indent-24;
+
+  @include screen-medium-up {
+    flex-direction: row;
+    margin-top: $indent-48;
+  }
+
+  @include screen-medium-only {
+    justify-content: flex-end
+  }
+}
+
+.uppercaseLink {
+  @extend %link-base;
+}
+
+.uppercaseLink {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $color-blue-gray;
+
+  &:not(:hover):first-child {
+    color: $color-bluemarin;
+  }
+
+  &:not(:last-child) {
+    margin-right: $indent-32;
+  }
+}
+
+.socialLinks {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.controls {
+  text-align: right;
+  padding-top: $indent-24;
+  border-top: 1px solid $color-gray;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.contacts,
+.controls {
+  @include grid-columns-span-all;
+  @include screen-medium-up {
+    margin-right: $indent-64;
+  }
+}
+
+.emailNotVerified {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+
+  margin-top: $indent-8;
+  padding: $indent-8;
+  background-color: rgba($color-error-field-lighter, 0.08);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: background-color .2s ease-out;
+
+  &:hover {
+    background-color: rgba($color-error-field-lighter, 0.18);
+  }
+
+  .text {
+    color: $color-error-field;
+    pointer-events: none;
+  }
+}
+
+.warningIcon {
+  margin-right: $indent-8;
+  width: 24px;
+  height: 24px;
+}
+
+.dropdownIcon {
+  width: 24px;
+  height: 24px;
+  transform: rotate(-90deg);
+  margin-left: auto;
+}

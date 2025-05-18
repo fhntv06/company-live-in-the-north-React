@@ -1,0 +1,94 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include indent-horizontal-pair(24);
+  padding-top: $indent-20;
+  padding-bottom: $indent-20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  position: relative;
+  border: 1px solid $color-gray;
+  border-radius: 16px;
+  cursor: pointer;
+
+  &::after {
+    @extend %border-gradient;
+    inset: -1px;
+    opacity: 0;
+  }
+
+  &.finally {
+    &::after {
+      opacity: 1;
+    }
+
+    .stageNumber,
+    .stageName {
+      color: $color-violet;
+    }
+  }
+
+  &:not(.finally):hover {
+    &::after {
+      opacity: 1;
+    }
+
+    .stageName,
+    .stageNumber {
+      margin-right: calc($indent-16 + 2px);
+      color: $color-violet;
+    }
+
+    .arrow {
+      stop {
+        stop-color: $color-violet;
+      }
+    }
+  }
+
+  &:not(.finally):active {
+    border-color: $color-violet;
+
+    &::after {
+      opacity: 0;
+    }
+  }
+}
+
+.stageNumber {
+  @include typo-make-small;
+  margin-right: $indent-16;
+  line-height: 16px;
+  color: $color-gray;
+  text-transform: uppercase;
+  transition: color .1s linear, margin .1s linear;
+}
+
+.stageName {
+  @include typo-make-text;
+  margin-right: $indent-16;
+  line-height: 24px;
+  color: $color-black;
+  text-transform: capitalize;
+  transition: color .1s linear, margin .1s linear;
+}
+
+.arrow {
+  width: 26px;
+  height: 10px;
+  fill: none;
+
+  stop {
+    transition: .1s linear;
+  }
+}
+
+.flag {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}

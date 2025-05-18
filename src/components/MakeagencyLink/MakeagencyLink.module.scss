@@ -1,0 +1,30 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0;
+}
+
+.birdAnimation {
+  height: 32px;
+  width: 32px;
+  clip-path: circle();
+}
+
+.link {
+  @extend %link-base;
+  @include typo-medium-text;
+  margin-left: $indent-16;
+
+  &:hover {
+    color: $color-bluemarin;
+  }
+
+  @include screen-small-down {
+    @include typo-make-text
+  }
+}

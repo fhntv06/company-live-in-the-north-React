@@ -1,0 +1,95 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.mainContainer {
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 1 )) {
+      @include grid-columns-span (( huge: 10 ));
+    }
+  }
+
+  z-index: 4;
+}
+
+.isCozyYamal {
+  .textBlock {
+    margin-bottom: calc($indent-20 + $indent-20);
+  }
+}
+
+.textBlock {
+  margin-bottom: $indent-48;
+  @include grid-columns-span (( huge: 6 ));
+
+  h3 {
+    @include screen-small-down {
+      font-weight: 400;
+    }
+  }
+}
+
+.documents {
+  @include grid-columns-span-all;
+}
+
+.documents {
+  display: flex;
+  gap: 0;
+  margin-bottom: $indent-64;
+}
+
+.titleBigger {
+  @include typo-make-h2;
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.gallery {
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 0 )) {
+      @include grid-columns-span (( huge: 8 ));
+    }
+  }
+}
+
+.galleryItem {
+  margin-top: $indent-24;
+  margin-bottom: $indent-24;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span (( small: 7, medium: 10, large: 8, huge: 8 ));
+  }
+}
+
+.push {
+  @include grid-columns-span((huge: 6));
+  margin-bottom: $indent-40;
+}
+
+.noDocuments {
+  .textBlock {
+    margin-bottom: $indent-64;
+  }
+}
+
+.noImagesWithDocuments {
+  .textBlock {
+    margin-bottom: $indent-24;
+  }
+}
+
+.wrapperGroup {
+  @include grid-columns-span-all;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, huge: 10));
+  }
+  
+  & + .wrapperGroup {
+    margin-top: $indent-64;
+  }
+}

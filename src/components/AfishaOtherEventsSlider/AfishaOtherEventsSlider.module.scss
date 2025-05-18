@@ -1,0 +1,57 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+  overflow: hidden;
+
+  :global(.slide-not-visible) {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.3;
+
+    &:before {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  @include screen-medium-down {
+    @include grid-container;
+  }
+}
+
+.title {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 6));
+  }
+
+  margin-bottom: $indent-32;
+  text-transform: uppercase;
+}
+
+.wrapper .slider {
+  position: relative;
+  @include grid-container;
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 12));
+    }
+  }
+  overflow: visible;
+
+  margin-bottom: $indent-64;
+  margin-right: calc(-1 * $grid-padding-size);
+  margin-left: calc(-1 * $grid-padding-size);
+}
+
+.slide {
+  width: 350px;
+
+
+  @include screen-small-down {
+    width: auto;
+    @include grid-columns-span((small: 4));
+  }
+}

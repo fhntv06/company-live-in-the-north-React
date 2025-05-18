@@ -1,0 +1,35 @@
+@use "./placeholders" as *;
+@use "./mixins/indent-system" as *;
+@use "./mixins/grid.scss" as *;
+@use "./variables.scss" as *;
+@import 'swiper/scss';
+
+.page-content {
+  @include indent-top(48);
+  @include indent-bottom(160);
+}
+
+.page-content--bottom-80 {
+  @include indent-top(48);
+  @include indent-bottom(80);
+}
+
+.container {
+  @extend %grid-container;
+  @include grid;
+}
+
+.row {
+  @include grid;
+  @include grid-large-up;
+}
+
+.scroll-block {
+  overflow-y: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  // background: $color-gray-background;
+}

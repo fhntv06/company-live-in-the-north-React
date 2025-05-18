@@ -1,0 +1,63 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+@use '../../../../styles/placeholders' as *;
+
+.info {
+  @include grid-columns-span((large: 4, huge: 4));
+}
+
+.title {
+  @include typo-make-h2;
+  font-weight: 500;
+
+  margin-bottom: $indent-32;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-20;
+  }
+}
+
+.infoText {
+  @include typo-make-text;
+}
+
+.cards {
+  @include grid-columns-span((large: 6, huge: 6));
+  display: flex;
+  justify-content: flex-end;
+  gap: $indent-32;
+
+  @include screen-medium-down {
+    margin-top: calc($indent-16 + $indent-16);
+
+    @include grid-columns-span-all;
+    justify-content: unset;
+    flex-wrap: wrap;
+  }
+}
+
+.card {
+  flex: 1 1 100%;
+  max-width: 358px;
+  min-width: 200px;
+
+  @include screen-medium-down {
+    max-width: unset;
+    min-width: unset;
+  }
+}
+
+.actions {
+  margin-top: $indent-32;
+
+  @include grid-columns-span-all;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button {
+  @include screen-medium-down {
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+
+  &:hover .svg {
+    fill: $color-blue-gray;
+  }
+
+  &:disabled .svg {
+    fill: $color-blue;
+  }
+}
+
+.svg {
+  width: 24px;
+  height: 24px;
+  fill: $color-black;
+  transition: fill .1s linear;
+}
+
+.count {
+  @include typo-medium-text;
+  margin: 0 $indent-8;
+  color: $color-black;
+}

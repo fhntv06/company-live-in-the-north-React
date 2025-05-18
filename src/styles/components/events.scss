@@ -1,0 +1,18 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.event__card {
+  width: calc(50% - 8px);
+
+  @include screen-medium-up {
+    width: 33.33%;
+  }
+
+  @include screen-large-up {
+    width: 25%;
+  }
+
+  @include screen-huge-up {
+    width: 20%;
+  }
+}

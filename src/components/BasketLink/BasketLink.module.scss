@@ -1,0 +1,48 @@
+@use '../../styles/variables' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.link {
+  @include typo-make-text;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: $indent-8 $indent-16;
+  font-weight: 500;
+  color: $color-white;
+  border-radius: 16px;
+  background-color: $color-bluemarin;
+  transition:
+    padding .2s ease-out,
+    width .2s ease-out,
+    opacity .2s ease-out,
+    background-color .1s linear;
+   
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $color-white;
+    margin-right: $indent-8;
+
+    @include screen-small-down {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background-color: $color-bluemarin-light;
+  }
+
+  @include screen-small-down {
+    padding: 6px $indent-8;
+    line-height: 20px;
+  }
+
+  @include screen-max(360px) {
+    // width: 0;
+    // padding: 0;
+    // opacity: 0;
+  }
+}

@@ -1,0 +1,85 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables' as *;
+
+
+.container {
+  padding-top: 0;
+
+  @include screen-small-down {
+    padding-bottom: 40px;
+  }
+}
+
+.tabs {
+  display: flex;
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 11));
+  }
+  gap: $indent-24;
+  margin-bottom:$indent-40;
+
+  @include screen-small-down {
+    margin-bottom: 24px;
+  }
+}
+
+.content {
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+  @include grid;
+
+  @include screen-small-down {
+    overflow-x: scroll;
+    overflow-y: clip;
+    margin-right: -24px;
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+  }
+}
+
+.view {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 5, medium: 12))
+  }
+  gap: $grid-gutter-size;
+
+  @include screen-small-down {
+    display: flex;
+    gap: 16px;
+    overflow-x: visible;
+  }
+}
+
+.viewPlaces {
+  @include grid-columns-span((small: 4, medium: 12))
+}
+
+.card {
+  @include grid-columns-span((medium: 6, large: 4, huge: 3));
+  flex: 0 0 100%;
+}
+
+.discussionCard {
+  border: 1px solid $color-gray-light;
+}
+
+.notFound {
+  @include grid-columns-span-all;
+  @include typo-make-h2;
+  padding: $indent-80 0;
+  color: $color-black;
+}
+
+.activityCard {
+  @include grid-columns-span((small: 6, huge: 3));
+
+  &.withBorder {
+    border: 1px solid $color-gray;
+  }
+
+  @include screen-small-down {
+     min-width: 240px;
+  }
+}

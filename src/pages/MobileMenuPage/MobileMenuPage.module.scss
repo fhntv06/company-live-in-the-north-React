@@ -1,0 +1,79 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.menuPage {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: $indent-24;
+  padding: 0 $grid-padding-size;
+}
+
+.selectButtonWrapper {
+  margin-top: $indent-20;
+  margin-bottom: $indent-20;
+
+  display: flex;
+  align-items: center;
+  gap: $indent-8;
+
+  @include typo-make-big-text;
+  font-weight: 400;
+}
+
+.geoIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: $color-gray-middle;
+}
+
+
+.cardsSmall {
+  display: flex;
+  flex-direction: column;
+  row-gap: $indent-16;
+}
+
+.cardBig {
+  min-height: 96px;
+}
+
+.social {
+  margin-top: calc($indent-20 + $indent-20);
+
+  .socialSvg {
+    fill: $color-gray-middle;
+  }
+}
+
+.contacts { 
+  margin-top: calc($indent-16 + $indent-16);
+
+  @include typo-make-small;
+  color: $color-gray-deep;
+  display: flex;
+  flex-direction: column;
+
+  .email {
+    margin-bottom: $indent-12;
+  }
+
+  .address {
+    margin-bottom: calc($indent-16 + $indent-16);
+  }
+
+  .organization {
+    color: $color-gray-middle;
+  }
+
+  @include screen-medium-up {
+    display: none;
+  }
+
+  margin-bottom: $indent-24;
+}
+
+.makeLink {
+  margin-bottom: calc($indent-20 * 2 + $indent-24);
+}

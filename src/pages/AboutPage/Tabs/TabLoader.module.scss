@@ -1,0 +1,35 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.loaderShimmer {
+  animation-duration: 2.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: #F1F1F7;
+  background: linear-gradient(to right, #F1F1F7 8%, #f7f7fd 18%, #F1F1F7 33%);
+  background-size: 1200px 100%;
+  min-height: 280px;
+  border-radius: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+
+  @include screen-small-down {
+    min-height: 194px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+      background-position: -1200px 0;
+  }
+  100% {
+      background-position: 1200px 0;
+  }
+}

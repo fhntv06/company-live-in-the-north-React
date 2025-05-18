@@ -1,0 +1,18 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid-columns-span-all;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, huge: 10));
+  }
+  grid-row-gap: $indent-24;
+
+  @include typo-make-text;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-64;
+  }
+}

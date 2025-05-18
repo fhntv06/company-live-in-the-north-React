@@ -1,0 +1,105 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  padding: 10px 20px;
+}
+
+.tagMark {
+  border-radius: 8px;
+  padding: 4px 8px;
+  border: 1px solid $color-gray-deep;
+  text-transform: uppercase;
+  color: $color-gray-deep;
+  @include typo-make-ultrasmall;
+  line-height: calc(1em + 4px);
+
+  &:not(:last-child),
+  &:only-child {
+    margin-right: $indent-8;
+  }
+
+  @include screen-small-down {
+    padding: 3px 8px;
+  }
+}
+
+.tagTime {
+  background-color: $color-gray-light;
+}
+
+.tagSearch,
+.tagTime {
+  height: 40px;
+  border-radius: 16px;
+  color: $color-blue-gray;
+  border: none;
+  @include typo-medium-text;
+}
+
+.tagSearch {
+  grid-column-gap: 8px;
+  background-color: $color-gray-extra-light;
+  transition:
+    background-color .3s,
+    color .3s;
+
+  .icon {
+    opacity: 0;
+    width: 0;
+    transform: rotateZ(0);
+    transition:
+      width .1s ,
+      opacity .3s,
+      transform .3s;
+  }
+
+  &:hover {
+    background-color: $color-gray-light;
+    color: #5171F2;
+
+    .icon {
+      opacity: 1;
+      width: 8px;
+    }
+  }
+
+  .buttonDelete {
+    overflow: hidden;
+
+    .icon {
+      fill: $color-blue;
+      height: 8px;
+    }
+
+    &:hover {
+      .icon {
+        fill: $color-bluemarin;
+        transform: rotateZ(90deg);
+      }
+    }
+  }
+}
+
+.tagSelected {
+  background-color: $color-bluemarin !important;
+  color: #fff !important; 
+}
+
+.yamal {
+  @include typo-make-small;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $color-black;
+  background-color: $color-yellow-yamal;
+  border-radius: 8px;
+
+  @include screen-small-down {
+    @include typo-make-tiny;
+  }
+}

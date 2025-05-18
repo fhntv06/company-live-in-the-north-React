@@ -1,0 +1,341 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders';
+
+.pageContainer {
+  @include grid-container;
+  padding-top: 88px;
+  @include screen-medium-up {
+    padding-top: calc($indent-96 + $indent-48);
+  }
+}
+
+.header {
+  @include grid;
+  margin-bottom: $indent-32;
+  row-gap: $grid-gutter-size;
+}
+
+.title {
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 12, large: 4));
+  }
+  display: flex;
+  align-items: center;
+
+  @include screen-small-down {
+    justify-content: space-between;
+  }
+}
+
+.bell {
+  position: relative;
+  height: 24px;
+}
+
+.bellIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.notifications {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-error-field;
+  width: 16px;
+  height: 16px;
+  color: $color-white;
+  border-radius: 50%;
+  @include typo-make-tiny;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.booksmarkIcon {
+  fill: none;
+  width: 24px;
+  height: 24px;
+}
+
+.headerButtons {
+  display: flex;
+  @include grid-with-offset((medium: 1, large: 5)) {
+    @include grid-columns-span((medium: 12, large: 7));
+  }
+
+  row-gap: $indent-16;
+
+  @include screen-large-up {
+    justify-content: flex-end;
+  }
+
+  @include screen-small-down {
+    flex-direction: column;
+  }
+}
+
+.subscribeButton {
+  border: 1px solid $color-gray;
+}
+
+.profileInfoContainer {
+  @include grid;
+  background-color: $color-gray-extra-light;
+  padding: $indent-48 $indent-16;
+  border-radius: 16px;
+  align-items: start;
+  row-gap: $indent-24;
+  margin-left: calc(-1 * $grid-padding-size);
+  margin-right: calc(-1 * $grid-padding-size);
+  position: relative;
+  overflow: hidden;
+
+  @include screen-medium-up {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @include screen-large-up {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.profileMainInfo {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 12, large: 6));
+  }
+}
+
+.inviteButton {
+  margin-top: $indent-24;
+  width: max-content;
+  padding: $indent-8;
+  padding-left: $indent-24;
+  margin-left: auto;
+  @include grid-with-offset((medium: 6, large: 2)) {
+    @include grid-columns-span((medium: 6, large: 4));
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: $indent-16;
+  }
+}
+
+.wallet {
+  span {
+    color: $color-white;
+  }
+}
+
+.tiles {
+  @include grid-columns-span((medium: 12, large: 6));
+  row-gap: $indent-24;
+  display: flex;
+  row-gap: $indent-24;
+  flex-wrap: wrap;
+
+  @include screen-large-up {
+    padding-right: $indent-48;
+  }
+
+  .tilesRow:not(:last-child) {
+    margin-bottom: $indent-24;
+  }
+
+  .tile {
+    flex-grow: 1;
+  }
+
+  @include screen-small-down {
+    .tile {
+      width: 100%;
+    }
+    .tile:nth-child(2),
+    .tileWithLink {
+      flex-grow: 0;
+      width: calc(50% - $grid-gutter-size / 2);
+    }
+  }
+}
+
+.tileWithLink {
+  display: flex;
+  gap: 0;
+  flex-grow: 1;
+
+  .tile {
+    width: 100%;
+  }
+}
+
+.bigButton {
+  max-height: 160px;
+}
+
+.activities {
+  @include grid;
+  margin-top: $indent-64;
+  padding-bottom: calc($indent-64 + $indent-8);
+}
+
+.activitiesList {
+  @include grid-with-offset((huge: 1)) {
+    @include grid-columns-span((huge: 10));
+  }
+}
+
+.activityTitle {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 10));
+  }
+}
+
+.activitiesList {
+  @include grid;
+  row-gap: $grid-gutter-size;
+  margin-top: $indent-32;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+
+  @include screen-large-down {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+ 
+  @include screen-small-down {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.activityCard {
+  @include grid-columns-span((small: 4, medium: 6, large:3, huge: 5));
+
+  &.withBorder {
+    border: 1px solid $color-gray;
+  }
+}
+
+.moreButtonWrapper {
+  @include grid-columns-span-all;
+  text-align: center;
+  @include grid-columns-span((small: 2, medium: 12, huge: 20));
+}
+
+.moreButton {
+  display: inline-flex;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+  background-clip: text;
+  color: transparent;
+  padding: $indent-20;
+  border-radius: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  height: 100%;
+
+  @include screen-medium-up {
+    max-height: 56px;
+    padding: $indent-20 $indent-80;
+  }
+
+  @include screen-small-down {
+    @include typo-make-small;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  &:before,
+  &:after {
+    @extend %border-gradient;
+    transition: all .1s linear;
+  }
+
+  &:after {
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    opacity: 0;
+    background-origin: border-box;
+    background-clip: border-box;
+    z-index: 2;
+  }
+
+  &:hover:not(:disabled) {
+    &:before {
+      opacity: 0;
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    span {
+      color: $color-violet;
+    }
+
+    &::after,
+    &::before {
+      background: $color-violet;
+    }
+  }
+}
+.mobileButtons {
+  margin-left: calc(-1 * $grid-padding-size);
+  margin-right: calc(-1 * $grid-padding-size);
+  padding-bottom: 40px;
+}
+
+.mobileButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+  padding: 16px 24px;
+  height: 48px;
+  width: 100%;
+  @include typo-make-h5;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .chevron {
+    width: 24px;
+    height: 24px;
+    transform: rotate(-90deg);
+  }
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+}
+
+.bannerWrapper {
+  @include grid;
+}
+
+.banner {
+  @include grid-with-offset((huge: 1)) {
+    @include grid-columns-span((huge: 10));
+  }
+  margin-top: $indent-40;
+}

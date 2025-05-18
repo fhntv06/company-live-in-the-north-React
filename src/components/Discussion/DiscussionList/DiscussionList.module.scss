@@ -1,0 +1,177 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid;
+  padding-top: $indent-32;
+  padding-bottom: $indent-48;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  overflow: hidden;
+
+  @include screen-small-down {
+    padding: $indent-96 0 $indent-24;
+  }
+
+  @include screen-large-up {
+    box-shadow: 0 0 0 $indent-48 solid $color-white;
+    outline: $indent-48 solid $color-white;
+  }
+}
+
+.container {
+  @include grid-with-inner-context {
+    @include grid-with-offset((huge: 1)) {
+      @include grid-columns-span((large: 12, huge: 10));
+    }
+  }
+
+  @include screen-small-down {
+    @include grid-container;
+  }
+}
+
+.discussionItem {
+  position: relative;
+  z-index: 3;
+  @include grid-columns-span-all;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-8;
+  }
+
+  @include screen-small-down {
+    &:not(:last-child) {
+      margin-bottom: $indent-12;
+    }
+  }
+}
+
+.discussionCard {
+  @include grid-columns-span(( small: 4, medium: 6, large: 4 , huge: 4, oversized: 3));
+
+  @include screen-large-down {
+    width: 302px;
+    flex-shrink: 0;
+  }
+
+  @include screen-small-down {
+    margin: 0 8px;
+  }
+}
+
+.buttons {
+  @include screen-large-down {
+    @include grid-container;
+  }
+
+  width: 100%;
+  display: flex;
+  gap: 0;
+  position: relative;
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.button:not(:last-child) {
+  margin-right: $indent-16;
+}
+
+.more {
+  @include grid-columns-span-all;
+  width: 100%;
+  text-align: center;
+  margin-top: $indent-64;
+
+  @include screen-small-down {
+    margin-top: $indent-24;
+    @include grid;
+
+    .button {
+      @include grid-columns-span-all;
+    }
+  }
+}
+
+.list,
+.table {
+  width: 100%;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 12)); // for view four cards in one line in large <
+  }
+}
+
+.table {
+  grid-row-gap: $indent-24;
+
+  @include screen-large-down {
+    @include grid-container;
+  }
+
+  @include screen-large-down {
+    @include helper-hidden-system-scrollbar;
+    display: flex;
+    gap: $indent-16;
+    overflow-y: hidden;
+    margin-bottom: 0;
+  }
+}
+
+.notFound {
+  @include typo-make-big-text;
+  @include grid-columns-span-all;
+  
+  @include screen-large-up {
+    min-height: 550px;
+  }
+}
+
+.firstRowWrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 12));
+  }
+}
+
+.calendarWrapper,
+.selectWrapper {
+  width: fit-content;
+  position: relative;
+  z-index: 10;
+  grid-column-start: -1;
+
+  @include screen-large-only {
+    grid-column-start: 11;
+  }
+
+  @include screen-medium-down {
+    margin-bottom: $indent-24;
+    margin-left: $grid-padding-size;
+  }
+
+  @include screen-small-down {
+    margin-left: 0;
+  }
+
+  :global(.select__option) {
+    white-space: nowrap;
+  }
+}
+
+.calendarBigContainer {
+
+  @include screen-large-up {
+    right: 0;
+    left: initial !important;  
+  }
+}
+
+.filterWrapper {
+  display: flex;
+  grid-column-start: -1;
+}

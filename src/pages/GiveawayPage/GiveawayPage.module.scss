@@ -1,0 +1,96 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.headerWrapper {
+  margin-top: calc($indent-20 + $indent-16);
+  @include grid;
+  @include grid-columns-span-all;
+}
+
+.timeCardWrapper {
+  @include screen-large-down {
+    display: none;
+  }
+}
+
+.topRow {
+    @include grid-with-offset((huge: 1)) {
+      @include grid-columns-span((huge: 10));
+    }
+  }
+
+.tagWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.timeCard {
+  justify-content: space-between !important;
+}
+
+.winnerCount {
+  @include typo-make-ultrasmall;
+  color: $color-gray-blue;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  span {
+    font-weight: normal;
+  }
+}
+
+.headerContentWrapper {
+  margin-top: calc($indent-20 + $indent-16);
+  @include grid;
+  @include grid-columns-span-all;
+}
+
+.headerContent {
+  @include grid-with-offset((huge: 1)) {
+    @include grid-columns-span((huge: 10));
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: calc($indent-20 + $indent-16);
+}
+
+.main {
+  padding: 0 $grid-padding-size;
+  margin: 0 calc($indent-12 * -1);
+  padding-top: $indent-32;
+  padding-bottom: calc($indent-80 + $indent-80 + $indent-24);
+}
+
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.moreBtnWrapper {
+  margin: 0 $indent-12;
+  margin-top: $indent-64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreBtn {
+  @include screen-small-down {
+    width: 100%;
+  }
+}
+
+.notFoundWrapper {
+  width: 100%;
+  margin: 0 $indent-12;
+}
+
+.notFoundTitle {
+  @include typo-make-h5;
+  color: $color-gray-deep;
+}

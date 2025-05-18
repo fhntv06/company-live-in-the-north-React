@@ -1,0 +1,415 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  position: relative;
+  @include grid-columns-span((small: 4, medium: 4, large: 4, huge: 3));
+
+  &:hover .background::before {
+    @include screen-medium-up {
+      background-image: linear-gradient(0deg, rgba(63, 87, 186, 0.35) 0%, rgba(63, 87, 186, 0.35) 100%);
+      box-shadow: inset 0 0 150px rgba(7, 17, 68, .6);  
+    }
+  }
+
+  &:active .background::before {
+    background-image: linear-gradient(0deg, rgba(63, 87, 186, 0.25) 0%, rgba(63, 87, 186, 0.25) 100%);
+    box-shadow: inset 0 0 150px rgba(7, 17, 68, .24);
+  }
+
+  .card {
+    justify-content: space-between;
+    padding: $indent-24 $indent-32 $indent-32;
+  }
+
+  .description,
+  .location {
+    opacity: .8;
+  }
+
+  .category,
+  .location {
+    display: flex;
+    align-items: center;
+    
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+              line-clamp: 3;
+      -webkit-box-orient: vertical;   
+    }
+  }
+
+  .category {
+    margin-top: $indent-8;
+
+    @include screen-medium-down {
+      margin: auto 0;
+    }
+  }
+
+  .location {
+    margin-top: $indent-16;
+
+    svg {
+      margin-top: 2px;
+    }
+  }
+
+  .bottom {
+    margin-top: auto;
+  }
+
+}
+
+.withoutImage {
+  background-color: $color-white;
+  border-radius: 16px;
+
+  .title,
+  .description {
+    color: $color-dark-color;
+  }
+
+  &::after {
+    @extend %border-gradient;
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    background-origin: border-box;
+    transition: .1s linear;
+  }
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 150px rgba(7, 17, 68, .32);
+  mix-blend-mode: normal;
+  background-image: linear-gradient(0deg, rgba(63, 87, 186, 0.3) 0%, rgba(63, 87, 186, 0.3) 100%);
+  transition: opacity .2s linear, box-shadow .2s linear, background-image .2s linear;
+}
+
+.card {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  gap: 0;
+  opacity: 1;
+  filter: blur(0);
+  will-change: filter;
+  transition: filter 1s ease-out,
+  opacity 1s ease-out;
+
+  @include screen-medium-down {
+    height: 320px;
+  }
+
+  @include screen-medium-up {
+    &:hover .title {
+      transform: translateY(-2px);
+    }
+  }
+
+  &.violet .booksmarkBtn:hover .booksmarkSvg {
+    fill: $color-violet;
+    stroke: $color-violet;
+  }
+
+  &.violet {
+    .booksmarkBtn:hover svg {
+      fill: $color-violet;
+      stroke: $color-violet;
+    }
+  }
+
+  &.bluemarin {
+    .booksmarkBtn:hover svg {
+      fill: $color-bluemarin;
+      stroke: $color-bluemarin;
+    }
+  }
+
+  &.blue {
+    .booksmarkBtn:hover svg {
+      fill: $color-blue;
+      stroke: $color-blue;
+    }
+  }
+
+  &.orange {
+    .booksmarkBtn:hover svg {
+      fill: $color-orange;
+      stroke: $color-orange;
+    }
+  }
+
+  &.pink {
+    .booksmarkBtn:hover svg {
+      fill: $color-pink;
+      stroke: $color-pink;
+    }
+  }
+
+  &.hiddenInner {
+    padding: 0;
+    opacity: .8;
+    filter: blur(16px);
+
+    .top,
+    .bottom,
+    .labelSvg {
+      width: 0;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+    }
+  }
+
+  .top,
+  .bottom,
+  .labelSvg {
+    transition: width 2s ease-out,
+    padding 2s ease-out,
+    margin 2s ease-out,
+    opacity 2s ease-out;
+  }
+}
+
+.soon {
+  @include grid-columns-span((small: 4, medium: 6, large: 6, huge: 5));
+
+  .top {
+    grid-column-gap: $grid-gutter-size;
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 5));
+    }
+
+    @include screen-small-down {
+      gap: 0;
+    }
+  }
+
+  .price {
+    grid-column: -3 / -1;
+  }
+
+  .bottom {
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 5));
+    }
+
+    @include screen-large-up {
+      margin-top: auto;
+      grid-column-gap: $grid-gutter-size;
+    }
+  }
+
+  .description,
+  .location,
+  .title {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 3));
+    }
+    gap: 0;
+
+    @include screen-large-down {
+      @include grid-columns-span-all;
+    }
+  }
+
+  .category {
+    @include grid-columns-span((large: 2));
+  }
+
+  .topContainer {
+    @include grid-columns-span((large: 2));
+
+    @include screen-large-up {
+      margin-top: $indent-16;
+    }
+  }
+}
+
+.fireSvg,
+.labelSvg {
+  right: $indent-24;
+  bottom: $indent-24;
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+}
+
+.background,
+.fireSvg,
+.labelSvg {
+  position: absolute;
+}
+
+.background {
+  z-index: -1;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.topContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 16px;
+  @include indent-bottom(12);
+  align-items: center;
+  justify-content: center;
+  padding: $indent-16;
+  margin-top: -8px;
+
+  &::after {
+    @extend %border-gradient;
+  }
+
+  @include screen-medium-down {
+    display: none;
+  }
+}
+
+.soonText,
+.day,
+.month {
+  color: $color-white;
+  text-align: center;
+}
+
+.soonText {
+  @include typo-make-small;
+  text-transform: uppercase;
+}
+
+.day {
+  margin-top: $indent-16;
+  @include typo-make-h2;
+  font-weight: 700;
+}
+
+.month {
+  @include typo-make-tiny;
+}
+
+.category {
+  @include typo-make-small;
+  line-height: 16px;
+  @include screen-small-down {
+    @include typo-make-tiny;
+    line-height: 16px;
+  }
+
+  margin-top: $indent-12;
+
+  text-transform: uppercase;
+  color: $color-white;
+}
+
+.price {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin-left: auto;
+
+  @include screen-small-down {
+    margin-left: $indent-8;
+  }
+}
+
+.booksmarkBtn {
+  margin-left: $indent-16;
+  position: relative;
+
+  @include screen-small-down {
+    margin-left: $indent-12;
+  }
+
+  svg {
+    stroke: $color-white;
+  }
+}
+
+.booksmarkSvg {
+  stroke: $color-white;
+  fill: none;
+  transition: stroke .1s linear, fill .1s linear;
+}
+
+
+.timeSvg,
+.geoSvg {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  stroke: $color-white;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.geoSvg {
+  fill: $color-white;
+  stroke-width: 0;
+}
+
+.timeSvg {
+  fill: none;
+}
+
+.booksmarkSvg {
+  width: 16px;
+  height: 16px;
+  fill: $color-white;
+  align-self: flex-start;
+}
+
+.title {
+  @include typo-make-h4;
+  font-weight: 600;
+  color: $color-white;
+  transition: transform .1s linear;
+}
+
+.location,
+.description {
+  @include typo-make-small;
+  margin-top: $indent-16;
+  display: flex;
+  align-items: center;
+  color: $color-white;
+}
+
+.hiddenInner {
+  filter: blur(16px);
+}
+
+.labelSvg {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: $indent-24;
+  bottom: $indent-24;
+  fill: $color-white;
+}

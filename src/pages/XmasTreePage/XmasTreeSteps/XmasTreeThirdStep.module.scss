@@ -1,0 +1,104 @@
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11, huge: 11));
+  }
+}
+
+.title, .text {
+  @include grid-columns-span-all;
+}
+
+.title {
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.text {
+  @include typo-make-h5;
+  @include grid-columns-span((large: 6, huge: 4));
+  margin-bottom: $indent-48;
+}
+
+.contacts {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 10, large: 10, huge: 10));
+  }
+
+  @include screen-small-down {
+    display: flex;
+    flex-direction: column;
+    gap: $indent-12;
+  }
+}
+
+.address {
+  @include typo-make-text;
+  @include grid-columns-span((medium: 2, large: 2, huge: 2));
+}
+
+.additionalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-16;
+
+  @include screen-small-down {
+    gap: $indent-12;
+  }
+
+  @include typo-make-text;
+  grid-column: 4/7;
+
+  .phone {
+    @include typo-make-h2;
+  }
+}
+
+.btnWrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 4, large: 4, huge: 4));
+  }
+  direction: rtl;
+}
+
+.btn {
+  height: fit-content;
+  @include grid-columns-span((medium: 3, large: 2, huge: 2));
+  border: 1px solid $color-gray-light;
+
+  @include screen-large-up {
+    min-width: 280px;
+  }
+  
+  span {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: $indent-8;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.map {
+  @include grid-columns-span-all;
+  margin-top: $indent-32;
+  width: 100%;
+  height: 480px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.link {
+  transition: color .1s linear;
+
+  &:hover {
+      color: $color-bluemarin-light;
+  }
+}

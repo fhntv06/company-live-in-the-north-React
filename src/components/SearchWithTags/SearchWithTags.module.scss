@@ -1,0 +1,58 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.search {
+  position: relative;
+  min-height: 45px;
+
+  &.searchIsOpen {
+    width: 100%;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.button {
+  min-width: 40px;
+  border-radius: 8px;
+  margin-right: $indent-16;
+  order: 1;
+
+   @include screen-medium-up {
+     order: 0;
+     align-self: flex-end;
+   }
+}
+
+.searchField {
+  width: 100%;
+
+  input {
+    padding: 8px 16px 8px 56px;
+  }
+}
+
+.tags {
+  display: flex;
+  @extend %helper-hidden-system-scrollbar;
+
+  @include screen-small-down {
+    padding: 16px;
+    width: 100vw;
+    margin-left: calc(-1 * $grid-padding-size);
+    margin-right: calc(-1 * $grid-padding-size);
+    padding-left: $grid-padding-size;
+    padding-right: $grid-padding-size;
+  }
+}
+
+.calendarMini {
+  margin-right: $indent-8;
+}

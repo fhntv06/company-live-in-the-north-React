@@ -1,0 +1,69 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.sliderContainer {
+  @include grid;
+  @include grid-columns-span-all;
+  overflow: hidden;
+  position: relative;
+  padding: $indent-48 0;
+}
+
+.title {
+  @include grid-with-offset((medium: 1, large: 1)) {
+    @include grid-columns-span((small: 4, medium: 7, large: 11));
+  }
+  @include typo-make-h3;
+  font-weight: 700;
+}
+
+.sliderWrapper {
+  @include screen-medium-up {
+    margin-left: calc($indent-12 * -1);
+  }
+
+
+  @include grid-with-offset((medium: 1, large: 1)) {
+    @include grid-columns-span((medium: 7, large: 11));
+  }
+
+
+  :global(.slide-not-visible) {
+    position: relative;
+    opacity: 0.3;
+    pointer-events: none;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.swiper {
+  gap: 0;
+  overflow: visible;
+  cursor: grab;
+  z-index: 0;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.slideWrapper {
+  height: 100%;
+}
+
+.slide {
+  padding-top: $indent-24;
+  position: relative;
+  height: auto;
+}
+
+.card {
+  height: 100%;
+}

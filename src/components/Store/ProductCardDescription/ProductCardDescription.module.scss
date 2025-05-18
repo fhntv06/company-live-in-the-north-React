@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.card {
+  padding: $indent-24;
+  @include screen-medium-up {
+    padding: $indent-32 156px $indent-32 $indent-64;
+  }
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+}
+
+.cardTitle {
+  @include typo-make-h5;
+  font-weight: 500;
+  margin-bottom: $indent-16;
+  @include screen-medium-up {
+    margin-bottom: $indent-24;
+  }
+}
+
+.attributesList {
+  width: 100%;
+  @include typo-medium-text;
+}
+
+.attribute {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-16;
+  }
+}
+
+.attributeName {
+  color: $color-blue-gray;
+}
+
+.attributeName,
+.attributeValue {
+  flex-basis: 50%;
+}
+
+.description {
+  //padding-bottom: 24px;
+}

@@ -1,0 +1,276 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  background: url(../../images/wish_randomizer_bg.png) no-repeat center / cover, $color-gray-extra-light;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  height: 512px;
+  overflow: hidden;
+  color: $color-dark-color;
+  position: relative;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11, oversized: 10));
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+    padding: calc($indent-16 * 4) 0;
+    height: auto;
+  }
+}
+
+.content {
+  @include grid-with-inner-context {
+    @include grid-with-offset((oversized: 1)) {
+      @include grid-columns-span((large: 11, oversized: 8))
+    }
+  }
+
+  align-items: center;
+
+  @include screen-medium-down {
+    display: flex;
+    height: 585px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @include screen-huge-down {
+    padding: 0 $indent-24;
+  }
+}
+
+.wishesLeft {
+  @include grid-columns-span((large: 4, oversized: 3));
+  display: flex;
+  align-items: center;
+  gap: $indent-16;
+
+  span {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: calc(1em + 4px);
+    text-transform: uppercase;
+  }
+
+  .count, .count span {
+    @include typo-make-h1;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .count span {
+    color: $color-blue-gray;
+    font-weight: 400;
+  }
+
+  @include screen-large-down {
+    .count, .count span {
+      font-size: 52px;
+    }  
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    span {
+      text-align: center;
+      font-weight: 600;  
+    }
+
+  .count, .count span {
+    font-size: 48px;
+    }
+  }
+}
+
+.wishWrapper {
+  grid-column: 9/7;
+
+  @include screen-huge-only {
+    grid-column: 12/8;
+  }
+  @include screen-large-only {
+    grid-column: 8/12;
+  }
+  display: flex;
+  flex-direction: column;
+  @include typo-make-text;
+
+  .wish {
+    font-weight: 700;
+  }
+
+  .fulfillBtn {
+    margin-top: $indent-24;
+  }
+
+  @include screen-medium-down {
+    text-align: center;
+  }
+
+  p {
+    transition: filter 0.3s linear;
+  }
+}
+
+.sequenceWrapper {
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  right: 50%;
+  z-index: 1;
+  width: 512px;
+  height: 512px;
+
+  @include screen-medium-down {
+    width: 418px;
+    height: 418px;
+    transform: translate(-50%, 90px);
+  }
+}
+
+.sequence {
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(sequence.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: background-position;
+  transform: translateX(-50%);
+  transition: opacity 0.2s linear;
+
+  &:global(.show) {
+    @include screen-tiny-only {
+      bottom: 65%;
+    }
+  }
+
+  &:global(.animation) {
+    animation: sequence 1.75s steps(50);
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  @include screen-medium-down {
+    transform: none;
+  }
+}
+
+.randomizeBtnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transform: translateX(-50%);
+
+  bottom: $indent-48;
+
+  @include screen-medium-down {
+    bottom: calc($indent-20 * 3);
+    transform: none;
+  }
+}
+
+.randomizeBtn {
+  width: 51px;
+  height: 51px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='56 56.22 51 51'%3E%3Cg%3E%3Ccircle cx='81.5' cy='81.718' r='25.5' fill='white'%3E%3C/circle%3E%3C/g%3E%3Cpath d='M86.9891 68.4661C84.3681 67.3805 81.4841 67.0964 78.7017 67.6499C75.9193 68.2033 73.3635 69.5695 71.3574 71.5755C69.3514 73.5815 67.9853 76.1373 67.4319 78.9197C66.8784 81.7021 67.1625 84.5862 68.2481 87.2071C69.3338 89.8281 71.1722 92.0683 73.531 93.6444C75.8899 95.2205 78.6631 96.0618 81.5 96.0618C82.8203 96.0618 83.8906 94.9915 83.8906 93.6711C83.8906 92.3508 82.8203 91.2805 81.5 91.2805C79.6087 91.2805 77.7599 90.7197 76.1874 89.669C74.6148 88.6182 73.3892 87.1248 72.6654 85.3774C71.9416 83.6301 71.7523 81.7074 72.1212 79.8525C72.4902 77.9975 73.401 76.2937 74.7383 74.9563C76.0756 73.619 77.7795 72.7082 79.6345 72.3393C81.4894 71.9703 83.4121 72.1597 85.1594 72.8834C86.9067 73.6072 88.4002 74.8328 89.4509 76.4054C89.9737 77.1878 90.3752 78.0386 90.6467 78.929C90.9013 79.7639 91.3747 80.8757 91.4609 81.718L90.4581 80.3147C89.5245 79.3811 88.1362 79.3811 87.2026 80.3147C86.269 81.2483 86.269 82.2741 87.2026 83.2077L91.6894 87.6946C92.623 88.6282 94.1367 88.6282 95.0703 87.6946L99.5571 83.2077C100.491 82.2741 100.491 81.2483 99.5571 80.3147C98.6235 79.3811 97.1758 79.3811 96.2422 80.3147L95.0469 81.718C95.4453 80.9211 95.8027 80.103 95.57 78.929C95.2049 77.087 94.4797 75.3255 93.4264 73.7491C91.8503 71.3902 89.6101 69.5518 86.9891 68.4661Z' fill='%2352C7D8'%3E%3C/path%3E%3C/svg%3E%0A");
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+
+  color: transparent;
+  user-select: none;
+  transition: box-shadow .2s linear;
+
+  &:hover {
+    box-shadow: 0 0 64px rgba(7, 17, 68, .32);
+  }
+
+  @include screen-medium-down {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.blur {
+  filter: blur(5px);
+}
+
+.wishText {
+  animation: .4s alternate fadeIn;
+}
+
+.signInLink {
+  @include link-multiline-base($color-blue-gray);
+}
+
+.warning {
+  position: absolute;
+  top: $indent-40;
+  right: $indent-40;
+  z-index: 1;
+}
+
+.attention {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: $indent-16;
+
+  @include screen-oversized-up {
+    margin-right: calc($indent-72 * -1);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: calc($indent-8 + 4px);
+  }
+
+  .text {
+    @include typo-make-text;
+    font-weight: 500;
+    color: $color-dark-color;
+    position: relative;
+    z-index: 1;
+
+    @include screen-small-down {
+      text-align: left;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sequence {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}

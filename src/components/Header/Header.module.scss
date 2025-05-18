@@ -1,0 +1,856 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  &.mobileMenuPage {
+    display: none;
+  }
+
+  &.open {
+
+    .header {
+      box-shadow: none;
+      overflow: hidden;
+      margin: 0;
+      transform: translateY(0);
+      border-radius: 0;
+      background-color: transparent;
+
+      &::after {
+        height: 200px; // anything value
+      }
+
+      .logo {
+        transform: translateY(16px);
+
+        @include screen-small-down {
+          opacity: 0;
+          width: 0;
+          pointer-events: none;
+        }
+      }
+
+      .logoText {
+        transform: translateY(-64px);
+        pointer-events: none;
+        display: none;
+      }
+
+      .menuLinks {
+        overflow: hidden;
+      }
+
+      .links,
+      .burger {
+        transform: translate(48px, -56px);
+      }
+
+      .menuIcons .icon {
+        transform: translateX(-4vw);
+      }
+
+      .headerDropdown {
+        opacity: 1;
+        height: max-content;
+        padding-top: $indent-24;
+        padding-bottom: calc($indent-96 + $indent-64);
+        
+        @include screen-medium-up {
+          padding-bottom: calc($indent-40 + 4px);
+        }
+
+        @extend %card-shadow;
+      }
+
+      .search {
+        transform: translateX(0);
+      }
+
+      @include screen-small-down {
+        overflow-y: scroll;
+        height: 100vh;
+      }
+    }
+
+    .background {
+      display: block;
+    }
+  }
+
+  &.openedOnSearch {
+    @include screen-small-down {
+      .header {
+        .headerDropdown {
+          height: 100%;
+          transition: height 0s;     
+          & > * {
+            display: none;
+          }
+
+          .dropdownTop {
+            display: grid;
+            max-height: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.header {
+  @extend %grid-container;
+  z-index: 10;
+  position: relative;
+  padding: 0;
+  border-radius: 16px;
+  height: max-content;
+  @extend %card-shadow;
+  transform: translateY(24px);
+  margin-right: $indent-40;
+  margin-left: $indent-40;
+  transition:
+    margin-right .3s,
+    margin-left .3s,
+    border-radius .3s,
+    opacity .2s,
+    transform .3s;
+  
+    @include screen-small-down {
+      border-radius: 0 0 16px 16px;
+    }
+
+  background-color: $color-white;
+  overflow: visible;
+
+  .notifications {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+  }
+
+  &.scroll {
+    transform: translateY(0);
+    margin: 0;
+  }
+
+  @include screen-small-down {
+    transform: translateY(0);
+    margin: 0;
+  }
+}
+
+.background {
+  z-index: 1;
+  display: none;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  inset: 0 ;
+  opacity: .5;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  height: 100vh;
+  width: 100vw;
+
+  &.open {
+    display: block;
+  }
+}
+
+.buttonSearch {
+  align-self: center;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.buttonSearch .icon {
+  transition: transform .1s;
+
+  @include screen-medium-down {
+    transform: rotateY(180deg);
+  }
+
+  &:hover {
+    transform: rotate(-15deg);
+
+    @include screen-medium-down {
+      transform: rotateY(180deg) rotateZ(-15deg);
+    }
+  }
+}
+
+.headerTop {
+  height: 64px;
+  border-radius: 16px 16px 0 0;
+
+  @include screen-small-down {
+    display: flex;
+    height: 48px;
+    padding: 0 $indent-16;
+  }
+}
+
+.headerTop,
+.headerDropdown {
+  margin: 0;
+  transition: padding .2s;
+}
+
+.headerTop,
+.headerDropdown,
+.dropdownTop {
+  @include grid-columns-span-all;
+}
+
+.header,
+.headerTop,
+.headerDropdown {
+  @include grid-with-inner-context {
+      @include grid-columns-span(( small: 6, medium: 12 ));
+    }
+}
+
+.dropdownContent {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column: 2 / span 10;
+
+  @include screen-large-down {
+    grid-template-columns: repeat(12, 1fr);
+    grid-column: 1 / -1;
+  }
+
+  @include screen-medium-down {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.headerDropdown {
+  z-index: 10;
+  position: relative;
+  top: -64px;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: $color-white;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    height 2s,
+    opacity 0s;
+
+  @include screen-medium-up {
+    padding-left: $indent-40;
+    padding-right: $indent-40;
+  }
+
+  .search {
+    @include grid-with-inner-context {
+      @include grid-columns-span(( small: 5, medium: 10 ));
+    }
+
+    @include screen-small-down {
+      transform: translateX(100%);
+      transform-origin: center right;
+      transition:
+        width .2s,
+        transform .2s;  
+    }
+
+    input {
+      padding-top: calc($indent-8 + 4px);
+      padding-bottom: calc($indent-8 + 4px);
+    }
+  }
+
+  .buttonClose {
+    @include grid-columns-span(( small: 1 ));
+
+    display: flex;
+    justify-content: flex-end;
+    height: max-content;
+    opacity: .5;
+
+    @include screen-medium-up {
+      padding-right: $indent-24;
+    }
+  }
+
+  @include screen-small-down {
+    position: absolute;
+    top: 0;
+    padding: 0 $indent-24 0 $indent-16;
+  }
+}
+
+.logoWrapper {
+  @include grid-columns-span(( small: 4, large: 3, oversized: 2 ));
+}
+
+.logo {
+  z-index: 15;
+  position: relative;
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 0;
+  align-items: center;
+  height: 100%;
+  transition:
+    opacity .2s,
+    transform .2s;
+
+  img {
+    margin-right: $indent-16;
+  }
+
+  @include screen-medium-up {
+    padding-left: $indent-24;
+  }
+  @include screen-small-down {
+    img {
+      height: 30px;
+      margin-right: $indent-12;
+    }
+  }
+}
+
+.logoText {
+  color: $color-logo-text-color;
+  @include typo-make-text;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+
+  @include screen-small-down {
+    @include typo-make-small;
+    font-weight: 700;
+  }
+}
+
+.burger {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 12px;
+  overflow: hidden;
+  transition:
+    width .2s ease-out,
+    opacity .2s ease-out;
+
+  .burger__line {
+    height: 2px;
+    width: 16px;
+    background-color: $color-dark-color;
+  }
+
+  &::before {
+    top: 0;
+    width: 14px;
+  }
+
+  &::after {
+    bottom: 0;
+    width: 13px;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 2px;
+    background-color: $color-dark-color;
+    border-radius: 1px;
+  }
+
+  &::after,
+  &::before,
+  .burger__line {
+    transition:
+      background-color .2s,
+      transform .2s;
+  }
+
+  &:hover {
+    .burger__line {
+      transform: translateX(2px);
+    }
+
+    &::after,
+    &::before {
+      transform: translateX(-3px);
+    }
+
+    &::after,
+    &::before,
+    .burger__line {
+      background-color: $color-bluemarin-light;
+    }
+
+    &:active {
+      &::after,
+      &::before,
+      .burger__line {
+        background-color: $color-bluemarin-extra-light;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+
+  &[role="img"] {
+    pointer-events: auto;
+  }
+
+  // &:active {
+  //   fill: $color-bluemarin-extra-light;
+  // }
+}
+
+.menuLinks {
+  @include grid-with-inner-context {
+    @include grid-columns-span(( small: 5, medium: 2, large: 3, huge: 5, oversized: 5 ));
+  }
+
+  @include screen-medium-only {
+    gap: 0;
+  }
+
+  .icon {
+    transition: transform .2s;
+  }
+
+  .links {
+    @include grid-columns-span(( small: 4 ));
+    transition:
+      width .2s ease-out,
+      opacity .2s ease-out;
+
+    @include screen-large-down {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      display: none !important;
+    }
+
+    @include screen-medium-down {
+      display: none;
+      grid-column: none;
+    }
+  }
+
+  .links,
+  .menuIcons {
+    display: flex;
+    align-items: center;
+  }
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.menuIcons {
+  @include grid-columns-span(( small: 1, medium: 2, large: 1 ));
+  grid-column-gap: 24px;
+
+  @include screen-large-up {
+    justify-content: flex-end;
+  }
+
+  button {
+    padding: 0;
+  }
+
+  @include screen-small-down {
+    grid-column-gap: 0;
+  }
+}
+
+.menuLinks,
+.logoText,
+.logoText,
+.burger {
+  transition: transform .2s;
+}
+
+.headerProfileData,
+.favourites,
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.headerProfileData {
+  @include grid-columns-width(4, 8);
+  justify-self: end;
+  grid-column-gap: 0;
+
+  @include screen-medium-down {
+    @include grid-columns-width(6, 7);
+  }
+
+  @include screen-small-down {
+    @include grid-columns-width(2, 4);
+  }
+
+  @include screen-medium-up {
+    padding-right: $indent-24;
+  }
+
+  &.headerProfileNotAuth {
+    @include grid-with-offset((small: 4,medium: 6, large: 6, huge: 8)) {
+      @include grid-columns-span((small: 3, medium: 6, large: 6 ,huge: 4))
+    }
+  }
+
+  .wallet {
+    button {
+      @include screen-small-down {
+        @include typo-make-text;
+        font-weight: 500;  
+      }  
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }  
+}
+
+.menuLinks,
+.headerProfileData {
+  z-index: 2;
+}
+
+.favourites,
+.login {
+  @include typo-medium-text;
+  grid-column-gap: 8px;
+  margin-right: $indent-32;
+  margin-left: $indent-32;
+  overflow: hidden;
+  transition: color .1s;
+
+  &:hover {
+    color: $color-bluemarin-light;
+  }
+
+  @include screen-medium-down {
+    grid-column-gap: 0;
+
+    p {
+      width: 0;
+      opacity: 0;
+    }
+  }
+
+  @include screen-small-down {
+    margin-left: 0;
+    margin-right: $indent-20;
+    // display: none;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+
+    @include screen-medium-down {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  p {
+    white-space: nowrap;
+    transition:
+      width .4s ease-out,
+      opacity .2s ease-out;
+  }
+}
+
+.login {
+  @include screen-small-down {
+    display: none;
+  }
+
+  svg {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+
+    &[role="img"] {
+      pointer-events: auto;
+    }
+
+    @include screen-medium-down {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.favourites {
+  &:hover {
+    fill: $color-bluemarin-light;
+    color: $color-bluemarin-light;
+
+    svg {
+      fill: $color-bluemarin-light;
+      stroke: $color-bluemarin-light;
+    }
+  }
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.basket {
+  margin-right: $indent-32;
+
+  @include screen-small-down {
+    margin-right: 0;
+  }
+}
+
+.wallet,
+.avatar {
+  overflow: hidden;
+}
+
+.avatar {
+  transition:
+    padding .2s ease-out,
+    width .2s ease-out,
+    opacity .2s ease-out;
+
+  position: relative;
+
+  .redDot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    background-color: $color-error-field;
+    opacity: 0;
+    transform: scale(0);
+    border-radius: 50%;
+    transition: opacity .3s ease-out, transform .3s ease-out;
+
+    &.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+    
+  @include screen-small-down {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+
+.menuIconsMobile {
+  display: none;
+
+  @include screen-small-down {
+    display: flex;
+    margin-right: $indent-12;
+  }
+}
+
+.dropdownTop {
+  grid-column: 2/ span 11;
+  z-index: 1;
+  position: relative;
+  grid-template-columns: repeat(11, 1fr);
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.dropdownTop {
+  margin-bottom: $indent-48;
+}
+
+.dropdownTop {
+  @include screen-small-down {
+    margin-bottom: calc($indent-96 + $indent-8);
+  }
+}
+
+.dropdownContent {
+  @include screen-small-down {
+    margin-bottom: $indent-96;
+  }
+}
+
+.dropdownTop,
+.contentCards {
+  display: grid;
+}
+
+.contentCardsWrapper {
+  @include grid-columns-span(( large: 9 ,huge: 7 ));
+}
+
+.contentCards {
+  @include grid-with-inner-context {
+    @include grid-columns-span(( large: 9, huge: 7 ));
+  }
+
+  .cardsSmall {
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: $indent-24;
+
+    @include screen-large-down {
+      grid-column: span 4;
+    }
+
+    @include screen-medium-down {
+      @include grid-columns-span-all;
+      grid-row-gap: $indent-16;
+    }
+  }
+
+  @include screen-large-down {
+    grid-column: 3/ span 10;
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  @include screen-medium-down {
+    grid-column: 5/ span 8;
+    grid-template-columns: repeat(8, 1fr);
+    grid-row-gap: $indent-16;
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+  }
+}
+
+.social {
+  grid-column: 2/ span 2;
+  display: none;
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    display: block;
+    margin-top: $indent-8;
+    margin-bottom: calc($indent-16 + $indent-16);
+  }
+}
+
+.contacts { 
+  @include grid-columns-span-all;
+  @include typo-make-small;
+  color: $color-gray-deep;
+  display: flex;
+  flex-direction: column;
+
+  .email {
+    margin-bottom: $indent-12;
+  }
+
+  .address {
+    margin-bottom: calc($indent-16 + $indent-16);
+  }
+
+  @include screen-medium-up {
+    display: none;
+  }
+
+  margin-bottom: $indent-24;
+}
+
+.headerDropdown {
+  .socialSvg {
+    fill: $color-gray-middle;
+  }
+
+  @include screen-small-down {
+    a {
+      &:hover {
+        color: unset;
+
+        svg {
+          fill: $color-gray-middle;
+        }
+      }
+  
+      &:active {
+        color: $color-bluemarin-extra-light;
+
+        svg {
+          fill: $color-bluemarin-extra-light;
+        }
+      }
+    }
+  }
+
+  .makeLink {
+    @include screen-medium-up {
+      display: none;
+    }
+  
+    @include grid-columns-span-all;
+    color: $color-gray-deep;
+  
+    div {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  
+    a {
+      @include typo-make-small;
+      margin-left: $indent-12;
+    }
+  }
+}
+
+.geoIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: $color-gray-middle;
+}
+
+.organization  {
+  color: $color-gray;
+}
+
+.select__button {
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.hiddenSearchButton {
+  display: none;
+}

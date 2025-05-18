@@ -1,0 +1,42 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1, huge: 1)) {
+      @include grid-columns-span((large: 8, huge: 8))
+    }
+  }
+
+  @include screen-medium-down {
+    padding-left: $indent-24;
+    padding-right: $indent-24;
+    padding-bottom: calc($indent-16 + $indent-16);
+  }
+}
+
+.titleRow {
+  @include screen-large-up {
+    @include grid-columns-span-all;
+    margin-bottom: $indent-64;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: calc($indent-20 + $indent-24);
+
+  .title {
+    font-weight: 600;
+    @include screen-large-up {
+      @include grid-columns-span-all;
+      @include typo-make-h2;
+      font-weight: 700;
+    }
+  }
+}
+
+.range {
+  @include grid-columns-span-all;
+}
+

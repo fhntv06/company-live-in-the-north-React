@@ -1,0 +1,19 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.fileList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: $indent-16;
+  row-gap: $indent-8;
+
+  @include screen-medium-down {
+    column-gap: $indent-8;
+    row-gap: $indent-8;
+  }
+}

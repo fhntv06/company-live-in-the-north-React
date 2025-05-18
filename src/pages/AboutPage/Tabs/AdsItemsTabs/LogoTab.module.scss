@@ -1,0 +1,56 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+@use '../../../../styles/placeholders' as *;
+
+.info {
+  @include grid-columns-span((large: 4, huge: 4));
+
+  .documents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $indent-16;
+  
+    a {
+      margin: 0;
+    }
+  }
+}
+
+.title {
+  @include typo-make-h2;
+  font-weight: 500;
+
+  margin-bottom: $indent-32;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-20;
+  }
+}
+
+.text {
+  @include typo-make-text;
+  margin-bottom: $indent-32;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.imageContainer {
+  grid-column-start: -1;
+  grid-column-end: 6;
+
+  @include screen-medium-down {
+    display: none;
+  }
+
+  .imageWrapper {
+    background-color: $color-white;
+    border-radius: 16px;
+    height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

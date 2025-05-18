@@ -1,0 +1,186 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.card {
+  @include grid-columns-span-all;
+  position: relative;
+  display: grid;
+  border-radius: 16px;
+  border: none;
+  width: 100%;
+  padding: calc($indent-40 + 4px) 0 $indent-48;
+  background:  linear-gradient(0deg, rgba(63, 87, 186, 0.2), rgba(63, 87, 186, 0.2)), rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  cursor: pointer;
+  // filter: blur(0);
+  will-change: filter;
+  -webkit-mask-image: -webkit-linear-gradient(white, black);
+  transition: filter .5s ease-out;
+
+  &.hiddenInner {
+    // padding: 0;
+
+    .background,
+    .header,
+    .main {
+      // width: 0;
+      // padding: 0;
+      // margin: 0;
+      // opacity: 0;
+    }
+  }
+
+  &:hover {
+    @include screen-medium-up {
+      .main {
+        transform: translateY(-4px);
+      }
+
+      .background__wrapper {
+        // will-change: filter;
+        // filter: blur(16px);
+        transform: scale(1.15);
+      }
+
+      &:active {
+        .main {
+          transform: translateY(-2px);
+        }
+
+        .background__wrapper {
+          opacity: .8;
+        }
+      }
+    }
+  }
+}
+
+.big {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 6, large: 3));
+  }
+
+  @include screen-small-down {
+    width: 240px;
+  }
+
+  .card {
+    @include grid-columns-span((medium: 6, large: 3));
+    @include screen-medium-down {
+      padding-left: $indent-40;
+      padding-right: $indent-40;
+    }
+  }
+
+  .header {
+    @include screen-large-up {
+      grid-column: span 2;
+      justify-self: flex-start;
+      padding-left: $indent-40;
+    }
+  }
+
+  .main {
+    @include screen-large-up {
+      grid-column: 2/ span 2;
+      padding-right: $indent-48;
+    }
+  }
+}
+
+.small {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include grid-columns-span(( medium: 4, large: 3, huge: 2 ));
+
+  @include screen-small-down {
+    width: 240px;
+  }
+
+  .card {
+    padding-left: $indent-40;
+    padding-right: $indent-40;
+  }
+}
+
+.big,
+.small,
+.card {
+  // height: 100%;
+  height: 428px;
+
+  @include screen-medium-down {
+    height: 320px;
+  }
+}
+
+.background__wrapper {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  transition:
+    transform .3s,
+    filter .1s ease-in;
+
+  .background {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 16px;
+    pointer-events: none;
+    transition: transform .1s;
+  }
+}
+
+.header {
+  @include typo-make-small;
+  text-transform: uppercase;
+  white-space: normal;
+}
+
+.title {
+  @include typo-make-h5;
+
+  & + .description {
+    margin-top: $indent-20;
+  }
+}
+
+.description {
+  @include typo-medium-text;
+}
+
+.main {
+  align-self: end;
+  // transition: transform .2s linear;
+}
+
+.header,
+.main  {
+  z-index: 2;
+  position: relative;
+  height: max-content;
+}
+
+.contrast {
+  color: $color-white;
+}
+
+.background,
+.header,
+.main {
+  transition:
+  width 2s ease-out,
+  padding 2s ease-out,
+  margin 2s ease-out,
+  opacity 2s ease-out,
+  transform .2s ease-out;
+}
+

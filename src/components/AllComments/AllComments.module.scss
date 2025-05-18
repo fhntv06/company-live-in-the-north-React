@@ -1,0 +1,54 @@
+@use '../../styles/variables/colors' as *;
+@use '../../styles/variables/indent-system' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.comments {
+  grid-column: 2/ span 6;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  margin-bottom: $indent-48;
+  overflow: hidden;
+  transition: margin .3s;
+}
+
+.header {
+  grid-column: 1/-1;
+  flex-direction: column;
+  margin-bottom: $indent-40;
+}
+
+.title {
+  margin-bottom: $indent-24;
+  @include typo-make-h2;
+  font-weight: 700;
+}
+
+.newComment {
+  margin-bottom: $indent-32;
+}
+
+.header,
+.body {
+  grid-column: 1/-1;
+}
+
+.comments,
+.header,
+.description {
+  justify-content: space-between;
+}
+
+.header,
+.newComment,
+.description {
+  display: flex;
+  align-items: center;
+}
+
+.field,
+.title,
+.description {
+  width: 100%;
+}

@@ -1,0 +1,155 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+
+@mixin hover-effect {
+  .months,
+  .year {
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33%, #B392F4 68%, #EBC2C6 100%);
+    background-clip: text;
+    color: transparent;
+    transform: translateY(-2px);
+  }
+
+  .img_container {
+    filter: brightness(1.03);
+    will-change: filter;
+    box-shadow: inset 0 0 100px rgba($color-white, .5), 0px 8px 48px rgba(0, 16, 94, 0.2);
+  }
+
+  .info {
+    background-color: $color-white;
+    box-shadow: 0px 8px 48px rgba(0, 16, 94, 0.2);
+  }
+
+  .title,
+  .description {
+    transform: translateY(-2px);
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 0;
+  border-radius: 16px;
+}
+
+.card {
+  min-height: 94px;
+  transition: filter .1s linear;
+
+  &:hover {
+    @include screen-large-up {
+      @include hover-effect;
+    }
+  }
+
+  &:active {
+    @include hover-effect;
+  }
+
+  &:active {
+    .title,
+    .description {
+      transform: translateY(2px);
+    }
+  }
+}
+
+.time {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  @include indent-horizontal-pair(12);
+  padding-bottom: $indent-8;
+  padding-top: $indent-24;
+  width: 86px;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    max-width: 83px;
+    min-width: 83px;
+  }
+
+  &::after {
+    @extend %border-gradient;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column
+}
+
+.months {
+  @include typo-make-tiny;
+  line-height: 14px;
+}
+
+.months:first-child {
+  margin-right: 4px;
+}
+
+.year {
+  margin-top: 4px;
+  @include typo-make-middle;
+  font-weight: 600;
+}
+
+.months,
+.year {
+  display: inline;
+  text-transform: uppercase;
+  color: $color-blue-gray;
+  transition: background .1s linear, transform .1s linear;
+}
+
+.img_container {
+  position: relative;
+  width: 124px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 16px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.info {
+  @include grid-columns-span-all;
+  display: flex;
+  gap: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: $indent-16 $indent-24 $indent-16 $indent-32;
+  border-radius: 16px;
+  background-color: $color-gray-extra-light;
+  overflow: hidden;
+  transition: background-color .1s linear;
+}
+
+.title {
+  @include typo-make-h5;
+  color: $color-black;
+}
+
+.description {
+  margin-top: 4px;
+  @include typo-make-small;
+  color: $color-gray-deep;
+}
+
+.title,
+.description {
+  transition: transform .1s linear;
+}
+
+.svg {
+  height: 24px;
+  width: 24px;
+  margin-left: $indent-20;
+  stroke: $color-bluemarin;
+}

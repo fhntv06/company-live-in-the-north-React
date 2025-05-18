@@ -1,0 +1,307 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+@use '../../../styles/placeholders/helpers' as *;
+@use '../../../styles/mixins' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: $indent-32 $indent-32 $indent-16;
+  height: 400px;
+  transition:
+    box-shadow .1s linear,
+    background-color .1s linear;
+  border-radius: 16px;
+
+  &.activity {
+    max-height: 180px;
+
+    .title {
+      padding-top: 0;
+      margin-bottom: $indent-16;
+      @include screen-small-down {
+        @include typo-make-text;
+      }
+    }
+
+
+    @include screen-medium-up {
+      max-height: 320px;
+
+      .title {
+        margin-top: auto;
+        margin-bottom: $indent-32;
+      }
+    }
+
+  }
+
+  &.enter:not(.activity) {
+    .middle {
+      margin-top: $indent-24;
+      position: relative;
+    }
+
+    .text,
+    .addIdia {
+      opacity: 1;
+      height: auto;
+      visibility: visible;
+      animation: .3s alternate fadeIn;
+    }
+
+    .text {
+      margin: 0 0 $indent-8;
+
+      @include screen-small-down {
+        margin: auto 0 0;
+      }
+    }
+
+    .addIdia {
+      margin-top: auto;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .bottom {
+      padding: 0;
+      margin-top: $indent-20;
+    }
+
+    .title {
+      opacity: 0;
+      height: 0;
+      visibility: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &.out:not(.activity) {
+    .title {
+      animation: .3s alternate fadeOut;
+    }
+
+    .text,
+    .addIdia {
+      animation: .3s alternate fadeOut;
+    }
+  }
+
+  @include screen-small-down {
+    min-height: auto;
+    padding:$indent-20 $indent-24 $indent-16 $indent-20;
+  }
+}
+
+.tags {
+  display: flex;
+  gap: 0;
+  justify-content: flex-end;
+
+  @include screen-small-down {
+    flex-wrap: nowrap;
+    width: max-content;
+    padding: 0 $indent-24 0 $indent-20;
+  }
+}
+
+.card.enter,
+.vote:hover {
+  @extend %card-shadow;
+}
+
+.activity:hover {
+  .title {
+    transform: translateY(-4px);
+  }
+}
+
+.vote {
+  background-color: transparent;
+  border-radius: 16px;
+
+  &::after {
+    @extend %border-gradient;
+  }
+
+  &:hover {
+    background-color: $color-white;
+
+    @include screen-small-down {
+      box-shadow: none;
+    }
+
+    .title {
+      transform: translateY(-4px);
+    }
+  }
+
+  .date {
+    @include typo-make-tiny;
+    color: $color-blue-gray;
+  }
+
+  .voteSvg {
+    margin-top: $indent-8;
+    margin-right: $indent-32;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.discussion {
+  position: relative;
+
+  &::after {
+    z-index: 4;
+    @extend %helper-full-size-pseudo-layer;
+    background-color: $color-white;
+    border-radius: 16px;
+  }
+
+  .top,
+  .middle,
+  .bottom {
+    z-index: 5;
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @include screen-small-down {
+    margin: 0;
+  }
+}
+
+.booksmarkBtn {
+  margin-top: $indent-8;
+
+  &:hover {
+    svg {
+      fill: $color-bluemarin;
+    }
+    stop {
+      stop-color: $color-bluemarin;
+    }
+  }
+
+  @include screen-small-down {
+    margin-right: 0;
+  }
+}
+
+.booksmarkSvg {
+  width: 16px;
+  height: 16px;
+  transition: fill .1s linear;
+
+  stop {
+    transition: stop-color .1s linear;
+  }
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include screen-small-down {
+    padding-top: 0;
+  }
+}
+
+.title {
+  @include typo-make-h5;
+  color: $color-black;
+  margin-top: auto;
+  margin-bottom: $indent-16;
+  transition: height .3s linear, transform .1s linear;
+
+  @include screen-small-down {
+    margin: auto 0 50px;
+    padding-top: 76px
+  }
+}
+
+.text {
+  @include typo-medium-text;
+  color: $color-black;
+  display: inline;
+  max-height: 154px;
+  text-overflow: ellipsis " [..]";
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+.addIdia {
+  padding-left: $indent-24;
+}
+
+.text,
+.addIdia {
+  opacity: 0;
+  height: 0;
+  visibility: hidden;
+  animation: .3s alternate fadeOut;
+}
+
+.bottom {
+  margin-top: auto;
+  text-align: end;
+
+  @include screen-small-down {
+    min-height: 22px;
+    margin: 0 calc($indent-24 * -1) 0 calc($indent-20 * -1);
+    @include helper-hidden-system-scrollbar;
+  }
+}
+
+.tag {
+  @include typo-make-ultrasmall;
+  margin-left: $indent-8;
+  color: $color-gray-deep;
+  padding: 4px $indent-8;
+  border: 1px solid $color-gray-deep;
+  border-radius: 16px;
+  white-space: nowrap;
+  text-transform: uppercase;
+
+  @include screen-small-down {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

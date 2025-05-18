@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/placeholders' as *;
+
+.selectButton {
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column-gap: 4px;
+  padding: 2px 0;
+
+  input {
+    position: absolute;
+    width: 0;
+  }
+
+  &.active,
+  &:hover {
+    .text,
+    svg {
+      color: $color-dark-color;
+    }
+  }
+
+  .icon {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    transition: transform .5s;
+  }
+}
+
+.text {
+  z-index: 1;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boldText {
+  font-weight: 500;
+}
+
+.dropdownIcon {
+  width: 16px;
+  height: 16px;
+  fill: $color-blue-gray;
+  z-index: 1;
+
+  &:global(.open) {
+    transform: rotate(180deg);
+  }
+}

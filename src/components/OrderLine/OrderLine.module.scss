@@ -1,0 +1,77 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: $indent-16 0;
+}
+
+.imgWrapper {
+  margin-right: $indent-32;
+  width: 48px;
+  height: 48px;
+
+  @include screen-small-down {
+    margin-right: 12px;
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+}
+
+.name {
+  @include typo-make-text;
+  margin-right: $indent-32;
+  color: $color-black;
+
+  @include screen-small-down {
+    @include typo-medium-text;
+    margin-right: 12px;
+  }
+}
+
+.price {
+  @include typo-make-text;
+  margin-right: $indent-32;
+  margin-left: auto;
+  padding-left: $indent-32;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  color: $color-blue-gray;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-blue-gray;
+    margin-right: $indent-8;
+  }
+
+  @include screen-small-down {
+    @include typo-medium-text;
+    margin-right: 12px;
+    padding-left: 0;
+  }
+}
+
+.quantity {
+  @include typo-make-text;
+  color: $color-blue-gray;
+  white-space: nowrap;
+
+  @include screen-small-down {
+    @include typo-medium-text;
+  }
+
+  span {
+    font-weight: 500;
+  }
+}

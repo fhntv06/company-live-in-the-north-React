@@ -1,0 +1,88 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders/helpers' as *;
+
+.page {
+  position: relative;
+  @include grid;
+  @include grid-container;
+  padding-top: calc($indent-96 + $indent-64 + $indent-8);
+  margin-bottom: $indent-80;
+
+  &::after,
+  &::before {
+    content: "";
+    z-index: 4;
+    position: absolute;
+    left: 0;
+    background-color: $color-white;
+  }
+
+  &::before {
+    top: 0;
+    height: calc($indent-96 + $indent-64 + $indent-8);
+    width: 100vw;
+    background-color: $color-white;
+  }
+
+  &::after {
+    bottom: calc($indent-80 * -1);
+    height: $indent-80;
+    width: 100vw
+  }
+
+  @include screen-small-down {
+    padding-top: calc($indent-20 * 4 + $indent-8);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.header {
+  position: relative;
+  padding-bottom: $indent-48;
+
+  * {
+    z-index: 5;
+  }
+
+  &:after {
+    @extend %helper-full-size-pseudo-layer;
+    background-color: $color-white;
+    z-index: 4;
+    left: calc($grid-padding-size * -1);
+    top: -1px;
+    width: calc(100% + $grid-padding-size * 2);
+  }
+}
+
+h1 {
+  margin-right: $indent-16;
+}
+
+h3 {
+  @include grid-with-offset((small: 0, medium: 1)) {
+    @include grid-columns-span((small: 6, medium: 5));
+  }
+  @include typo-make-h3;
+  margin-bottom: $indent-32;
+  font-weight: 700;
+}
+
+.title {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11));
+  }
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.header {
+  @include grid;
+  @include grid-columns-span-all;
+
+  @include screen-small-down {
+    @include grid-container;
+  }
+}

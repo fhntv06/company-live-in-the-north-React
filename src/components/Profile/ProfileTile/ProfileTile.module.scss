@@ -1,0 +1,118 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: $color-white;
+  border-radius: 16px;
+  transition: box-shadow .2s ease-in-out;
+  padding: $indent-24 0;
+  padding-right: $indent-16;
+  height: 128px;
+  transition: background-color 0.2s linear;
+  position: relative;
+  z-index: 5;
+
+  @include screen-medium-up {
+    height: 160px;
+  }
+
+  @include screen-small-down {
+    padding: $indent-16;
+    padding-right: $indent-24;
+  }
+
+  &.gray {
+    background-color: $color-gray-light;
+    &:hover {
+      background-color: $color-gray-extra-light;
+    }
+
+    &:active {
+      background-color: $color-white;
+    }
+  }
+
+  &:hover {
+    @extend %card-shadow;
+
+    .content {
+      transform: translateY(-3px);
+    }
+  }
+
+  &:active {
+    box-shadow: none;
+
+    .content {
+      transform: translateY(0);
+    }
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  padding-left: $indent-16;
+  height: 100%;
+
+  @include screen-medium-up {
+    padding-left: $indent-48;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  transition: transform .2s ease-out;
+  margin-top: auto;
+}
+
+.text {
+  color: $color-dark-color;
+  @include typo-make-h4;
+  white-space: nowrap;
+
+  &.small {
+    @include typo-make-h5;
+  }
+}
+
+.title {
+  @include typo-make-small;
+  text-transform: uppercase;
+  margin-bottom: $indent-32;
+}
+
+.title,
+.additionalText {
+  color: $color-blue-gray;
+}
+
+.icon {
+  display: inline;
+  margin-right: $indent-8;
+  max-height: 32px;
+}
+
+.favoriteTileWrapper {
+  @include screen-small-down {
+    height: auto;
+    padding-top: calc($indent-20 + $indent-8);
+    padding-bottom: $indent-24;
+    padding-right: $indent-24;
+    padding-left: $indent-24;
+    
+    .contentWrapper {
+      padding-left: 0;
+    }
+  
+    .content {
+      margin: 0;
+    }
+  }
+}

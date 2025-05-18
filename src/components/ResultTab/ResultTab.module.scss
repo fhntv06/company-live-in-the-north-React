@@ -1,0 +1,126 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.result {
+  border-radius: 16px;
+  background-color: $color-gray-extra-light;
+  overflow: hidden;
+  box-shadow: 0 0 0 $indent-48 solid $color-white;
+  outline: $indent-48 solid $color-white;
+}
+
+.wrapper {
+  @include grid;
+  padding: $indent-64 0;
+
+  @include screen-small-down {
+    padding: calc($indent-24 + $indent-16) $indent-24;
+  }
+}
+
+.noDiscussion {
+  @include typo-make-h4;
+  grid-column: 2/ span 5;
+  margin-bottom: $indent-32;
+  font-weight: 600;
+  color: $color-black;
+
+  span {
+    color: $color-violet;
+  }
+
+  br {
+    display: none;
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    margin-bottom: $indent-20;
+
+    br {
+      display: block;
+    }
+  }
+}
+
+.subscribeButton {
+  grid-column: 10/ span 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0;
+
+  button {
+    @include typo-make-small;
+    font-weight: 600
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    justify-content: flex-start;
+
+    margin-bottom: $indent-20;
+  }
+}
+
+.text {
+  @include typo-make-text;
+  grid-column: 2/ span 3;
+  color: $color-black;
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+  }
+}
+
+.graphSlider {
+  @include grid-columns-span-all;
+  margin-bottom: $indent-80;
+
+  @include screen-small-down {
+    margin-right: -24px;
+  }
+}
+
+.cardSlider {
+  grid-column: 2/-1;
+  margin-bottom: $indent-56;
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  @include typo-make-h2;
+  grid-column: 2/ span 5;
+  margin-bottom: $indent-32;
+  font-weight: 700;
+  color: $color-black;
+
+  br {
+    display: none;
+  }
+
+  @include screen-small-down {
+    grid-column: 1/ span 4;
+
+    br {
+      display: block;
+    }
+  }
+}
+
+.moreBtn {
+  @include grid-columns-span-all;
+  display: grid;
+  justify-content: center;
+  gap: 0;
+
+  @include screen-small-down {
+    display: none;
+  }
+}

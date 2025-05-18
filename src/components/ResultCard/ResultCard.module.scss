@@ -1,0 +1,167 @@
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  position: relative;
+  padding: $indent-16;
+  height: 100%;
+  border-radius: 16px;
+  transition: box-shadow .1s linear;
+
+  * {
+    z-index: 5;
+    position: relative;
+  }
+
+  &:hover {
+    @extend %card-shadow;
+
+    .title,
+    .location,
+    .date,
+    .label {
+      @include screen-medium-up {
+        transform: translateY(-2px)
+      }
+    }
+  }
+
+  &:active {
+    box-shadow: none;
+
+    .title,
+    .location,
+    .date,
+    .label {
+      transform: translateY(0)
+    }
+
+    .split::after {
+      cursor: grabbing;
+    }
+  }
+
+  &::after {
+    z-index: 4;
+    @extend %helper-full-size-pseudo-layer;
+    background-color: $color-white;
+    border-radius: 16px;
+    pointer-events: none;
+  }
+
+  @include screen-small-down {
+    padding: $indent-8 $indent-8 $indent-12;
+  }
+}
+
+.images {
+  margin-bottom: $indent-12;
+  aspect-ratio: 560/300;
+  border-radius: 16px;
+  overflow: hidden;
+
+  @include screen-small-down {
+    height: 155px;
+    aspect-ratio: auto;
+    border-radius: 8px;
+  }
+
+  .firstImage {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+.splitImages {
+  margin-bottom: $indent-12;
+  display: flex;
+  aspect-ratio: 560/300;
+  gap: 0;
+
+  @include screen-small-down {
+    height: 155px;
+    aspect-ratio: auto;
+    width: 100%;
+  }
+
+  .splitImages {
+    height: 100%;
+  }
+}
+
+.title {
+  display: block;
+  @include typo-make-big-text;
+  margin-bottom: $indent-8;
+  transition: transform .1s linear;
+
+  @include screen-small-down {
+    padding-left: 8px;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+
+  @include screen-small-down {
+    padding-left: 8px;
+  }
+}
+
+.label {
+  @include typo-make-small;
+  @include indent-horizontal-pair(12);
+  @include indent-vertical-pair(4);
+  margin-right: $indent-16;
+  margin-bottom: $indent-8;
+  background-color: $color-yellow-yamal;
+  border-radius: 8px;
+  color: $color-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform .1s linear;
+
+  @include screen-small-down {
+    @include typo-make-tiny;
+    margin-right: 0;
+  }
+}
+
+.location,
+.date {
+  @include typo-make-small;
+  margin-bottom: $indent-8;
+  color: $color-gray-deep;
+  white-space: nowrap;
+  transition: transform .1s linear;
+}
+
+.location {
+  margin-right: $indent-16;
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  @include screen-small-down {
+    margin-right: 0;
+  }
+}
+
+.svg {
+  width: 15px;
+  height: 16px;
+  fill: $color-gray-deep;
+  margin-right: 4px;
+}
+
+.date {
+  @include screen-medium-down {
+    width: 100%;
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss' as *;
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid $color-gray-middle;
+  border-radius: 8px;
+  background-color: $color-white;
+  cursor: pointer;
+  transition: border-color 0.1s linear;
+}
+
+.svg {
+  width: 13px;
+  height: 8px;
+  fill: none;
+  stroke: $color-bluemarin;
+  opacity: 0;
+  transition: opacity .1s linear;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  &.disabled {
+    .checkbox {
+      pointer-events: none;
+      border-color: $color-gray-light;
+    }
+  }
+}
+
+.checked {
+  .checkbox {
+    border-color: $color-bluemarin;
+  }
+  .svg {
+    opacity: 1;
+  }
+}

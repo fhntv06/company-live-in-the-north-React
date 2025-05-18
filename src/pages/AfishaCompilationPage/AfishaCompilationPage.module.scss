@@ -1,0 +1,117 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.header {
+  @include grid-with-inner-context{
+    @include grid-columns-span((medium: 12));
+  }
+
+  background-color: $color-gray-medium;
+
+  grid-template-rows: 1fr;
+
+  @include screen-small-down {
+    grid-template-rows: auto;
+    grid-row-gap: $indent-16;
+    align-items: start;
+    min-height: auto;
+    padding-bottom: calc($indent-32 + $indent-8);
+    padding-top: calc($indent-96 + $indent-56);
+  }
+
+  padding-bottom: $indent-48;
+  align-items: end;
+}
+
+.calendar {
+  @include grid-columns-span((medium: 2, huge: 1));
+  pointer-events: none;
+}
+
+.titleWrapper {
+  @include grid-with-offset((medium: 2, huge: 1)) {
+    @include grid-with-inner-context{
+      @include grid-columns-span((medium: 7, huge: 9));
+    }
+  }
+}
+
+.title {
+  @include grid-columns-span((medium: 7, huge: 9));
+  margin-bottom: $indent-16;
+  color: $color-black-lighter;
+
+  @include screen-small-down {
+    margin-top: $indent-8;
+  }
+}
+
+.titleDesc {
+  @include grid-columns-span((medium: 7, huge: 5));
+    @include screen-small-down {
+      @include typo-make-text;
+    }
+}
+
+.buttonWrapper {
+  @include grid-columns-span((medium: 3, huge: 2));
+  gap: 0;
+  justify-self: flex-end;
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.list {
+  margin-top: $indent-40;
+  margin-bottom: $indent-48;
+
+  @include screen-small-down {
+   margin-top: calc($indent-32 + $indent-8);
+  }
+}
+
+.recommendations {
+  position: relative;
+  border-radius: 16px;
+  background-color: $color-gray-extra-light;
+  padding-bottom: $indent-48;
+  overflow: hidden;
+  margin-bottom: $indent-64;
+
+  @include screen-small-down {
+    margin-bottom: calc($indent-56 + $indent-8);
+    padding-bottom: $indent-56;
+  }
+
+  .subtitleRow:first-child {
+    padding-top: $indent-80;
+  }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.subtitleRow {
+  @include grid;
+  @include grid-container;
+}
+
+.subtitle {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 4));
+  }
+
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    margin-bottom: $indent-20;
+  }
+}
+

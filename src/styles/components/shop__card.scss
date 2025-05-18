@@ -1,0 +1,22 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.shop__card {
+  width: calc((100vw - $grid-padding-size) / 1);
+
+  @include screen-small-up {
+    width: calc(50% - 8px);
+  }
+
+  @include screen-medium-up {
+    width: calc((100vw - $grid-padding-size * 2) / 3);
+  }
+
+  @include screen-large-up {
+    width: calc((100vw - $grid-padding-size * 2 - $indent-24) / 4);
+  }
+
+  @include screen-huge-up {
+    width: calc((100vw - $grid-padding-size * 2 - $indent-24) / 5);
+  }
+}

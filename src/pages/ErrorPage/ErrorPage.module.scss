@@ -1,0 +1,135 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/base.scss' as *;
+
+.wrapper {
+  height: 100vh;
+  background-color: $color-blue-extra-dark;
+  align-items: center;
+  position: relative;
+  @include screen-small-down {
+    align-items: baseline;
+  }
+}
+
+.text {
+  @include grid-with-offset((small: 1, medium: 3, large: 5, huge: 6)) {
+    @include grid-columns-span((small: 5, medium: 6, large: 3, huge: 2,));
+  }
+
+  position: relative;
+  z-index: 1;
+
+  @include screen-small-down {
+    margin-top: 215px;
+    padding-right: 32px;
+  }
+}
+
+.title {
+  @include typo-make-h2;
+  margin-bottom: $indent-32;
+  color: $color-white;
+}
+
+.description {
+  @include typo-make-text;
+  color: $color-white;
+
+  a {
+    @extend %link-base;
+    color: $color-bluemarin;
+  }
+}
+
+.decoration {
+  position: absolute;
+  background-size: cover;
+  bottom: -15vh;
+  right: 0;
+  left: calc(-1 * $grid-padding-size);
+  display: flex;
+  align-items: flex-end;
+  background-clip: text;
+  height: 100%;
+  gap: 0;
+  background-image: url('../../images/error-bg-animation.png');
+
+  @include screen-large-down {
+    align-items: flex-start;
+    top: 80px;
+    bottom: 0;
+    left: -8vw;
+  }
+
+  div {
+    font-size: 60vw;
+    line-height: 1;
+    font-weight: bold;
+    color: transparent;
+    background-clip: text;
+    background-image: url('../../images/error-bg-animation.png');
+
+    @include screen-small-down {
+      background-size: 100vw;
+    }
+
+
+    &:nth-child(1) {
+      background-position: center right;
+      animation: animation-child-one 6s alternate infinite ease-in-out;
+    }
+
+    &:nth-child(2) {
+      background-position: right center;
+      animation: animation-child-two 6s alternate infinite ease-in-out;
+    }
+
+    &:nth-child(3) {
+      background-position: right bottom;
+      animation: animation-child-three 6s alternate infinite ease-in-out;
+    }
+
+    @include screen-small-down {
+      font-size: 58vw;
+    }
+  }
+}
+
+@keyframes animation-child-one {
+  0% {
+    background-position: center right;
+  }
+
+  50% {
+    background-position: bottom left 30%;
+  }
+
+  100% {
+    background-position: bottom left 30%;
+  }
+}
+
+@keyframes animation-child-two {
+  0% {
+    background-position: right center;
+  }
+
+  100% {
+    background-position: center left;
+  }
+}
+
+@keyframes animation-child-three {
+  0% {
+    background-position: right 50% top;
+  }
+
+  60% {
+    background-position: right 50% top;
+  }
+
+  100% {
+    background-position: left top;
+  }
+}

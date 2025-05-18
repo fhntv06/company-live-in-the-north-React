@@ -1,0 +1,82 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.container {
+  @include typo-medium-text;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 6px 12px;
+  color: $color-white;
+  border-radius: 8px;
+  background: $color-bluemarin;
+  transition: box-shadow .1s linear;
+  white-space: nowrap;
+
+  &.small {
+    @include typo-make-small;
+    padding: 4px 12px;
+  }
+
+  @include screen-small-down {
+    @include typo-make-small;
+    padding: 4px 12px;
+  }
+
+  &.violet {
+    background: $color-violet;
+  }
+
+  &.bluemarin {
+    background: $color-bluemarin;
+  }
+
+  &.blue {
+    background: $color-blue;
+  }
+
+  &.orange {
+    background: $color-orange;
+  }
+
+  &.pink {
+    background: $color-pink;
+  }
+
+  .icons {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: $indent-8;
+    overflow: hidden;
+
+    @include screen-small-down {
+      display: none;
+    }
+  }
+
+  .svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-white;
+    transition: transform .1s linear;
+    flex-shrink: 0;
+  }
+
+  .withoutPrice {
+    text-transform: uppercase;
+
+    @include screen-small-down {
+      @include typo-make-tiny;
+    }
+  }
+
+  &:hover {
+    box-shadow: inset 0px 4px 40px rgba(255, 255, 255, 0.25);
+
+    .svg {
+      transform: translateX(-24px);
+    }
+  }
+}

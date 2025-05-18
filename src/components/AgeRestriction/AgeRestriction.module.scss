@@ -1,0 +1,23 @@
+
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.tag {
+    @include typo-make-ultrasmall;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 4px 8px;
+    color: $color-dark-color;
+    background: $color-white;
+    border-radius: 8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &.contrast {
+        color: $color-white;
+        background: $color-dark-color;
+    }
+}

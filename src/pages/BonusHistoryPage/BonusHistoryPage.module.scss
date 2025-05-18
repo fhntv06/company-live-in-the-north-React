@@ -1,0 +1,120 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.header {
+  @include grid-columns-span-all;
+  display: flex;
+  justify-content: space-between;
+  margin-top: $indent-40;
+  align-items: flex-end;
+
+  @include screen-medium-up {
+    margin-top: 0;
+  }
+}
+
+.title {
+  margin-top: calc($indent-24);
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.titleSpan {
+  position: relative;
+
+  .bluemarinCoin {
+    position: absolute;
+    left: 100%;
+    top: 0;
+  }
+}
+
+.headerButton {
+  gap: 0;
+}
+        
+.pageContainer {
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-40;
+  padding-bottom: $indent-96;
+}
+
+.topRow,
+.container {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 10));
+  }
+}
+
+.container {
+  @include screen-small-down {
+    margin-left: calc(-1 * $grid-padding-size);
+    margin-right: calc(-1 * $grid-padding-size);
+  }
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: $indent-32;
+  justify-content: space-between;
+
+  @include screen-small-down {
+    justify-content: flex-start;
+    gap: 4px;
+  }
+}
+
+.bonuses {
+  display: none;
+  @include screen-medium-up {
+    display: inline-flex;
+    align-items: center;
+  }
+  @include typo-make-h4;
+  gap: 0;
+  flex-grow: 1;
+}
+
+.coinIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.bluemarinCoin {
+  width: 16px;
+  height: 16px;
+  fill: $color-bluemarin;
+}
+
+.calendarWrapper {
+  position: relative;
+}
+
+.calendarBig {
+  @include screen-medium-only {
+    left: unset !important;
+    right: 0;
+  }
+}
+
+.buttonWrapper {
+  margin-top: $indent-48;    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @include screen-small-down {
+    padding: 0 $grid-padding-size;
+  }
+}
+
+.button {
+  @include screen-small-down {
+    width: 100%;
+  }
+}

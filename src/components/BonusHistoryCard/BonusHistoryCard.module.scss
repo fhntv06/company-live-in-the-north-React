@@ -1,0 +1,88 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.card {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 10));
+  }
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid $color-bluemarin;
+  padding: $indent-16 $grid-padding-size;
+  row-gap: $indent-12;
+
+  @include screen-medium-up {
+    padding: $indent-32 0;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $indent-16;
+  }
+
+  &.minus {
+    border-color: $color-pink;
+
+    .operand {
+      color: $color-error-field;
+
+      &::before {
+        content: '';
+        margin-right: 2px;
+      }
+    }
+  }
+}
+
+.date {
+  @include typo-make-small;
+  @include grid-columns-span((small: 2));
+  @include screen-medium-up {
+    padding-left: $indent-80;
+  }
+  color: $color-blue-gray;
+}
+
+.name {
+  @include typo-medium-text;
+  @include grid-columns-span((small: 6));
+  color: $color-black;
+}
+
+.operand {
+  @include typo-medium-text;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color-bluemarin;
+
+  &::before {
+    content: '+';
+    margin-right: 2px;
+  }
+}
+
+.balance {
+  @include typo-medium-text;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: $color-blue-gray;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-blue-gray;
+  }
+}
+
+.calc {
+  @include grid-columns-span((small: 2));
+  @include screen-medium-up {
+    padding-right: $indent-80;
+    justify-content: space-between;
+  }
+  display: flex;
+  align-items: center;
+}

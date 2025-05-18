@@ -1,0 +1,241 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.card,
+.cardWithMap {
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+}
+
+.notAuth {
+  .columnName,
+  .tickerPriceWrapper,
+  .times {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.cardWithMap {
+  background-color: $color-white;
+
+  .name {
+    @include typo-make-h5;
+  }
+
+  @include screen-small-down {
+    margin-bottom: calc($indent-24 + $indent-16);
+  }
+}
+
+.map {
+  width: 100%;
+  height: 396px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.content {
+  @include grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  padding: $indent-24 $indent-56 $indent-24 $indent-24;
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include screen-small-down {
+    padding: $indent-16 $indent-20 $indent-16 $indent-16;
+  }
+}
+
+.columnName {
+  @include grid-columns-span((medium: 4));
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-left: $indent-24;
+
+  @include screen-medium-down {
+    margin: 0 $indent-16 $indent-24;
+  }
+
+  @include screen-small-down {
+    margin-left: $indent-8;
+  }
+}
+
+.booksmarkBtn {
+  margin-right: $indent-16;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover svg {
+    fill: $color-bluemarin;
+    stop {
+      stop-color: $color-bluemarin;
+    }
+  }
+
+  @include screen-medium-down {
+    margin-right: 12px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @include screen-small-down {
+    margin-right: $indent-8;
+  }
+}
+
+.name {
+  @include typo-make-middle;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  font-weight: 600;
+  color: $color-black;
+
+  button {
+    text-align: left;
+
+    &:not(:disabled) {
+      @extend %link-base;
+    }
+  }
+}
+
+.location {
+  @include typo-medium-text;
+  margin-top: 4px;
+  color: $color-black;
+}
+
+.times {
+  @include grid-columns-span((medium: 4));
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  @include screen-medium-down {
+    margin: 0 16px 8px 28px;
+  }
+}
+
+.time {
+  color: $color-black-blueish;
+
+  &:not(:last-child) {
+    margin-right: $indent-8;
+  }
+
+  @include screen-medium-down {
+    margin-bottom: $indent-8;
+  }
+}
+
+.tickerPriceWrapper {
+  @include grid-columns-span((medium: 2));
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: $indent-32;
+
+  @include screen-small-down {
+    margin: 0 28px;
+    justify-content: center
+  }
+}
+
+.tickerPrice {
+  @include typo-make-small;
+
+  @include screen-small-down {
+    @include typo-medium-text;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 38px;
+  }
+
+  :global(.ticker__price-icons) {
+    display: flex;
+  }
+}
+
+.contacts {
+  @include grid-columns-span((medium: 3));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @include screen-medium-down {
+    padding: 0 calc($indent-24 + $indent-16);
+  }
+
+  .location {
+    @include typo-make-text;
+    margin: 0;
+  }
+}
+
+.phone {
+  @extend %link-base;
+  @include typo-make-text;
+  margin-top: $indent-8;
+  color: $color-black;
+}
+
+.social {
+  @include grid-columns-span((medium: 3));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  row-gap: $indent-8;
+
+  @include screen-medium-down {
+    flex-direction: column;
+    padding: 0 calc($indent-24 + $indent-16);
+    margin-top: $indent-16;
+  }
+
+  svg {
+    fill: $color-blue-dark;
+  }
+}
+
+.webLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.socialList {
+  gap: $indent-32;
+}
+
+.webLink {
+  @extend %link-base;
+  @include typo-make-text;
+  color: $color-blue-dark;
+}
+
+.close {
+  position: absolute;
+  right: $indent-24;
+  top: calc($indent-24 + 4px);
+  opacity: .5;
+  z-index: 1;
+}

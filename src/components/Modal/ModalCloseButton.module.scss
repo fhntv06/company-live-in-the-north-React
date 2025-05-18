@@ -1,0 +1,49 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders' as *;
+
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 2;
+
+
+  @include screen-large-up {
+    display: none;
+  }
+
+  &.showOnDesktop {
+    display: flex;
+  }
+
+  &.white {
+    svg {
+      fill: $color-white;
+    }  
+
+    &:hover {
+      svg {
+        fill: $color-white;
+      }
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    fill: $color-blue-gray;
+    transition: transform .1s linear, fill .1s linear;  
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(-90deg);
+      fill: $color-bluemarin;
+    }
+  }
+}

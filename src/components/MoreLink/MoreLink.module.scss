@@ -1,0 +1,25 @@
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+
+
+.button {
+  @include typo-medium-text;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  &.open {
+    .icon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: $color-dark-color;
+  transition: transform 0.2s linear;
+}

@@ -1,0 +1,333 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  border-radius: 20px;
+  // min-height: 342px;
+  padding: $indent-12 $indent-12 $indent-16;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    border-radius: inherit;
+    background-color: $color-white;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .2s linear, box-shadow .2s linear, transform .2s linear;
+    transform: scale(0.96);
+  }
+
+  .top {
+
+  }
+
+  .top,
+  .name,
+  .bottomRow,
+  &:before,
+  &:after {
+    z-index: 4;
+  }
+
+  &:hover {
+    z-index: 2;
+    @include screen-large-up {
+      .imgWrapper {
+        height: calc(100% - 4px);
+      }
+
+      &::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .name {
+        transform: translateY(-4px);
+        margin-bottom: $indent-20;
+      }
+    }
+
+    &::before {
+      @extend %card-shadow;
+      @include screen-medium-down {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:active {
+    &::before {
+      box-shadow: none;
+    }
+  }
+
+  @include screen-small-down {
+    padding: 0;
+  }
+}
+
+.otherCategory {
+  .category {
+    background-color: $color-blue;
+  }
+}
+
+.withoutImage {
+  justify-content: space-between;
+
+  .top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottom {
+    padding: 0px $indent-8 $indent-24;
+
+    @include screen-medium-up {
+      padding: 0px $indent-24 $indent-24;
+    }
+  }
+
+  .booksmarkBtn {
+    stroke: $color-violet;
+  }
+
+  &::after {
+    @extend %border-gradient;
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    background-origin: border-box;
+    transition: all .2s linear;
+    
+    @include screen-medium-up {
+      transform: scale(0.94);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: transparent;
+    transition: .2s linear;
+    z-index: 0;
+    transform: scale(0.94);
+  }
+
+    &:hover {
+      @include screen-large-up {
+        .bottomRow {
+          background-color: transparent;
+        }
+
+        &::before {
+          transform: scale(1);
+          background-color: $color-white;
+        }
+
+        &::after {
+          transform: scale(1);
+        }
+      }
+
+      &::before {
+        @extend %card-shadow;
+        @include screen-medium-down {
+          box-shadow: none;
+        }
+      }
+
+    .name {
+      @include screen-large-up {
+        transform: translateY(-4px);
+      }
+    }
+  }
+
+}
+
+.coupone .category {
+  background-color: $color-violet;
+}
+
+.top {
+  aspect-ratio: 372/256;
+  margin-bottom: calc($indent-8 + 4px);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    aspect-ratio: 1/1;
+  }
+}
+
+.imgWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  transition: .1s linear;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: $indent-24;
+  @include screen-small-down {
+    padding: 16px;
+  }
+}
+
+.category {
+  @include typo-make-tiny;
+  line-height: 14px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: color .1s linear, background-color .1s linear;
+  background-color: $color-bluemarin;
+}
+
+.booksmarkBtn {
+  stroke: $color-white;
+  &:hover {
+    svg {
+      fill: $color-bluemarin;
+      stroke: $color-bluemarin;
+    }
+  }
+}
+
+.name {
+  @include typo-make-h5;
+  color: $color-black;
+  margin-bottom: 20px;
+  transition: transform .1s linear, margin .1s linear;
+  position: relative;
+
+  @include screen-small-down {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 8px;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  transition: transform .1s linear,
+  padding .1s linear;
+}
+
+.count {
+  flex-grow: 1;
+  @include typo-make-small;
+  line-height: 16px;
+  color: $color-gray-deep;
+  text-transform: uppercase;
+
+  strong {
+    font-weight: 600;
+  }
+
+  @include screen-small-down {
+    @include typo-make-tiny;
+  }
+}
+
+.bottomButtons {
+  display: flex;
+  gap: 0;
+}
+
+.wallet {
+  @include typo-medium-text;
+  padding: 4px 8px;
+  border-radius: 8px;
+  min-height: 32px;
+  margin-right: 4px;
+  pointer-events: none;
+
+  svg {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.basket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-violet;
+  padding: 8px;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  transition: background-color .2s linear;
+
+  > span {
+    height: 100%;
+  }
+}
+
+.basketIcon {
+  width: 16px;
+  height: 16px;
+  fill: $color-white;
+}
+
+.basket.productInCart {
+  background-color: $color-bluemarin;
+}
+
+.partnerImage {
+  margin-top: auto;
+  display: flex;
+  justify-content: left;
+  margin-left: $indent-24;
+
+  @include screen-small-down {
+    margin-left: $indent-8;
+  }
+
+  width: 100%;
+  height: 120px;
+  z-index: 1;
+
+  img {
+    width: 40%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

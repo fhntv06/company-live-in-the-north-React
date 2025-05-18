@@ -1,0 +1,89 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.card {
+  @include grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: relative;
+  border: 1px solid $color-gray-middle;
+  border-radius: 16px;
+  z-index: 4;
+
+  a {
+    color: $color-bluemarin;
+    @extend %link-base;
+  }
+
+  @include screen-small-down {
+    display: block;
+    padding: 24px;
+  }
+
+  &::after {
+    @extend %border-gradient;
+    inset: -1px;
+    opacity: 0;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &.open {
+    padding-bottom: $indent-32;
+    .title {
+
+      @include screen-small-down {
+        margin-bottom: $indent-32;
+      }
+
+      svg {
+        transform: rotate(180deg)
+      }
+    }
+  }
+}
+
+.title {
+  @include typo-make-h5;
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+  padding: $indent-32 $indent-48 $indent-32 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 $indent-16;
+  position: relative;
+  color: $color-black;
+  text-align: left;
+  cursor: pointer;
+  z-index: 1;
+
+  @include screen-small-down {
+    width: 100%;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-black;
+    flex-shrink: 0;
+  }
+
+  @include screen-small-down {
+    padding: 0px;
+  }
+}
+
+.hideContent {
+  overflow: hidden;
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 7))
+  }
+  // padding-bottom: $indent-48;
+}

@@ -1,0 +1,101 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.container {
+  @include grid;
+  @include grid-container;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+
+  @include screen-large-up {
+    margin: 0 $grid-padding-size;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: $indent-16;
+
+  row-gap: $indent-32;
+  padding: $indent-80 0;
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 11));
+    }
+  }
+  
+  @include screen-small-down {
+    padding-top: calc($indent-56 + $indent-24)
+  }
+
+  &.notEmpty {
+    padding-bottom: $indent-64;
+  }
+}
+
+.titleWrapper {
+  margin-bottom: 24px;
+  height: fit-content;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 4))
+  }
+
+  @include screen-large-up {
+    margin-bottom: 0;
+  }
+
+  &.withoutDescription {
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 3, huge: 11));
+    }
+
+    & + .offer {
+      @include grid-columns-span((large: 7, huge: 5));
+    }
+
+  }
+}
+
+.title {
+  @include grid-columns-span-all;
+
+  + .description {
+    margin-top: $indent-24;
+  }
+}
+
+.description {
+  @include grid-columns-span((large: 2));
+
+  &.hideDescriptionText {
+    @include screen-small-down {
+      display: none;
+    }
+  }
+}
+
+.offer {
+  @include grid-columns-span((large: 9, huge: 5));
+
+  &:first-of-type {
+    @include grid-columns-span((large: 6));
+  }
+
+  &:not(:first-of-type) {
+    @include screen-medium-down {
+      margin-bottom: $indent-16;
+    }
+  }
+}
+
+.mask {
+ @extend %helper-full-size-pseudo-layer;
+ pointer-events: none;
+}

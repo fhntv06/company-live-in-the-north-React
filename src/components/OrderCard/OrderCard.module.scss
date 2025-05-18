@@ -1,0 +1,369 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.order {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 10));
+  }
+  padding: $indent-32 $indent-80;
+  position: relative;
+  border-radius: 16px;
+  background-color: $color-white;
+  border: 1px solid $color-gray-light;
+  z-index: 1;
+  transition: box-shadow .2s ease-out;
+
+  &:hover { 
+    @extend %card-shadow;
+  }
+
+  .top {
+    cursor: pointer;
+  }
+
+  @include screen-small-down {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &.withStatus {
+    padding: $indent-32 $indent-80;
+    border: 1px solid $color-gray-light;
+
+    .left {
+      .text {
+        @include screen-small-down {
+          &:not(:last-child) {
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+
+    .map {
+      @include indent-bottom(12);
+
+      @include screen-small-down {
+        margin: 24px 0 16px;
+      }
+    }
+  }
+
+  &.ready {
+    border: 1px solid $color-bluemarin;
+
+    .status {
+      color: $color-bluemarin;
+    }
+  }
+
+  &.treatment {
+    border: 1px solid $color-violet;
+
+    .status {
+      color: $color-violet;
+    }
+  }
+
+  &.received,
+  &.canceled {
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+
+      border-color: transparent;
+    }
+  }
+
+  &.received {
+
+    color: $color-bluemarin;
+
+    .checkIcon {
+      display: block;
+    }
+    .cancelIcon {
+      display: none;
+    }
+  }
+
+  &.canceled {
+    color: $color-error-field;
+
+    .checkIcon {
+      display: none;
+    }
+    .cancelIcon {
+      display: block;
+    }
+  }
+
+  &:not(.withStatus) {
+    .contacts {
+      @include screen-small-down {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  &.orderMake:not(:last-child) {
+    margin-bottom: $indent-16;
+  }
+}
+
+.top {
+  @include grid-columns-span-all;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+
+  @include screen-medium-down {
+    flex-wrap: wrap;
+  }
+
+  &:not(.topWithStatus) {
+
+    .topToggleArrow {
+      transform: rotate(180deg);
+    }
+
+    .status {
+      @include screen-small-down {
+        width: 100%;
+      }
+    }
+  }
+
+  &:hover {
+    .topToggleArrow {
+      fill: $color-bluemarin-light;
+    }
+  }
+}
+
+.orderNumber {
+  @include typo-make-small;
+  margin-right: $indent-24;
+  font-weight: 600;
+  color: $color-black;
+  text-transform: uppercase;
+
+  @include screen-small-down {
+    margin-right: 12px;
+  }
+}
+
+.date {
+  @include typo-make-small;
+  margin-right: $indent-80;
+  color: $color-blue-gray;
+  text-transform: uppercase;
+
+  @include screen-small-down {
+    margin-right: 8px;
+  }
+}
+
+.status {
+  @include typo-make-small;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  @include screen-medium-down {
+    width: 100%;
+    order: 1;
+    margin-top: 8px;
+  }
+
+  .checkIcon,
+  .cancelIcon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    margin-right: $indent-8;
+    display: none;
+  }
+
+  .checkIcon {
+    stroke: $color-bluemarin;
+  }
+
+  .cancelIcon {
+    stroke: $color-error-field;
+  }
+}
+
+.topSum {
+  @include typo-make-small;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  color: $color-blue-gray;
+  margin-left: auto;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-blue-gray;
+    margin-right: 4px;
+  }
+
+  span:last-child {
+    margin-left: $indent-12;
+  }
+
+  @include screen-medium-up {
+    span:last-child {
+      margin-left: $indent-56;
+    }
+  }
+}
+
+.topToggleArrow {
+  width: 24px;
+  height: 24px;
+  margin-left: $indent-32;
+  fill: $color-black;
+
+  @include screen-small-down {
+    margin-left: auto;
+  }
+}
+
+.partner {
+  @include screen-medium-up {
+    margin-left: auto;
+  }
+}
+
+.orderMake {
+  .content {
+    max-height: 0px;
+    transition: max-height 0.5s ease-in-out;
+
+    &.open {
+      max-height: 1000px;
+
+      @include screen-small-down {
+        max-height: 1120px;
+      }
+    }
+  }
+}
+
+.content {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 10));
+  }
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.orders {
+  position: relative;
+  grid-column: 1/-1;
+  margin-bottom: $indent-32;
+  margin-top: $indent-32;
+  padding-top: $indent-16;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+  }
+
+  @include screen-small-down {
+    margin-bottom: 20px;
+  }
+}
+
+.orderLine {
+  border-bottom: 1px solid $color-gray-light;
+}
+
+.bottom {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  @include screen-small-down {
+    flex-wrap: wrap;
+
+    button:not(.toggleButton) {
+      padding: 20px 32px;
+      font-size: 12px;
+    }
+  }
+}
+
+.toggleButton {
+  @include typo-medium-text;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  color: $color-bluemarin;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: $color-bluemarin;
+    margin-right: $indent-16;
+  }
+
+  @include screen-small-down {
+    width: 100%;
+    margin-bottom: 28px;
+
+    span {
+      margin-right: 16px;
+    }
+  }
+}
+
+.sum {
+  @include grid-columns-span-all;
+  @include typo-make-h3;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  gap: 0;
+  font-weight: 700;
+  color: $color-black;
+  margin-bottom: $indent-24;
+
+  @include screen-small-down {
+    justify-content: flex-end;
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+    margin-right: $indent-8;
+  }
+}
+
+.orderMakeInfo {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 10));
+  }
+}
+
+.buttonCancel {
+  @include grid-columns-span((small: 6));
+  color: $color-bluemarin;
+  margin-top: $indent-24;
+  justify-self: flex-start;
+}

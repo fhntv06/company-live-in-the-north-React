@@ -1,0 +1,156 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.mainContainer {
+  z-index: 5;
+
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 1 )) {
+      @include grid-columns-span (( huge: 8 ));
+    }
+  }
+  grid-template-rows: min-content;
+}
+
+.noDocuments {
+  .textBlock {
+    margin-bottom: $indent-48;
+  }
+}
+
+.isCozyYamal {
+  .allIdea {
+    @include screen-small-down {
+      margin-top: $indent-24;
+    } 
+   }
+}
+
+.disabled {
+  :global(.HeartLikes-container){
+    pointer-events: none;
+  }
+}
+
+.mainSide {
+  z-index: 4;
+
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 9 )) {
+      @include grid-columns-span (( huge: 3 ));
+    }
+  }
+
+  @include screen-large-down {
+    display: none;
+  }
+}
+
+.gallery {
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 0 )) {
+      @include grid-columns-span (( huge: 8 ));
+    }
+  }
+}
+
+.galleryItem {
+  margin-top: $indent-24;
+  margin-bottom: $indent-24;
+
+  @include grid-with-inner-context {
+    @include grid-columns-span (( small: 7, medium: 10, large: 8, huge: 8 ));
+  }
+}
+
+.textBlock {
+  @include grid-columns-span (( huge: 6 ));
+  margin-bottom: $indent-24;
+
+  h3 {
+    @include screen-small-down {
+      font-weight: 400;
+    }
+  }
+}
+
+.gallery,
+.documents {
+  @include grid-columns-span-all;
+}
+
+.documents {
+  display: flex;
+  gap: 0;
+  margin-bottom: $indent-48;
+
+  @include screen-small-down {
+    @include helper-hidden-system-scrollbar;
+  }
+}
+
+.shareIdeaBtnWrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow-x: clip;
+}
+
+.shareIdeaBtn {
+  position: sticky;
+  top: calc(75px + $indent-24);
+  right: 0;
+  display: none;
+  justify-content: stretch;
+  min-width: 137px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 16px;
+  @include typo-make-small;
+  font-weight: 600;
+  transform: translate(37px, -26px);
+
+  @include screen-medium-down {
+    z-index: 5;
+    display: flex;
+  }
+
+  &:hover:not(:disabled) {
+    padding: 4px 10px 4px 4px;
+  }
+}
+
+.shareIdeadBtnInnerWrapper {
+  display: flex;
+  gap: 0;
+
+  span {
+    padding-right: $indent-16;
+  }
+}
+
+.ideaIcon {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.push {
+  @include grid-columns-span((huge: 6));
+  margin-top: $indent-16;
+  margin-bottom: $indent-40;
+}
+
+.noDocuments.noGallery {
+  .push {
+    margin-top: 0;
+  }
+}
+
+.location {
+  white-space: nowrap;
+}
+
+.spinnerWrapper {
+  @include grid-columns-span((huge: 6));
+}

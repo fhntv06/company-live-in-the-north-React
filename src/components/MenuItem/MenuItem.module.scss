@@ -1,0 +1,41 @@
+@use '../../styles/placeholders' as *;
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/variables/colors' as *;
+
+.item {
+  @extend %link-base;
+  @include typo-medium-text;
+}
+
+.dashedUnderline {
+  @extend %dashed-underline-link;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  &:hover {
+    .icon {
+      fill: $bluemarin-light;
+    }
+  }
+
+  &.open {
+    color: $bluemarin-extra-light;
+
+    .icon {
+      transform: rotate(180deg);
+      fill: $bluemarin-extra-light;
+    }
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  fill: $dark-color;
+  transition: fill 0.1s linear;
+}

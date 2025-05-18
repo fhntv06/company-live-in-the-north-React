@@ -1,0 +1,23 @@
+////
+/// The nearest-multiple function
+/// @group helpers
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+@use "sass:math";
+
+/// Returns the nearest multiple of the given divisor for the number.
+/// @param {Number} $number - The number for the nearest multiple value determination.
+/// @param {Number} $divisor [4] - The divisor value.
+/// @return {Number} - The nearest multiple value for the $number.
+@function nearest-multiple($number, $divisor: 4) {
+  $floor: floor(math.div($number, $divisor)) * $divisor;
+  $ceil: ceil(math.div($number, $divisor)) * $divisor;
+  $floor_distance: abs($number - $floor);
+  $ceil_distance: abs($number - $ceil);
+  @if $floor_distance < $ceil_distance {
+    @return $floor;
+  }
+
+  @return $ceil;
+}

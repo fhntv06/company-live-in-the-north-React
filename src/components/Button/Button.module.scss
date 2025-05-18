@@ -1,0 +1,369 @@
+@use '../../styles/placeholders' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/mixins' as *;
+
+.button,
+.button__violet,
+.buttonFill,
+.buttonFill__small {
+  @extend %button-base;
+  position: relative;
+  padding: 20px 70px;
+
+  @include screen-small-down {
+    padding: 16px 48px;
+  }
+
+  & > span {
+    white-space: nowrap;
+  }
+
+  &:hover {
+    &::after,
+    &::before {
+      opacity: 1;
+      top: -.5px;
+      bottom: -.5px;
+      right: -2.5px;
+      left: -2.5px;
+    }
+  }
+
+  &:active {
+    span {
+      transform: translateY(1px);
+    }
+
+    &::after,
+    &::before {
+      inset: 0
+    }
+  }
+}
+
+.button,
+.button__violet {
+  span {
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    background-clip: text;
+    color: transparent;
+    transition: transform .1s linear;
+  }
+
+  &::before,
+  &::after {
+    @extend %border-gradient;
+    transition: all .1s linear;
+    max-height: 56px;
+  }
+
+  &::after {
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    opacity: 0;
+    background-origin: border-box;
+    background-clip: border-box;
+    z-index: 2;
+  }
+
+  &:hover:not(:disabled) {
+    &:before {
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    span {
+      color: $color-violet;
+    }
+
+    &::after,
+    &::before {
+      background: $color-violet;
+    }
+  }
+
+  &:disabled {
+    cursor: auto;
+    span {
+      background: none;
+      color: $color-gray-light;
+    }
+
+    &::after,
+    &::before {
+      background: $color-gray-light;
+    }
+  }
+}
+
+.button__violet {
+  padding: 12px $indent-16;
+
+  span {
+    color: $color-violet;
+  }
+}
+
+.buttonFill,
+.buttonFill__small {
+  color: $color-white;
+
+  span {
+    z-index: 3;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    transition: all .1s linear;
+  }
+
+  &::before {
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+  }
+
+  &::after {
+    background: linear-gradient(263.4deg, #87D9E6 -25.63%, #8994F8 17.97%, #B392F4 63.75%, #EBC2C6 105.82%);
+    opacity: 0;
+    z-index: 2;
+  }
+
+  &:hover:not(:disabled) {
+    background: $color-violet;
+  }
+
+  &:active {
+    &::after,
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  &:disabled {
+    background-color: $color-gray-light;
+    cursor: auto;
+
+    &::after,
+    &::before {
+      opacity: 0;
+    }
+  }
+}
+
+.buttonFill__small {
+  padding: 12px $indent-40;
+}
+
+.button__violet,
+.buttonFill__small {
+  width: max-content;
+  max-width: 200px;
+
+  span {
+    @include typo-make-small;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+}
+
+.buttonWhite {
+  @extend %button-base;
+  padding: 12px 24px;
+  background-color: $color-white;
+  color: $color-bluemarin;
+
+  .svg {
+    width: 16px;
+    height: 16px;
+    fill: $color-bluemarin;
+    margin-right: $indent-8;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-bluemarin-light;
+  }
+
+  &:active {
+    color: $color-bluemarin-extra-light;
+  }
+}
+
+.buttonGray {
+  @extend %button-base;
+  padding: 12px;
+  background-color: $color-gray-light;
+  color: $color-blue-dark;
+  border-radius: 8px;
+  @include typo-make-small;
+
+  .svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    fill: currentColor;
+  }
+
+  &:hover {
+    color: $color-blue-extra-light;
+  }
+
+  &:active {
+    background-color: $color-white;
+    color: $color-blue-extra-light;
+  }
+
+  &:disabled {
+    background-color: $color-gray-extra-light;
+    color: $color-gray;
+  }
+}
+
+.buttonClose {
+  @extend %button-base;
+  height: 48px;
+  width: 48px;
+  border: 2px solid $color-blue-gray;
+
+  .svg {
+    height: 22px;
+    width: 22px;
+    fill: $color-blue-gray;
+    transition: inherit;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $color-bluemarin-light;
+
+    .svg {
+      fill: $color-bluemarin-light;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.buttonCloseTag {
+  @extend %button-base;
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  background-color: $color-gray-extra-light;
+
+  .svg {
+    height: 16px;
+    width: 16px;
+    fill: $color-blue-gray;
+    transform: rotateZ(0);
+    transition: transform .3s;
+  }
+
+  &:hover:not(:disabled) {
+    background: $color-gray-light;
+
+    .svg {
+      fill: $color-blue;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.buttonSearch {
+  @extend %button-base;
+  height: 40px;
+  width: 40px;
+  background: $color-gray-light;
+
+  .svg {
+    height: 24px;
+    width: 24px;
+    fill: $color-blue-gray;
+    transition: inherit;
+  }
+
+  &:hover:not(:disabled) {
+    background: $color-gray-extra-light;
+
+    .svg {
+      fill: $color-bluemarin-light;
+      transform: rotate(-6deg);
+    }
+  }
+}
+
+.buttonBooksmark {
+  width: 16px;
+  height: 16px;
+
+  svg {
+    height: 16px;
+    width: 16px;
+    fill: none;
+    transition: fill .1s linear, stroke .1s linear;
+  }
+
+  &:global(.active),
+  &.filled,
+  &:hover:not(:disabled) {
+    svg {
+      fill: $color-bluemarin;
+      stroke: $color-bluemarin;
+    }
+
+    stop {
+      stop-color: $color-bluemarin;
+    }
+  }
+}
+
+.button__shareColor {
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg width='13' height='14' viewBox='0 0 13 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.7236 4.55273C11.9808 4.55273 13 3.53357 13 2.27637C13 1.01916 11.9808 0 10.7236 0C9.46643 0 8.44727 1.01916 8.44727 2.27637C8.44727 2.42195 8.46093 2.56434 8.48705 2.70233L3.81473 5.1512C3.4096 4.77956 2.86947 4.55273 2.27637 4.55273C1.01916 4.55273 0 5.5719 0 6.8291C0 8.0863 1.01916 9.10547 2.27637 9.10547C2.80324 9.10547 3.28831 8.92647 3.67408 8.62597L8.45726 11.1593C8.45065 11.23 8.44727 11.3016 8.44727 11.374C8.44727 12.6312 9.46643 13.6504 10.7236 13.6504C11.9808 13.6504 13 12.6312 13 11.374C13 10.1168 11.9808 9.09766 10.7236 9.09766C10.006 9.09766 9.36595 9.42972 8.94872 9.94857L4.43378 7.55726C4.51092 7.32863 4.55273 7.08375 4.55273 6.8291C4.55273 6.63567 4.52861 6.44788 4.4832 6.26857L9.08512 3.8566C9.49914 4.28579 10.0802 4.55273 10.7236 4.55273ZM10.7236 3.25273C11.2629 3.25273 11.7 2.8156 11.7 2.27637C11.7 1.73713 11.2629 1.3 10.7236 1.3C10.1844 1.3 9.74727 1.73713 9.74727 2.27637C9.74727 2.8156 10.1844 3.25273 10.7236 3.25273ZM10.7236 12.3504C11.2629 12.3504 11.7 11.9133 11.7 11.374C11.7 10.8348 11.2629 10.3977 10.7236 10.3977C10.1844 10.3977 9.74727 10.8348 9.74727 11.374C9.74727 11.9133 10.1844 12.3504 10.7236 12.3504ZM3.25273 6.8291C3.25273 7.36833 2.8156 7.80547 2.27637 7.80547C1.73713 7.80547 1.3 7.36833 1.3 6.8291C1.3 6.28987 1.73713 5.85273 2.27637 5.85273C2.8156 5.85273 3.25273 6.28987 3.25273 6.8291Z' fill='url(%23paint0_linear_3002_7481)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_3002_7481' x1='12.8305' y1='-4.51639e-06' x2='0.423771' y2='-4.29005e-06' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E7BECB'/%3E%3Cstop offset='0.497153' stop-color='%23BF9DEB'/%3E%3Cstop offset='1' stop-color='%23A293F6'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.return {
+  @include typo-make-small;
+  @extend %link-base;
+  color: $color-blue-gray;
+  display: flex;
+  align-items: center;
+  gap: $indent-16;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &:hover {
+      svg {
+          fill: $color-bluemarin-light;
+      }
+  }
+
+  svg {
+      width: 24px;
+      height: 24px;
+      fill: $color-blue-gray;
+      transition: fill .1s linear;
+  }
+}
+
+.buttonGrayExtraLight {
+  height: 40px;
+  @include typo-medium-text;
+  color: $color-gray-deep;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  padding: 10px 20px;
+  transition:
+              background-color .3s,
+              color .3s;
+
+  &:hover {
+    background-color: $color-gray-light;
+    color: #5171F2;
+  }
+}

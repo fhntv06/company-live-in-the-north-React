@@ -1,0 +1,145 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-24;
+
+    @include screen-small-down {
+      margin-bottom: $indent-16;
+    }
+  }
+
+  @include screen-small-down {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+.number {
+  font-size: 24px;
+
+  @include screen-large-up {
+    text-align: right;
+  }
+
+  margin-bottom: $indent-32;
+
+  @include screen-medium-up {
+    margin-top: $indent-32;
+    margin-bottom: 0;
+  }
+
+  @include screen-medium-down {
+    margin-bottom: $indent-24;
+  }
+}
+
+.number,
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.title {
+  margin-bottom: $indent-40;
+
+  @include screen-small-down {
+    margin-bottom: $indent-24;
+  }
+}
+
+.description {
+  @include typo-make-text;
+  margin-bottom: $indent-24;
+
+  @include screen-small-down {
+    margin-bottom: 0;
+  }
+}
+
+.address {
+  @include typo-medium-text;
+  opacity: 0.6;
+}
+
+.card {
+  overflow-x: hidden;
+  height: fit-content;
+
+  @include grid-columns-span((small: 6, medium: 11, large: 10));
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+  padding: $indent-32;
+  display: flex;
+
+  @include screen-medium-down {
+    flex-direction: column;
+  }
+
+  @include screen-small-down {
+    padding: $indent-16 $indent-16 calc($indent-32 + $indent-8) $indent-24;
+  }
+}
+
+.cardEvents,
+.cardInfo {
+  flex-basis: 50%;
+}
+
+.cardInfo {
+  @include screen-small-down {
+    flex-basis: auto;
+  }
+}
+
+.cardEvents {
+  display: flex;
+  margin-top: $indent-40;
+  margin-left: calc(-1 * $indent-32);
+  margin-right: calc(-1 * $indent-32);
+  padding-left: $indent-32;
+  padding-right: $indent-32;
+  gap: 0;
+
+  @include screen-large-up {
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    overflow: visible;
+  }
+
+  @include screen-small-down {
+    flex-shrink: 0;
+    column-gap: 12px;
+    row-gap: 12px;
+
+    @include helper-hidden-system-scrollbar
+  }
+
+}
+
+.eventCard {
+  flex-basis: 100%;
+
+  @include screen-medium-up {
+    margin-top: calc($indent-12 * -1);
+  }
+
+  @include screen-small-down {
+    // flex-shrink: 0;
+    height: fit-content;
+  }
+
+  &:not(.eventBigCard):only-child {
+    flex-basis: 50%;
+  }
+
+   & + .eventCard {
+     margin-left: $indent-8;
+   }
+}

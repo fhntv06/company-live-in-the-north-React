@@ -1,0 +1,60 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/variables/grid.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+.title {
+  @include typo-make-h2;
+  @include grid-with-offset((small: 0, medium: 0, large: 1)) {
+    @include grid-columns-span((small: 6, medium: 5, large: 4));
+  }
+  color: $color-black;
+
+  @include screen-small-down {
+    margin-bottom: 24px;
+  }
+}
+
+.description {
+  @include typo-make-h2;
+  @include grid-with-offset((small: 0, medium: 5, large: 6, huge: 6)) {
+    @include grid-columns-span((small: 6, medium: 7, large: 5, huge: 5));
+  }
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  @include typo-make-text;
+  color: $color-black;
+}
+
+.more {
+  @include typo-make-small;
+  color: rgba($color: $color-black, $alpha: .5);
+}
+
+.images {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 12));
+  }
+
+  margin-top: $indent-64; 
+}
+
+.galleryItem {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((small: 6, medium: 12, large: 11));
+    }
+  }
+}
+
+.shedule {
+  margin-top: $indent-80;
+
+  @include screen-small-down {
+    display: none;
+  }
+}

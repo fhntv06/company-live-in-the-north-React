@@ -1,0 +1,59 @@
+@use '../variables/colors' as *;
+@use '../mixins' as *;
+@use '../variables/indent-system.scss' as *;
+@use '../variables/grid' as *;
+@use '../placeholders' as *;
+
+// .swiper {
+//   position: relative;
+//   // width: 100%;
+//   height: 400px;
+//   // padding-left: 40px;
+//   // padding-right: 40px;
+// }
+
+// .swiper-wrapper {
+//   // position: absolute;
+//   // display: flex;
+//   // width: 100%;
+//   height: 100%;
+//   transition-duration: 1.15s !important;
+//   transition-timing-function: ease-in-out;
+//   // gap: $grid-gutter-size;
+//   // gap: 0;
+// }
+
+// .main .swiper-slide-prev {
+//   padding-right: 8px;
+// }
+
+.wrapper-main-slider {
+  display: flex;
+  gap: 0;
+}
+
+.grid-slider {
+  // .swiper-slide {
+  //   transition: all 0.2s linear;
+  // }
+  // .swiper-slide:not(.swiper-slide-visible) {
+  //   > div {
+  //     transition: all 0.2s linear;
+  //   }
+  //   > div:first-child {
+  //     margin-left: calc($indent-32 * -1);
+  //     transition: margin-left 0.2s linear;
+  //   }
+  // }
+}
+
+.gallery-store__thumb .swiper-slide-thumb-active {
+  position: relative;
+  opacity: 1;
+
+  &::after {
+    opacity: 1;
+    @extend %border-gradient;
+    transition: opacity .2s ease-out;
+  }
+}

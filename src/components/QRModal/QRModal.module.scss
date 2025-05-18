@@ -1,0 +1,64 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1, huge: 1)) {
+      @include grid-columns-span((large: 3, huge :2));
+    }
+  }
+
+  @include screen-medium-down {
+    padding: 0 $indent-24;
+    padding-bottom: calc($indent-20 + $indent-20);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.titleWrapper,
+.description,
+.qrCodeWrapper,
+.orderNumber {
+  @include grid-columns-span-all;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  @include typo-make-h3;
+  font-weight: 700;
+
+  margin-bottom: $indent-16;
+}
+
+.description {
+  @include typo-make-text;
+
+  margin-bottom: calc($indent-16 + $indent-16);
+}
+
+.qrCodeWrapper {
+  width: 205px;
+  height: 205px;
+  margin: 0 auto;
+  margin-bottom: calc($indent-16 + $indent-16);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderNumber {
+  @include typo-make-h1;
+  font-weight: 700;
+  text-align: center;
+}
+
+.spinner {
+  position: absolute;
+}

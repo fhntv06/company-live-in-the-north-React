@@ -1,0 +1,121 @@
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+
+    @include screen-small-down {
+        bottom: calc(76px + 8px);
+        left: 8px;
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    @include screen-small-down {
+        right: 12px;
+        top: 12px;
+    }
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.testModeBanner,
+.cookiesBanner {
+    position: relative;
+    padding: 16px;
+    border-radius: 16px;
+    gap: 12px;
+    max-width: 592px;
+    @include typo-make-text;
+    font-weight: 500;
+    pointer-events: auto;
+
+    @include screen-small-down {
+        gap: 8px;
+        padding: 12px;
+    }
+}
+
+.testModeBanner {
+    background-color: $color-gray-blue;
+    color: $color-white;
+    display: flex;
+
+    .closeBtn {
+        top: calc(50% - 8px);
+    }
+}
+
+.cookiesBanner {
+    background-color: $color-white;
+    box-shadow: 0px 4px 80px 0px rgba(6, 6, 36, 0.10);
+    transition: margin-bottom 0.5s cubic-bezier(0, 0, 0.2, 1);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:not(:last-child) {
+         margin-bottom: $indent-8;
+    }
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    margin-top: $indent-56;
+    gap: 0;
+}
+
+.textContent {
+    display: flex;
+    margin-right: $indent-40;  
+}
+
+.link {
+    color: $color-bluemarin;
+    @extend %link-base;
+    border-bottom: 1px solid rgba(38, 175, 205, 0.2);
+
+  &:hover {
+    border-bottom: 1px solid rgba(32, 197, 233, 0.4);
+  }
+
+  &:active {
+    border-bottom: 1px solid $color-bluemarin-extra-light;
+  }
+}
+
+.button {
+    padding: $indent-16 $indent-24;
+    border-radius: 16px;
+    margin-right: $indent-32;
+
+    @include screen-small-down {
+        border-radius: 12px;
+        @include typo-make-small;
+        font-weight: 500;
+        padding: 12px 20px;
+        margin-left: 32px;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+}

@@ -1,0 +1,131 @@
+@use '../../styles/variables' as *;
+@use '../../styles/variables/grid' as *;
+@use '../../styles/mixins' as *;
+
+%slide-mask-before {
+  @include screen-large-up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    height: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+    background-color: $color-white;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+%slide-mask-after {
+  @include screen-large-up {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    mix-blend-mode: normal;
+    background: $color-blue;
+    border-radius: 16px;
+    cursor: pointer;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+//
+//%slide-background {
+//  @include screen-large-up {
+//    mix-blend-mode: normal;
+//    // filter: blur(16px);
+//    overflow: hidden;
+//    border-radius: 16px;
+//    opacity: 1;
+//    visibility: visible;
+//  }
+//}
+
+.slide {
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+
+  &.titleCard > *:first-child {
+    position: relative;
+  }
+
+  &.titleCard > *:first-child::before,
+  &:not(.titleCard):not(.withoutMask)::before {
+    @extend %slide-mask-before;
+    content: "";
+    z-index: 5;
+    opacity: 0;
+  }
+
+  &.titleCard > *:first-child::after,
+  &:not(.titleCard):not(.withoutMask)::after {
+    @extend %slide-mask-after;
+    content: "";
+    opacity: 0;
+  }
+
+  &.hidden.left,
+  &.isPrev {
+    &:not(.withoutIndents) {
+      transform: translateX($grid-gutter-size);
+    }
+    > * {
+      margin-right: 0;
+    }
+
+  }
+
+  &.hidden,
+  &.isPrev {
+    &.titleCard > *:first-child::after,
+    &.titleCard > *:first-child::before,
+    &:not(.titleCard):not(.withoutMask)::before,
+    &:not(.titleCard):not(.withoutMask)::after {
+      pointer-events: all;
+    }
+    &.opacity {
+      opacity: 0.3;
+    }
+
+    &:not(.opacity) {
+      &.titleCard > *:first-child::after,
+      &.titleCard > *:first-child::before,
+      &:not(.titleCard):not(.withoutMask)::before,
+      &:not(.titleCard):not(.withoutMask)::after {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.hidden:not(.left) {
+  &:not(.withoutIndents) {
+    transform: translateX(calc(-1 * $grid-gutter-size));
+  }
+}
+
+.titleCard {
+  @include screen-large-up {
+    background-color: $color-white;
+    display: grid;
+    grid-template-columns: repeat(var(--slide-columns), minmax(0, 1fr));
+    column-gap: $grid-gutter-size;
+    margin-right: $grid-gutter-size;
+  }
+}
+
+.title {
+  display: none;
+  @include screen-large-up {
+    display: block;
+    order: -1;
+    @include grid-columns-span((large: 2));
+    @include typo-make-h4;
+  }
+}

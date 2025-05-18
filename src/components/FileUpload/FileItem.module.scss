@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  column-gap: 0;
+  @include typo-make-small;
+  cursor: pointer;
+  
+  .fileName {
+    border: 1px solid $color-gray-middle;
+    border-radius: 8px;
+    padding: $indent-8 $indent-16;
+    color: $color-gray-blue;
+    transition: color .1s linear,
+                border-color .1s linear;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 110px;  
+      white-space: nowrap;
+    }
+  }
+
+  .fileExtension {
+    background: linear-gradient(270deg, #E7BECB 1.3%, #BF9DEB 48.75%, #A293F6 96.74%);
+    color: $color-white;
+    padding: $indent-8 5px;
+    border-radius: 8px;
+    min-width: 33px;
+    text-align: center;
+  }
+
+  .removeBtn {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s linear,
+                max-width .2s linear,
+                visibility .2s linear;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    right: 0;
+    }
+  
+  .removeSvg {
+    width: 16px;
+    height: 16px;
+    fill: $color-blue;
+    transition: transform .1s linear;
+  }
+
+  &:hover {
+    .fileName {
+      border-color: transparent;
+      color: $color-blue-light;  
+    }
+
+    .fileExtension {
+      background: $color-violet-extra-light;
+    }
+
+    .removeBtn {
+      opacity: 1;
+      max-width: 16px;
+      visibility: visible;
+    }
+
+    .removeSvg {
+      transform: rotate(90deg);
+    }
+
+  }
+}

@@ -1,0 +1,208 @@
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.pageContent {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11, huge: 11));
+  }
+}
+
+.pageInfo {
+  @include grid-columns-span((large: 6, huge: 4));
+  display: flex;
+  flex-direction: column;
+  gap: $indent-32;
+
+  p {
+    @include typo-make-h5;
+  }
+
+  margin-bottom: $indent-48;
+}
+
+.pageTitle {
+  text-transform: uppercase;
+}
+
+.form {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11, huge: 11));
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formInnerWrapper {
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 7, huge: 7));
+    }
+  }
+
+  .formSection {
+    @include grid-columns-span((large: 7, huge: 6));
+  }
+
+  .formSection:not(:first-child) {
+    margin-top: $indent-48;
+  }
+
+  .controls {
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 7, huge: 6));
+    }
+      
+    margin-top: $indent-32;
+  }
+}
+
+.select {
+  :global(.select__control) {
+    height: 58px;
+
+    @include screen-small-down {
+        height: 48px;
+    }
+}
+
+  :global(.select__menu) {
+      z-index: 5;
+  }
+
+  :global(.select__control input) {
+      padding: unset;
+    }
+
+  :global(.select__single-value) {
+      width: 100%;
+      text-align: left;
+  }
+
+  :global(.select__placeholder) {
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    }
+}
+
+.willAttendMatinee {
+  margin: $indent-24 0;
+
+  @include screen-medium-down {
+    margin: $indent-12 0;
+  }
+}
+
+.fileUploader {
+  margin-top: calc($indent-24 - 6px);
+  @include screen-medium-down {
+    margin-top: calc($indent-12 / 2);
+  }
+}
+
+.sectionTitle {
+  @include typo-make-big-text;
+  margin-bottom: $indent-32;
+}
+
+.aside {
+  @include typo-make-big-text;
+  @include grid-columns-span((large: 4, huge: 3));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include screen-large-up {
+    margin-top: calc($indent-32 + calc(1em + 4px));
+  }
+
+  @include screen-medium-down {
+    order: -1
+  }
+
+  .disclaimer {
+    @include typo-make-h5;
+
+    span {
+      margin-top: $indent-24;
+      display: block;
+      @include typo-make-text; 
+    }
+  }
+
+  .unitedRussiaImg {
+    margin-bottom: $indent-32;
+  }
+}
+
+.unitedRussia {
+  @include screen-medium-down {
+    margin-top: $indent-32;
+    margin-bottom: $indent-32;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.checkboxWrapper {
+  @include grid-columns-span((huge: 3));
+
+  @include screen-medium-down {
+    margin-bottom: $indent-12;
+  }
+}
+
+.confirmTextWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: $indent-16;
+}
+
+.confirm {
+  @include typo-medium-text;
+  color: $color-gray-deep;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-12;
+  }
+
+  a {
+      color: $color-bluemarin;
+      transition: color .1s linear;
+
+      &:hover {
+          color: $color-bluemarin-light;
+      }
+  }
+}
+
+.submit {
+  grid-column: -1/5;
+  align-self: self-end;
+
+  @include screen-large-down {
+    margin-top: $indent-32;
+  }
+}
+
+.warningDescription {
+  display: flex;
+  gap: $indent-24;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.errorWrapper {
+  @include grid-columns-span((large: 6, huge: 6));
+}
+
+.bannerWrapper {
+  @include grid-columns-span((large: 8, huge: 8));
+}

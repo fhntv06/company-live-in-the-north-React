@@ -1,0 +1,12 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1, huge: 1)) {
+      @include grid-columns-span((large: 10, huge: 10));
+    }
+  }
+  z-index: 1;
+}

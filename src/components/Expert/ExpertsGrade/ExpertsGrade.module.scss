@@ -1,0 +1,18 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  @include typo-make-small;
+  display: flex;
+  align-items: center;
+  color: $color-blue-gray;
+  gap: 0;
+}
+
+.svg {
+  width: 16px;
+  height: 16px;
+  fill: $color-blue-gray;
+  margin: 0 $indent-8;
+}

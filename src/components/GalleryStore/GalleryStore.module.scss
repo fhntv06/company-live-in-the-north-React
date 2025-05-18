@@ -1,0 +1,81 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  grid-column: span 5;
+}
+
+.wrapperSlider {
+  grid-column: 1/-1;
+  position: relative;
+  border-radius: 12px;
+  margin-bottom: $indent-16;
+
+  @include screen-small-down {
+    overflow: visible;
+    margin-left: calc($grid-padding-size * -1);
+
+    &:global(.gallery-store) {
+      margin-left: 0;
+      padding-left: $grid-padding-size;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: $grid-padding-size;
+      top: -1px;
+      bottom: -1px;
+      right: 100%;
+      background-color: #fff;
+      z-index: 2;
+    }
+  }
+}
+
+.container {
+  gap: 0;
+}
+
+.slide {
+  border-radius: 12px;
+  height: 205px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  @include screen-medium-up {
+    height: 505px;
+  }
+}
+
+.containerThumb {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 0;
+}
+
+.slideThumb {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 80px;
+  width: 80px;
+  border-radius: 12px;
+  opacity: .5;
+  transition: opacity .2s ease-out;
+  cursor: pointer;
+
+  &:first-child {
+    margin-left: auto;
+  }
+
+  &:hover {
+    opacity: .80;
+  }
+
+  &:after {
+    opacity: 0;
+  }
+}

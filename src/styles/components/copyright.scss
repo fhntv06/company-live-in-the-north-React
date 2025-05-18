@@ -1,0 +1,106 @@
+@use '../variables/colors.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system' as *;
+
+.copyright {
+    color: $color-black;
+
+    big {
+        @include typo-make-h3;
+        font-weight: 400;
+
+        & + * {
+            margin-top: $indent-64;
+        }
+    }
+
+    video {
+        & + * {
+            margin-top: $indent-48;
+        }
+    }
+
+    p {
+        @include typo-make-text;
+
+        & + * {
+            margin-top: $indent-64;
+        }
+    }
+
+    h2 {
+        @include typo-make-h2;
+        font-weight: 700;
+
+        & + * {
+            margin-top: $indent-32;
+        }
+    }
+
+    h4 {
+        @include typo-make-h4;
+        & + * {
+            margin-top: $indent-32;
+        }
+    }
+
+    ul,
+    ol {
+        & + *:not(ul, ol) {
+            margin-top: $indent-48;
+        }
+
+        & + ol,
+        & + ul {
+            margin-top: $indent-16;
+        }
+    }
+
+    ul li {
+        &::before {
+            content: ' — ';
+            margin-right: $indent-8;
+        }
+    }
+
+    ol {
+        list-style-type: decimal;
+        list-style-position: inside;
+        
+        li::before {
+            content: '';
+            margin-right: $indent-8;
+        }
+    }
+
+    li {
+        @include typo-make-text;
+        
+        & + * {
+            margin-top: $indent-16;
+        }
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+
+        & + *:not(i) {
+            margin-top: $indent-48;
+        }
+
+        & + i {
+            margin-top: $indent-16;
+        }
+    }
+
+    i {
+        @include typo-medium-text;
+        color: $color-gray-deep;
+
+        & + * {
+            margin-top: $indent-48;
+        }
+    }
+}

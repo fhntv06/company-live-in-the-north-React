@@ -1,0 +1,69 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-radius: 16px 16px 0 0;
+  background-color: $color-white;
+  position: relative;
+  z-index: -1;
+  box-shadow: 0px 8px 48px rgba(0, 16, 94, 0.24);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  padding: 8px 12px;
+  @include screen-small-down {
+    margin-top: -8px;
+  }
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 6px 4px 12px;
+  background: $color-white;
+  border-radius: 16px;
+
+  &:active,
+  &.active {
+    background-color: $color-gray-extra-light;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.profile {
+  @include typo-make-ultrasmall;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  text-transform: uppercase;
+  color: $color-white;
+  background: linear-gradient(270deg, #E7BECB 1.3%, #BF9DEB 48.75%, #A293F6 96.74%);
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.name {
+  @include typo-make-tiny;
+  color: $color-black;
+}

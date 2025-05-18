@@ -1,0 +1,82 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders';
+
+.content {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  margin-bottom: $indent-24;
+
+  &.hide {
+    &:before {
+      opacity: 1;
+    }
+    margin-bottom: 0;
+
+    + .moreButton {
+      margin-top: $indent-24;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1em;
+    background: linear-gradient(360deg, $color-white 15%, rgba($color-white, 0) 100%);
+    pointer-events: none;
+    transform: opacity 0.2s ease-in-out;
+    opacity: 0;
+  }
+
+  a {
+    color: $color-bluemarin;
+    @extend %link-base;
+  }
+
+}
+
+.moreButton {
+  display: inline-flex;
+  @extend %link-base;
+  @include typo-make-small;
+  color: $color-gray-middle;
+  gap: 0;
+  text-transform: uppercase;
+  align-items: center;
+
+  .icon {
+    margin-left: calc($indent-8 / 2);
+    height: 16px;
+    width: 16px;
+    transition: transform .2s linear;
+    fill: $color-gray-middle;
+
+    &.open {
+      transform: rotateZ(180deg);
+    }
+  }
+
+  &:hover {
+    .icon {
+      fill: $color-bluemarin-light;
+    }
+  }
+
+  &:active {
+    .icon {
+      fill: $color-bluemarin-extra-light;
+    }
+  }
+}
+
+//.icon {
+//  width: 16px;
+//  height: 16px;
+//  fill: currentColor;
+//  margin-left: 4px;
+//  transition: transform 0.2s linear;
+//}

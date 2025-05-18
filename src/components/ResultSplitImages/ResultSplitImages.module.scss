@@ -1,0 +1,123 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.splitImages {
+  margin-bottom: $indent-12;
+  display: flex;
+  aspect-ratio: 560/300;
+  gap: 0;
+
+  .splitLeft,
+  .splitRight {
+    height: 100%;
+    width: 25%;
+    overflow: hidden;
+    position: relative;
+    pointer-events: none;
+  }
+
+  .splitLeft {
+    margin-right: 1px;
+    border-radius: 16px;
+    @include screen-small-down {
+      border-radius: 8px;
+    }
+  }
+
+  .splitRight {
+    border-radius: 16px;
+    width: 75%;
+    margin-left: 1px;
+    width: 100%;
+
+    @include screen-small-down {
+      border-radius: 8px;
+    }
+  }
+
+  .split {
+    position: relative;
+    z-index: 6;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      width: 40px;
+      height: 118px;
+      background-image: url('../../../public/images/result-card/splitter.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: grab;
+      z-index: 1;
+    }
+
+    &.leftStart::after {
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: 40px 118px;
+      width: 24px;
+    }
+    
+    &.rightEnd::after {
+      background-position: left;
+      background-size: 40px 118px;
+      width: 24px;
+    }
+  }
+
+  .firstImage,
+  .secondImage {
+    position: absolute;
+    top: 0;
+    max-width: var(--split-img-width);
+    height: 100%;
+    min-height: 100%;
+    pointer-events: none;
+    user-select: none;
+    transition: .12s ease-out;
+  }
+
+  .firstImage {
+    left: 0;
+    object-fit: cover;
+  }
+
+  .secondImage {
+    right: 0;
+  }
+
+  .splitAfter,
+  .splitBefore {
+    @include typo-make-small;
+    position: absolute;
+    top: $indent-16;
+    color: $color-white;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .splitBefore {
+    left: $indent-16;
+  }
+
+  .splitAfter {
+    right: $indent-16;
+  }
+}
+
+.simpleImages {
+  @include screen-medium-up {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin-bottom: $indent-12;
+  }
+
+  @include screen-small-down {
+
+  }
+}

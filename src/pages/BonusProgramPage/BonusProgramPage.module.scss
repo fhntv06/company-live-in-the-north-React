@@ -1,0 +1,174 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.pageContainer {
+  @include grid;
+  @include grid-container;
+  margin-bottom: $indent-80;
+}
+
+.pageContent {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 12));
+  }
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  margin-bottom: $indent-48;
+  position: relative;
+  overflow: hidden;
+
+  @include screen-small-down {
+    margin-right: calc(-1 * $grid-padding-size);
+    margin-left: calc(-1 * $grid-padding-size);
+    @include grid-container;
+  }
+}
+
+.title {
+  @include grid-columns-span((large: 5));
+}
+
+.info {
+  @include grid-with-offset((large: 1)) {
+    @include grid-with-inner-context {
+      @include grid-columns-span((small: 6, medium: 12, large: 11));
+    }
+  }
+  padding: $indent-64 0;
+}
+
+.infoLeft {
+  @include grid-columns-span((medium: 6, large: 3));
+  @include typo-make-h4;
+  font-weight: 500;
+
+  @include screen-small-down {
+    margin-bottom: $indent-32;
+  }
+}
+
+.infoCenter {
+  @include grid-columns-span((medium: 6, large: 3));
+  display: flex;
+  gap: 0;
+}
+
+.infoRight {
+  @include grid-with-offset((large: 8)) {
+    @include grid-columns-span((large: 2));
+  }
+  @include screen-medium-down {
+    margin-top: $indent-32;
+  }
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.tile {
+  width: 100%;
+  background-color: $color-gray-extra-light !important;
+
+  &:hover {
+    background-color: $color-gray-strong !important;
+  }
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  margin-right: $indent-32;
+  flex-shrink: 0;
+
+  @include screen-small-down {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.tileIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.earn {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 12, large: 12));
+  }
+
+  &:last-child {
+    padding-bottom: $indent-80;
+  }
+}
+
+.earnTop {
+  @include grid-with-offset((medium: 1, large: 1)) {
+    @include grid-columns-span((small: 6, medium: 10, large: 10));
+  }
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin-bottom: $indent-32;
+  padding-top: $indent-64;
+
+  @include screen-small-down {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: $indent-12;
+  }
+}
+
+.earnTitle {
+  @include screen-small-up {
+    margin-right: $indent-32;
+  }
+}
+
+.cards {
+  @include grid-with-offset((medium: 1, large: 1)) {
+    @include grid-columns-span((small: 6, medium: 10, large: 10));
+  }
+  flex-wrap: wrap;
+  display: flex;
+  gap: $indent-8 0;
+
+  @include screen-small-down {
+    flex-direction: column;
+  }
+}
+
+.card {
+  @include screen-small-down {
+    width: 100%;
+  }
+  @include screen-medium-up {
+    width: 50%;
+  }
+  @include screen-oversized-up {
+    width: 25%;
+  }
+}
+
+.sliderProducts {
+  @include grid-columns-span-all;
+  margin-top: $indent-64;
+  margin-bottom: $indent-80;
+  position: inherit;
+  overflow: visible;
+
+  @include screen-small-down {
+    margin-right: calc(-1 * $grid-padding-size);
+    margin-left: calc(-1 * $grid-padding-size);
+    @include grid-container;
+  }
+}
+
+.faqWrapper {
+  // background-color: $color-white !important;
+}
+
+.faqTitle {
+  margin-bottom: $indent-48;
+}

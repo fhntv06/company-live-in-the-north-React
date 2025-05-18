@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders';
+
+.wrapper {
+  margin-top: $indent-32;
+  padding-top: $indent-24;
+  border-top: 1px solid $color-gray-light;
+}
+
+.row {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 10));
+  }
+  align-items: start;
+}
+
+.title {
+  @include typo-make-small;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $color-gray-deep;
+  margin-bottom: $indent-16;
+}
+
+.name {
+  @include grid-columns-span((medium: 4, large: 3));
+  @include typo-make-big-text;
+  font-weight: 500;
+
+  @include screen-small-down {
+    margin-bottom: $indent-32;
+  }
+}
+
+.linksWrapper {
+  @include grid-columns-span((medium: 3, large: 5));
+  display: flex;
+  justify-content: space-between;
+
+  @include screen-small-down {
+    flex-direction: column;
+  }
+}
+
+.contacts {
+  @include grid-columns-span((medium: 3, large: 2));
+  display: flex;
+  flex-direction: column;
+
+  @include screen-small-down {
+    margin-bottom: $indent-32;
+  }
+}
+
+.links {
+  @include screen-small-down {
+    margin-bottom: $indent-32;
+  }
+
+  .link:not(:hover) {
+    color: $color-gray-deep;
+  }
+}
+
+.link {
+  @extend %link-base;
+}
+
+.address {
+  font-weight: 500;
+  margin-bottom: $indent-12;
+}
+
+.socialIcons {
+  fill: $color-gray-deep
+}

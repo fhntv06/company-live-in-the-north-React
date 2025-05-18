@@ -1,0 +1,21 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.page {
+  padding-top: calc($indent-96);
+
+  &::before {
+    content: "";
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc($indent-96 + $indent-8);
+    width: 100vw;
+    background-color: $color-white;
+  }
+
+  @include screen-small-down {
+    padding-top: calc($indent-24 * 2);
+  }
+}

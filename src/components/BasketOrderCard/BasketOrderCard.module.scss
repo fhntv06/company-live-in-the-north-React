@@ -1,0 +1,113 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.card {
+  position: relative;
+  @include grid-columns-span((large: 4, huge: 3));
+  padding: $indent-40 $indent-40 $indent-48 $indent-40;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  height: fit-content;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    @extend %border-gradient;
+  }
+}
+
+.text {
+  color: $color-blue-gray;
+  text-transform: uppercase;
+  margin-bottom: $indent-16;
+}
+
+.priceWrapper {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin-bottom: $indent-40;
+}
+
+.price {
+  @include typo-make-h4;
+  font-weight: 700;
+  margin-right: 16px;
+}
+
+.balance {
+  position: relative;
+  padding-bottom: $indent-12;
+  @include typo-medium-text;
+  color: $color-blue-gray;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 1px;
+    background: $color-blue-gray;
+    left: -8px;
+  }
+}
+
+.coinIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: $indent-8;
+}
+
+.button {
+  margin-bottom: $indent-24;
+
+  button {
+    width: 100%;
+  }
+}
+
+.warning {
+  display: flex;
+  gap: 0;
+}
+
+.warningIcon {
+  flex-shrink: 0;
+  margin-right: $indent-32;
+  width: 24px;
+  height: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  counter-reset: num;
+  margin-left: $indent-16;
+}
+
+.listItem {
+  position: relative;
+  @include typo-make-small;
+  color: $color-gray;
+  &:not(:last-child) {
+    margin-bottom: $indent-16;
+  }
+
+  &:before {
+    position: absolute;
+    top: 0;
+    content: counter(num) '.';
+    counter-increment: num;
+    left: calc(-1 * $indent-16);
+    color: $color-gray;
+  }
+}
+
+.flaw {
+  color: $color-error-field;
+}

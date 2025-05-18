@@ -1,0 +1,9 @@
+@use '../../styles//variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.link {
+    @extend %link-base;
+    @include typo-medium-text;
+    color: $color-bluemarin;
+}

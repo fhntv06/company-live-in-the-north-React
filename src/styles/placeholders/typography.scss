@@ -1,0 +1,56 @@
+////
+/// Placeholders for simplifying the typography styles creation.
+/// @access public
+/// @group typography
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+
+@use 'sass:list';
+@use '../mixins' as *;
+@use '../functions/typography' as *;
+@use '../variables/typography' as typo;
+
+/// A placeholder for the "sparse" text:
+%sparse-text {
+  text-transform: uppercase;
+  letter-spacing: 0.875px;
+}
+
+/// A placeholder for a CSS mask, which is used to create consistent svg dash pattern
+/// for the link underlines across different browsers.
+%sparse-dashed-underline-pattern-mask {
+  $svg: "data:image/svg+xml,%3Csvg width='6' height='1' viewBox='0 0 6 1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h3v1H0z' fill='%236721d9'/%3E%3C/svg%3E";
+  -webkit-mask-image: url("#{$svg}");
+  mask-image: url("#{$svg}");
+}
+
+// TODO: refactor
+@function get-heading-size($list, $index) {
+  @return list.nth($list, $index) * 1px;
+}
+
+@mixin heading-breakpoint($ranges, $size) {
+  @warn $ranges, $size;
+  $min: list.nth($ranges, 1);
+  $max: list.nth($ranges, 2);
+
+  @if $max > 0 {
+    @include screen-interval($min, $max) {
+      font-size: $size;
+      line-height: heading-line-height($size);
+    }
+  } @else {
+    @include screen-min($min) {
+      font-size: $size;
+      line-height: heading-line-height($size);
+    }
+  }
+}
+
+// Setup headings from h1 to h4:
+// @each $heading-type, $heading-sizes in typo.$headings-sizes {
+//   %heading-#{$heading-type} {
+//     @include typo-make-sizes($heading-sizes, $isHeading: true)
+//   }
+// }

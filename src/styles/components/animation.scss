@@ -1,0 +1,268 @@
+
+@use '../../styles/variables/indent-system' as *;
+
+.accordeon-faq-enter {
+  max-height: 0px;
+}
+.accordeon-faq-enter-active {
+  max-height: 200vh;
+  transition: max-height 0.3s ease-in-out;
+}
+.accordeon-faq-exit {
+  max-height: 200vh;
+}
+.accordeon-faq-exit-active {
+  max-height: 0px;
+  transition: max-height 0.3s ease-in-out;
+}
+.accordeon-order-enter {
+  max-height: 0px;
+
+  .animation {
+    opacity: 0;
+  }
+}
+
+.accordeon-order-enter-active {
+  max-height: 1000px;
+  transition: max-height 1s ease-in-out;
+
+  .animation {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+}
+
+.accordeon-order-exit {
+  max-height: 1000px;
+
+  .animation {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+  }
+}
+
+.accordeon-order-exit-active {
+  max-height: 0px;
+  transition: max-height 1s ease-in-out;
+
+  .animation {
+    opacity: 0;
+  }
+}
+
+.order-fade-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.order-fade-enter-active {
+  opacity: 1;
+  max-height: 1000px;
+  transition: opacity .3s .7s ease-in-out, max-height .3s .7s ease-in-out;
+}
+
+.order-fade-exit {
+  opacity: 0;
+  height: 0;
+}
+
+.order-fade-exit-active {
+  opacity: 0;
+  height: 0;
+}
+.search-fade-enter {
+  max-height: 0;
+  opacity: 0;
+}
+.search-fade-enter-active {
+  opacity: 1;
+  max-height: 1000px;
+  transition: opacity 1s ease-in-out;
+}
+.search-fade-exit {
+  max-height: 0;
+  opacity: 0;
+  position: absolute;
+}
+.search-fade-exit-active {
+  max-height: 0;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.calendar-fade-enter {
+  max-height: 133px;
+  max-width: 90px;
+  padding: 6px !important;
+}
+
+.calendar-fade-enter-active {
+  max-height: 1000px;
+  max-width: 1000px;
+  padding: $indent-24 $indent-16 !important;
+  overflow: hidden;
+  transition: max-height .4s linear, max-width .4s linear, padding .3s ease-in-out;
+}
+
+.calendar-fade-exit {
+  max-height: 1000px;
+  max-width: 1000px;
+  padding: $indent-24 $indent-16;
+}
+
+.calendar-fade-exit-active {
+  max-height: 133px;
+  max-width: 90px;
+  padding: 6px !important;
+  overflow: hidden;
+  transition: max-height .4s linear, max-width .4s linear, padding .3s ease-in-out;
+}
+
+.calendar-big-fade-enter {
+  opacity: 0;
+  transform: translateX(var(--calendar-big-fade-enter));
+}
+
+.calendar-big-fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.calendar-big-fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.calendar-big-fade-exit-active {
+  opacity: 0;
+  transform: translateX(var(--calendar-big-fade-exit));
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.calendar-line-fade-enter {
+  opacity: 0;
+  transform: translateX(var(--calendar-line-fade-enter));
+}
+
+.calendar-line-fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity .6s ease-in-out, transform .6s ease-in-out;
+}
+
+.calendar-line-fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.calendar-line-fade-exit-active {
+  opacity: 0;
+  transform: translateX(var(--calendar-line-fade-exit));
+  transition: opacity .6s ease-in-out, transform .6s ease-in-out;
+}
+
+    ///modal start
+    .modal-animation-enter {
+      &>div {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+    }
+    .modal-animation-enter-active {
+      &>div {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform .5s, opacity .5s;
+      }
+    }
+
+    .modal-animation-exit {
+      &::before {
+        visibility: visible;
+      }
+
+      &>div {
+        opacity: 1;
+      }
+    }
+
+.modal-animation-exit-active {
+  &::before {
+    visibility: hidden;
+  }
+
+  &>div {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform .4s, opacity .4s;
+  }
+}
+
+///modal end
+/// discussion cards and items start
+
+.discussion-animation-enter{
+  opacity: 0;
+  transform: translateX(5%);
+}
+.discussion-animation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.discussion-animation-exit {
+  opacity: 1;
+}
+.discussion-animation-exit-active {
+  opacity: 0;
+}
+.discussion-animation-enter-active,
+.discussion-animation-exit-active {
+  transition: opacity .3s ease-in-out, transform .3s .1s ease-in-out;
+}
+
+/// discussion cards and items end
+/// discussion tabs start
+
+.discussion-tab-animation-enter .animation {
+  opacity: 0;
+}
+.discussion-tab-animation-enter-active .animation {
+  opacity: 1;
+  transition: opacity .1s ease-in-out;
+}
+.discussion-tab-animation-exit .animation {
+  opacity: 1;
+}
+.discussion-tab-animation-exit-active .animation {
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+}
+
+/// discussion tabs end
+.fadeIn-enter {
+  opacity: 0;
+}
+.fadeIn-enter-active {
+  opacity: 1;
+  transition: opacity .1s ease-in-out;
+}
+.fadeIn-exit {
+  opacity: 1;
+}
+.fadeIn-exit-active {
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+}
+
+.open-comment-enter {
+  max-height: var(--comment-height);
+}
+
+.open-comment-enter-active {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 2s linear;
+}

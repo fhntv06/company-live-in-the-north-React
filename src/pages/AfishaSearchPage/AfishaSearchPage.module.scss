@@ -1,0 +1,184 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.header {
+  padding-bottom: $indent-48;
+
+  @include screen-medium-down {
+    border-radius: initial;
+    min-height: initial;
+    padding-bottom: $indent-24;
+
+    :global(.input-field) {
+      input {
+        max-height: 48px;
+      }
+    }
+  }
+}
+
+.wrapper {
+  margin-top: auto;
+  @include grid-columns-span((large: 10));
+
+  @include screen-medium-down {
+    margin-top: calc($indent-36 + $indent-16);
+  }
+}
+
+.title {
+  margin-bottom: $indent-32;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.contentContainer {
+  @include grid;
+  @include grid-container;
+  padding-bottom: $indent-80;
+
+
+  .afishaEventsWrapper {
+    @include screen-medium-up {
+      margin: 0 calc($indent-12 * -1);
+    }
+    margin-bottom: 0;
+  }
+
+  .recommendation {
+    margin-left: 0;
+    margin-right: 0;
+    @include grid-columns-span-all;
+  }
+}
+
+.tabs {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11))
+  }
+
+  display: flex;
+  gap: $indent-24;
+
+  @include screen-medium-down {
+    background-color: $color-gray-light;
+    padding: 0 $indent-24;
+    padding-bottom: $indent-16;
+
+    .tabButton {
+      padding-top: 0;
+      &::after {
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='12' viewBox='0 0 80 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0C5.41337 0 10.0991 3.77806 14.4086 7.2521L15.1768 7.87094C18.4019 10.4582 22.4595 12 26.8686 12L45.1287 12C49.5378 12 53.5954 10.4582 56.8197 7.87094L57.587 7.25323C61.8974 3.77885 66.5857 0 72 0L0 0Z' fill='rgb(228, 228, 241)'/%3E%3C/svg%3E%0A");
+      }
+    } 
+
+    :global(.active-tab-button)::after {
+          background-image: url("data:image/svg+xml,%3Csvg width='80' height='12' viewBox='0 0 80 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0C5.41337 0 10.0991 3.77806 14.4086 7.2521L15.1768 7.87094C18.4019 10.4582 22.4595 12 26.8686 12L45.1287 12C49.5378 12 53.5954 10.4582 56.8197 7.87094L57.587 7.25323C61.8974 3.77885 66.5857 0 72 0L0 0Z' fill='rgb(228, 228, 241)'/%3E%3C/svg%3E%0A");
+          transform: translate(-45%, 234%) !important;
+        }
+  }
+}
+
+.row {
+  @include grid-with-inner-context{
+    @include grid-columns-span((large: 12));
+  };
+  margin-top: $indent-32;
+
+  
+  &.placesWrapper {
+    @include screen-medium-up {
+      margin: 0 calc($indent-12 * -1);
+    }
+    margin-top: $indent-48;
+  }
+}
+
+
+.cards {
+
+  @include grid-with-inner-context{
+    @include grid-columns-span((large: 12));
+  };
+
+  grid-row-gap: $indent-32;
+
+  .placeCardWrapper {
+    @include grid-columns-span((large: 4, huge: 3));
+    margin: $indent-12;
+
+    @include screen-medium-down {
+      margin: 0;
+      &:not(:last-child) {
+        margin-bottom: $indent-12;
+      }
+    }
+  }
+}
+
+.title {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11));
+  }
+}
+
+.showMoreWrapper {
+  @include grid-columns-span-all;
+  display: flex;
+  justify-content: center;
+}
+
+.more {
+  margin-top: $indent-64;
+}
+
+:global(.place-card__card).eventCard {
+  width: auto;
+  position: relative;
+  margin: 0 $indent-12;
+
+  @include grid-columns-span((large: 3));
+
+  @include screen-medium-down {
+    margin: 0;
+    flex-direction: row;
+    column-gap: $indent-24;
+    width: auto;
+    justify-content: stretch;
+    min-height: 96px;
+    padding: $indent-16 $indent-24;
+    flex: 1 0 100%;
+
+    :global(.place-card__booksmark-btn) {
+      position: absolute;
+      right: 24px;
+    }
+
+    :global(.place-card__text-content) {
+      padding-right: $indent-24;
+      display: flex;
+      flex-direction: column;
+    }
+
+    :global(.place-card__main-img) {
+      flex-shrink: 0;
+      width: 64px;
+    }
+  }
+}
+
+.spinner {
+  margin-top: $indent-64;
+  @include grid-columns-span-all;
+}
+
+.emptyTitle {
+  @include grid-with-offset((medium: 2, huge: 1)) {
+    @include grid-columns-span((medium: 10, huge: 11));
+  }
+  @include typo-make-h5;
+  color: $color-gray-deep;
+}

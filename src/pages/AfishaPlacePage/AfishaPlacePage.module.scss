@@ -1,0 +1,99 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.headerWrapper {
+  @include screen-medium-down {
+    row-gap: calc($indent-24 + $indent-24);
+    padding-bottom: calc($indent-24 + $indent-16) !important;
+  }
+}
+
+.header {
+  margin-top: auto;
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11));
+  }
+  align-items: end;
+}
+
+.headerTitle {
+  @include grid-columns-span((large: 6));
+
+  @include screen-small-down {
+    margin-top: $indent-16;
+    @include typo-make-h2;
+    font-weight: 700;
+  }
+}
+
+.buttons {
+  @include grid-with-offset((large: 10)) {
+    @include grid-columns-span((large: 2));
+  }
+  display: flex;
+  column-gap: $indent-16;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: $indent-16;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.content {
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-48;
+  margin-bottom: $indent-80;
+
+  @include screen-small-down {
+    padding-bottom: 40px;
+    margin-bottom: 0;
+  }
+
+  :global(.afisha-about__images) {
+    margin-top: calc($indent-24 + $indent-16);
+  }
+}
+
+.compilationsWrapper {
+  @include grid-columns-span((large: 12));
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  padding-bottom: $indent-48;
+  margin-bottom: $indent-64;
+}
+
+.compilations {
+  background-color: transparent;
+}
+
+.row {
+  @include grid;
+  @include grid-container;
+}
+
+.subtitle {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 5));
+  }
+  margin-bottom: $indent-32;
+}
+
+.about {
+  margin-bottom: $indent-80;
+}
+
+.schedule {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 10));
+  }
+
+  margin-bottom: $indent-80;
+}
+
+.shareBtn {
+  column-gap: $indent-8;
+}
+

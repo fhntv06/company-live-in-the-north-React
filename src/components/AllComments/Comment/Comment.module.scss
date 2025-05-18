@@ -1,0 +1,101 @@
+@use '../../../styles/variables/colors' as *;
+@use '../../../styles/variables/indent-system' as *;
+@use '../../../styles/placeholders' as *;
+@use '../../../styles/mixins' as *;
+
+.comment {
+  position: relative;
+  grid-column: 1/-1;
+  display: flex;
+  gap: 0 $indent-24;
+  padding: $indent-16 $indent-24;
+  background: $white;
+  border: 1px solid $gray-light;
+  border-radius: 16px;
+  min-height: 128px;
+  max-height: 216px;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(360deg, $white 51%, rgba(255,255,55,0) 109%);
+  }
+
+  &.open {
+    max-height: max-content;
+  }
+
+  &.small,
+  &.open {
+    &::after,
+    .readNext {
+      display: none;
+    }
+  }
+}
+
+.content {
+  position: relative;
+}
+
+.content__inner {
+  margin-bottom: $indent-8;
+}
+
+.content,
+.content__inner  {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.name {
+  margin-bottom: $indent-16;
+  font-weight: 500;
+}
+
+.name,
+.text {
+  @include typo-make-text;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  grid-row-gap: $indent-8;
+}
+
+.answer__button {
+  border-bottom: 1px dashed rgba(38,175,205,.2);
+  border-block-width: 1px;
+  color: $bluemarin;
+  transition: color .2s;
+
+  &:hover {
+    color: $bluemarin-light;
+    border-color: rgba(32,197,233,.4);
+  }
+
+  &:active {
+    color: $bluemarin-extra-light;
+    border-color: $bluemarin-extra-light;
+  }
+}
+
+.readNext {
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: max-content;
+  color: $gray-deep;
+  @include typo-make-small;
+}

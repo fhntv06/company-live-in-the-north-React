@@ -1,0 +1,28 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+  //background-color: $color-white;
+}
+
+.tabs {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11))
+  }
+  display: flex;
+  gap: $indent-24;
+  //@include helper-hidden-system-scrollbar;
+}
+
+.content {
+  @include grid;
+  @include grid-columns-span-all;
+  padding: $indent-48 0 $indent-80;
+
+  @include screen-small-down {
+    padding-bottom: 40px;
+  }
+}

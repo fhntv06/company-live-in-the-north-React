@@ -1,0 +1,29 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.sliderContainer {
+  @include grid;
+  grid-template-columns: repeat(11, 1fr);
+
+  @include screen-small-down {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.sliderWrapper {
+  grid-column: span 8;
+  gap: 0;
+
+  @include screen-small-down {
+    grid-column: span 5;
+  }
+}
+
+.swiper {
+  overflow: visible !important;
+}
+
+.slide {
+  height: auto;
+}

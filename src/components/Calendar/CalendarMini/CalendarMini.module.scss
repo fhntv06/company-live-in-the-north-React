@@ -1,0 +1,152 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+.wrapper, .miniWrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+
+  @include screen-medium-up {
+    padding: 6px;
+  }
+  border-radius: 16px;
+
+
+
+  &::after {
+    @extend %border-gradient;
+    transition: all .15s linear;
+  }
+
+  &:hover {
+    &::after {
+      inset: -2px;
+    }
+
+    .top {
+      background-color: $color-gray-extra-light;
+    }
+
+    .dates,
+    .months {
+      color: $color-violet;
+    }
+
+    .seporator {
+      background: $color-violet;
+    }
+  }
+}
+
+.miniWrapper {
+  padding: 0;
+}
+
+.wrapper {
+  @include screen-medium-up {
+    max-height: 96px;
+    max-width: 96px;
+  }
+}
+
+.top {
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: $indent-8;
+  border-radius: 8px;
+  background-color: $color-gray-light;
+  transition: background-color .1s linear;
+
+  width: 100%;
+}
+
+.calendarSvg {
+  width: 24px;
+  height: 24px;
+  fill: $color-blue-gray;
+  margin-right: $indent-32;
+}
+
+.dropdownSvg {
+  width: 16px;
+  height: 16px;
+  fill: $color-blue-gray;
+}
+
+.bottom {
+  padding: 0 8px;
+}
+
+.dates {
+  @include typo-make-big-text;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  color: $color-blue-gray;
+  font-weight: 600;
+  transition: color .1s linear;
+}
+
+.seporator {
+  display: block;
+  width: 10px;
+  height: 1px;
+  margin: 0 6px;
+  background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+  transition: transform .1s linear;
+}
+
+.months {
+  @include typo-make-tiny;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  color: $color-blue-gray;
+  text-transform: uppercase;
+  transition: color .1s linear;
+}
+
+.desktopCalendar {
+  padding: 6px 6px 12px;
+
+  @include screen-small-down {
+    display: none;
+  }
+
+  &.isVisible {
+    @include screen-small-down {
+      display: block;
+      max-height: none;
+    }
+  }
+}
+
+.mobileCalendar {
+  display: flex;
+  align-items: center;
+
+  width: fit-content;
+  gap: 5px;
+  height: 100%;
+  min-height: 40px;
+  margin: auto 0;
+  padding: 0 12px;
+  z-index: 1;
+
+  @include typo-make-tiny;
+  color: $color-blue-gray;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  svg {
+    margin: 0;
+  }
+}

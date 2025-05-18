@@ -1,0 +1,61 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+  overflow: hidden;
+
+  :global(.slide-not-visible) {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.3;
+
+    &:before {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.title {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 6));
+  }
+
+  margin-bottom: $indent-32;
+}
+
+.slider {
+  position: relative;
+  @include grid-container;
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 11));
+    }
+  }
+  overflow: visible;
+
+  margin-bottom: $indent-96;
+  margin-right: calc(-1 * $grid-padding-size);
+  margin-left: calc(-1 * $grid-padding-size);
+
+  :global(.swiper-wrapper) {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 11));
+    }
+
+    height: 100%;
+    gap: 0;
+  }
+}
+
+.slide {
+  display: inline-flex;
+  width: 380px;
+
+  @include screen-small-down {
+    width: 240px;
+    //margin-right: $grid-gutter-size;
+  }
+}

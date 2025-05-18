@@ -1,0 +1,266 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.mainContainer {
+  z-index: 5;
+
+  @include grid-with-inner-context {
+    @include grid-with-offset (( huge: 1 )) {
+      @include grid-columns-span (( huge: 9 ));
+    }
+  }
+
+  .status {
+    @include grid-columns-span-all;
+
+    display: flex;
+    column-gap: $indent-16;
+    white-space: nowrap;
+
+    @include screen-medium-down {
+      display: flex;
+      flex-direction: column;
+      row-gap: $indent-8;
+    }
+    
+    .statusStep {
+      @include typo-make-small;
+      color: $color-gray-middle;
+      text-transform: uppercase;
+    }
+
+    .resultArrowRightIcon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 12' fill='none'%3E%3Cpath d='M21 11L26 6.01346L21.0267 1M26 6H0' stroke='url(%23paint0_linear_5394_4815)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_5394_4815' x1='26' y1='1' x2='0' y2='1' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2387D9E6'/%3E%3Cstop offset='0.331705' stop-color='%238994F8'/%3E%3Cstop offset='0.679972' stop-color='%23B392F4'/%3E%3Cstop offset='1' stop-color='%23EBC2C6'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 10px;
+    }
+
+    .resultFlagIcon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 14H7M5 14V9.76923M5 9.76923V3H13L9.8 6.38462L13 9.76923H5Z' stroke='url(%23paint0_linear_5394_4921)' stroke-linejoin='round'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_5394_4921' x1='13' y1='3' x2='3' y2='3' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2387D9E6'/%3E%3Cstop offset='0.331705' stop-color='%238994F8'/%3E%3Cstop offset='0.679972' stop-color='%23B392F4'/%3E%3Cstop offset='1' stop-color='%23EBC2C6'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E ");
+      background-repeat: no-repeat;
+      width: 16px;
+      height: 16px;
+    }
+
+    .statusItem.active,
+    .statusLink:hover .statusItem {
+      color: $color-violet;
+      outline: none;
+
+      &::before,
+      &::after {
+        @extend %border-gradient;
+        border-width: 1px;
+        transition: all .1s linear;
+      }
+
+      .statusStep {
+        color: $color-violet;
+      }
+    }
+
+    .statusLink:active .statusItem {
+      color: $color-violet;
+      outline: 1px solid $color-violet;
+
+      .resultArrowRightIcon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 12' fill='none'%3E%3Cpath d='M21 11L26 6.01346L21.0267 1M26 6H0' stroke='%239164F0'/%3E%3C/svg%3E%0A");;
+      }
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      .statusStep {
+        color: $color-violet;
+      }
+    }
+
+    .statusItem {
+      display: flex;
+      align-items: center;
+      column-gap: $indent-16;
+  
+      padding: $indent-16 $indent-24;
+
+      outline: 1px solid $color-gray-middle;
+      border-radius: 16px;
+
+      position: relative;
+
+      @include screen-medium-down {
+        padding: $indent-12 $indent-16;
+
+      }
+    }
+  }
+
+  .result {
+
+    @include grid-with-inner-context {
+      @include grid-columns-span ((medium: 6, large: 8, huge: 9 ));
+    }
+
+    margin-top: $indent-48;
+
+    @include screen-medium-down {
+      display: flex;
+      flex-direction: column;
+      row-gap: $indent-16;
+      margin-top: calc($indent-20 + $indent-20);
+    }
+
+    .resultTitle {
+      @include grid-columns-span((medium: 2, large: 3));
+    }
+
+    .resultText {
+      @include typo-make-h4;
+      font-weight: 400;
+
+      @include grid-with-offset((medium: 3, large: 3)) {
+        @include grid-columns-span((medium: 3, large: 6));
+      }
+    }
+  }
+
+  .images {
+    margin-top: $indent-64;
+    @include grid-columns-span-all;
+
+    @include screen-medium-down {
+      margin-top: $indent-24;
+    }
+
+    @include screen-small-down {
+      margin-left: calc($indent-24 * -1);
+      margin-right: calc($indent-24 * -1);
+    }
+
+    .splitImages {
+      max-height: 708px;
+      width: 100%;
+      margin-bottom: $indent-24;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: flex-end;
+
+      @include screen-small-down {
+        display: none;
+      }
+
+      :global(.gallery__item) {
+        width: 160px;
+        height: 120px;
+        border-radius: 16px;
+        &:not(:first-child) {
+          margin-left: $indent-24;
+        }    
+      }
+    }
+  }
+
+  .location {
+    @include grid-with-inner-context {
+      @include grid-columns-span ((medium: 6, large: 9, huge: 9 ));
+    }
+
+    .resultTitle {
+      @include grid-columns-span((medium: 2, large: 3));
+    }
+
+    margin-top: $indent-64;
+    margin-bottom: $indent-32;
+
+    @include screen-medium-down {
+      margin-top: calc($indent-20 + $indent-20);
+    }
+  }
+
+  .address {
+    @include grid-columns-span((large: 3));
+    display: flex;
+    column-gap: $indent-8;
+    color: $color-black-lighter;
+  }
+
+  .map {
+    width: 100%;
+    height: 480px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  
+    @include grid-columns-span-all;
+
+    margin-bottom: $indent-64;
+
+    @include screen-medium-down {
+      margin-bottom: $indent-16;
+    }
+
+    @include screen-small-down {
+      height: 204px;
+    }
+  }
+}
+
+.geoIcon {
+  width: 24px;
+  height: 24px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.resultCardsContainer {
+  grid-column: 1/-1;
+  position: relative;
+  z-index: 4;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  padding: $indent-64 0 $indent-96 0;
+  @include grid;
+  overflow: hidden;
+
+  .resultTitle {
+    @include grid-columns-span-all;
+    grid-column: 2/-1;
+    margin-bottom: $indent-32;
+
+    @include screen-medium-down {
+      @include grid-columns-span-all;
+    }  
+  }
+
+
+  @include screen-medium-down {
+    margin: 0 -24px;
+    margin-top: calc($indent-20 + $indent-20);
+    padding: $indent-24 0;
+    @include grid-container;
+  }
+
+}
+
+.cardSlider {
+  grid-column: 2/-1;
+
+  @include screen-medium-down {
+    @include grid-columns-span-all;
+    margin-bottom: 0;
+  }
+
+}
+
+.resultTitle {
+  @include typo-make-h2; 
+  font-weight: 700;  
+}

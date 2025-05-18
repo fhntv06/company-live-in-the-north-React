@@ -1,0 +1,9 @@
+@use '../../styles/mixins' as *;
+
+.slide {
+  @include grid-columns-span((small: 4, medium: 4, huge: 3));
+}
+
+.slide5col {
+  @include grid-columns-span((small: 4, medium: 5, large: 5));
+}

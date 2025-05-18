@@ -1,0 +1,163 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0 $indent-32;
+  width: 100%;
+
+  @include screen-small-down {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.containerRange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include screen-medium-up {
+    height: 0;
+  }
+  width: 100%;
+  margin-bottom: $indent-16;
+
+  @include screen-small-down {
+    width: calc(100% - 21px);
+  }
+
+  @include screen-medium-up {
+    max-width: 651px;
+    margin-bottom: 0;
+  }
+}
+
+.values {
+  position: relative;
+  top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 16px;
+}
+
+.value {
+  position: absolute;
+  height: 100%;
+  width: max-content;
+  color: $color-gray-middle;
+  @include typo-make-tiny;
+  margin-top: 4px;
+
+  span {
+    position: absolute;
+    height: 100%;
+    width: max-content;
+    transform: translateX(-50%);
+  }
+
+  &:before {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: -4px;
+    height: 4px;
+    width: 1px;
+    background-color: $color-gray;
+    transform: translate(-50%, 0);
+  }
+}
+
+.containerButtons {
+  display: flex;
+  align-items: flex-end;
+  gap: 0 $indent-16;
+
+  @include screen-large-up {
+    margin-left: $indent-16;
+  }
+
+  .button {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 40px;
+    @include screen-small-down {
+      border-radius: 16px;
+    }
+    &:hover::after {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    transition: all .3s ease-out;
+
+    &.visible {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.accessMeBtn {
+  white-space: nowrap;
+}
+
+.modalMode {
+  flex-direction: column;
+  align-items: flex-start;
+
+  .containerRange {
+    margin-left: 8px;
+    margin-bottom: $indent-16;
+    max-width: calc(100% - 24px);
+  }
+
+  .accessMeBtn {
+    order: 1;
+    margin-top: $indent-24;
+
+    @include screen-large-up {
+      margin-top: calc($indent-24 + $indent-24);
+    }
+  }
+
+  .button {
+    display: none;
+  }
+}
+
+.modalButtons {
+  margin-top: calc($indent-16 + $indent-24);
+
+  display: flex;
+  justify-content: space-between;
+  column-gap: calc($indent-20 + $indent-16);
+  align-items: center;
+
+  @include screen-large-up {
+    @include grid-columns-span-all;
+    justify-content: flex-end;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 238px;
+    
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .resetBtn {
+    color: $color-blue-gray;
+    @include typo-medium-text;
+  }
+}

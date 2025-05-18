@@ -1,0 +1,156 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.container {
+  @include grid;
+
+  @include screen-small-down {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: $indent-64;
+  margin-top: calc($indent-32 * 3);
+}
+
+.bottomValues,
+.topValues {
+  @include typo-make-tiny;
+  margin-top: $indent-8;
+  height: min-content;
+  line-height: 16px;
+  color: $color-black;
+  writing-mode: vertical-rl;
+  text-align: right;
+  transform: scale(-1);
+  word-wrap: break-word;
+  text-transform: uppercase;
+}
+
+.sliderContainer {
+  @include grid;
+  grid-column: span 11;
+  grid-template-columns: repeat(11, 1fr);
+  padding-top: $indent-32;
+  margin-top: calc($indent-32 * -1);
+  overflow: hidden;
+
+  @include screen-small-down {
+    grid-column: span 5;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.sliderWrapper {
+  grid-column: span 9;
+
+  @include screen-small-down {
+    grid-column: span 4;
+  }
+
+  .swiper {
+    overflow: visible;
+  }
+}
+
+.swiper {
+  gap: 0;
+  cursor: grab;
+  z-index: 0;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+
+}
+
+.slide {
+  position: relative;
+  height: auto;
+  max-width: 33.33%;
+  z-index: 0;
+
+  @for $i from -100 through -1 {
+    &:nth-child(#{calc($i * -1)}) {
+      z-index: calc($i * 1);
+    }
+  }
+
+  @include screen-medium-down {
+    max-width: 50%;
+  }
+
+  @include screen-small-down {
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+}
+
+.slideBig {
+  height: auto;
+  max-width: 44.44%;
+
+  @include screen-medium-down {
+    max-width: 50%;
+  }
+
+  @include screen-small-down {
+    max-width: 100%;
+  }
+}
+
+.card {
+  height: 100%;
+}
+
+.nextSlides {
+  grid-column: span 2;
+  position: relative;
+  margin-top: $indent-32;
+  margin-left: calc($grid-gutter-size * -1);
+  border-radius: 16px 0 0 16px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.hide {
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background-color: rgba($color: $color-white, $alpha: .5);
+    transition: background-color .1s linear;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  &:hover::after {
+    background-color: rgba($color: $color-white, $alpha: .3);
+  }
+
+  .card {
+    pointer-events: none;
+  }
+}

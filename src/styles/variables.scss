@@ -1,0 +1,11 @@
+////
+/// A module forwarding all the variables for ease of use.
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+
+@forward './variables/colors' as color-*;
+@forward './variables/layout' as layout-*;
+@forward './variables/typography' as typo-*;
+@forward './variables/indent-system';
+@forward './variables/grid';

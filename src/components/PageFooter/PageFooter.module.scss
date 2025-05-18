@@ -1,0 +1,306 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  padding: 0 $indent-40 $indent-24;
+  position: relative;
+  z-index: 1;
+
+  @include screen-medium-down {
+    padding-bottom: $indent-56;
+  }
+
+  @include screen-small-down {
+    padding: 0 0 72px;
+    z-index: 9000;
+  }
+}
+
+.link {
+  @extend %link-base;
+  @extend %link-multiline-base;
+  padding: 4px 0;
+  border-bottom-color: rgba($color-white, 0.2);
+
+  @include screen-small-down {
+    border-bottom: none;
+    padding: 0;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @include screen-small-down {
+    display: block;
+  }
+}
+
+.header {
+  @include typo-make-text;
+  margin-bottom: $indent-16;
+
+  @include screen-small-down {
+    margin-bottom: $indent-20;
+  }
+}
+
+.headerSocial {
+  margin-bottom: $indent-16;
+}
+
+.footer {
+  @include grid;
+  background-color: $color-gray-blue;
+  color: $color-white;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    margin: 0;
+    display: none;
+  }
+}
+
+.svg {
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+}
+
+.top,
+.bottom {
+  @include grid;
+  grid-column: 2/12;
+  grid-template-columns: repeat(10, 1fr);
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.top {
+  padding: $indent-64 0;
+  border-bottom: 1px solid rgba($color-white, .2);
+
+  @include screen-small-down {
+    border-bottom: none;
+  }
+
+  @include screen-small-down {
+    padding: $indent-96 $indent-24 0;
+  }
+}
+
+.bottom {
+  padding: $indent-24 0 $indent-56;
+  align-items: center;
+
+  @include screen-small-down {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  @include screen-small-down {
+    padding: 0 $indent-24 $indent-56;
+    align-items: flex-start;
+  }
+}
+
+.projectsList,
+.aboutList {
+  .link {
+    @include typo-medium-text;
+  }
+}
+
+.mainLinks,
+.about,
+.projects,
+.social,
+.contacts,
+.makeLink {
+  grid-column: span 2;
+
+  @include screen-large-down {
+    grid-column: span 3;
+  }
+}
+
+.mainLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @include screen-small-down {
+    display: none;
+  }
+
+  .link {
+    @include typo-make-text;
+  }
+
+  .link:not(:last-child) {
+    margin-bottom: $indent-12;
+  }
+
+  @include screen-small-down {
+    grid-column: span 3;
+
+    .link {
+      font-weight: 500;
+    }
+
+    .link:not(:last-child) {
+      margin-bottom: $indent-20;
+    }
+  }
+}
+
+.about,
+.projects {
+  .listItem:not(:last-child) {
+    margin-bottom: $indent-8;
+
+    @include screen-small-down {
+      margin-bottom: $indent-16;
+    }
+  }
+}
+
+.about {
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.projects {
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.social {
+  @include screen-large-down {
+    margin-top: $indent-40;
+
+    .socialList {
+      li:not(:last-child) {
+        margin-right: $indent-20;
+      }
+    }
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    margin-top: 0;
+
+    .header {
+      display: none;
+    }
+
+    .socialList {
+      justify-content: flex-start;
+      li:not(:last-child) {
+        width: 100%;
+        max-width: 52.5px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @include screen-large-down {
+    margin-top: $indent-40;
+    grid-column: span 3;
+  }
+
+  @include screen-small-down {
+    margin-top: $indent-96;
+  }
+}
+
+.phone {
+  @extend %link-base;
+  @include typo-make-h4;
+  font-weight: 600;
+  margin-bottom: $indent-16;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.mail {
+  @extend %link-base;
+  @include typo-make-text;
+  margin-bottom: $indent-16;
+
+  @include screen-large-down {
+    margin-bottom: 0;
+  }
+}
+
+.geo {
+  @include typo-make-small;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+
+  @include screen-large-down {
+    display: none;
+  }
+
+  .svg {
+    margin-right: $indent-8;
+    transition: fill .1s linear;
+
+    @include screen-small-down {
+      display: none;
+    }
+  }
+}
+
+.geoMedium {
+  display: none;
+  grid-column: 7/-1;
+  margin-top: $indent-40;
+
+  @include screen-large-down {
+    display: block;
+
+    .geo {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    margin-top: $indent-12;
+  }
+}
+
+.bottomText {
+  @include typo-make-small;
+  color: $color-gray;
+  @include grid-with-offset((large: 6)) {
+    @include grid-columns-span((large: 4));
+  }
+
+  @include screen-small-down {
+    margin-top: $indent-64;
+  }
+}
+
+.makeLink {
+  @include screen-small-down {
+    margin-top: $indent-24;
+  }
+}

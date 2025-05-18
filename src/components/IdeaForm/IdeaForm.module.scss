@@ -1,0 +1,124 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.form {
+  position: sticky;
+  top: 88px; // 64 + 24px
+
+  @include screen-large-up {
+    padding-top: $indent-24;
+    transform: translateY(-24px);  
+  }
+  
+  height: max-content;
+  overflow-y: hidden;
+
+  @include grid-columns-span-all;
+  @include screen-medium-down {
+    padding: 24px $grid-padding-size;
+    border-radius: 16px;
+    background-color: $color-gray-extra-light;
+
+  }
+}
+
+.wrapper {
+  @include screen-large-up {    
+    position: sticky;
+    top: 0;
+    padding: $indent-32 $indent-24;
+    border-radius: 16px;
+    background-color: $color-gray-extra-light;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  
+  @include typo-make-h4;
+  margin-bottom: $indent-16;
+  color: $color-black;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-12;
+  }
+}
+
+.text {
+  @include typo-make-text;
+  margin-bottom: $indent-16;
+  color: $color-black;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-12;
+  }
+}
+
+.field {
+  margin-bottom: $indent-16;
+
+
+}
+
+.submit {
+  width: 100%;
+
+  @include screen-medium-down {
+    margin-top: $indent-24;
+  }
+
+  &:hover {
+    &::before {
+      all: unset;
+    }
+    &::after {
+      all: unset;
+    }
+  }
+}
+
+.closeBtn {
+
+  @include screen-large-up {
+    display: none;
+  }
+
+  display: flex;
+  align-items: flex-start;
+  margin-right: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform .1s linear, fill .1s linear;
+  }
+
+  &:hover {
+    .svgClose {
+      transform: rotate(-90deg);
+      fill: $color-bluemarin;
+    }
+}
+}
+
+.spinnerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.loader {
+  min-height: 362px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  margin-bottom: $indent-16;
+}

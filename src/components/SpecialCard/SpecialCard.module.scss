@@ -1,0 +1,172 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wrapper {
+  @include grid-columns-span((small: 4, large: 2));
+  gap: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 24px 40px 32px;
+  height: 300px;
+  border-radius: 16px;
+  background-color: $color-white;
+  border: 1px solid $color-gray-middle;
+  color: $color-dark-color;
+  @include typo-make-middle;
+  transition: box-shadow .3s;
+  overflow: hidden;
+  z-index: 1;
+
+  @include screen-medium-down {
+    height: 320px;
+  }
+
+  &:not(.card__shapes):hover {
+    .card__main {
+      transform: translateY(-4px);
+    }
+  }
+
+  &:hover {
+    @include screen-medium-up {
+      .icon {
+        transform: translateY(-14px);
+      }
+
+      &.card__shapes::after {
+        transform: scale(1.7) rotateZ(200deg);
+      }
+    }
+  }
+
+  &:active {
+    &:not(.card__shapes) {
+      .card__main {
+        transform: translateY(-2px);
+      }
+    }
+
+    &.card__shapes::after {
+      transform: scale(1.5) translateY(20px) rotateZ(200deg);
+      transition: transform .2s;
+    }
+
+    .wrapper_icon {
+      animation: flight .8s linear forwards;
+    }
+  }
+
+  &.card__shapes {
+    background-color: $color-blue-card;
+    border: none;
+    color: $color-white;
+
+    &::after {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('../../images/background_project_card.png');
+      background-size: contain;
+      background-position: center center;
+      transform: scale(1.5) rotateZ(225deg);
+      transition: transform .5s;
+    }
+  }
+}
+
+.cardMini {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 128px;
+  padding: $indent-40 $indent-32;
+
+  @include screen-small-down {
+    width: 100%;
+    flex-shrink: 0;
+    height: 45px;
+    padding: $indent-16;
+  }
+
+  border-radius: 16px;
+  background-color: $color-white;
+  border: 1px solid $color-gray-middle;
+  color: $color-dark-color;
+  @include typo-make-middle;
+  transition: box-shadow .3s;
+
+  .wallet {
+    margin-left: $indent-24;
+  }
+}
+
+.card__main {
+  display: flex;
+  flex-direction: column-reverse;
+  grid-row-gap: 24px;
+  min-height: 172px;
+  transition: transform .2s ease-in;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 22px;
+
+  .wallet {
+    &:hover {
+      &::after {
+        opacity: 0;
+      }
+
+      svg, span {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.card__header,
+.card__main {
+  z-index: 2;
+  position: relative
+}
+
+.wrapper_icon {
+  width: 80px;
+  height: 65px;
+}
+
+
+@keyframes flight {
+  0%  {
+    transform: rotate(0deg) translateX(0px) translateY(-14px) rotate(0deg);
+  }
+  40% {
+    transform: rotate(-20deg) translateX(180px) translateY(-120px);
+  }
+  50%  {
+    transform: rotate(-180deg) rotate(240deg) translateX(-240px) translateY(280px);
+  }
+  60%  {
+    transform: rotate(180deg) rotate(-140deg) translateX(-120px) translateY(140px);
+  }
+  100%  {
+    transform: rotate(360deg) rotate(-360deg) translateY(0px);
+  }
+}
+
+.icon {
+  transition: transform .3s ease-in;
+}

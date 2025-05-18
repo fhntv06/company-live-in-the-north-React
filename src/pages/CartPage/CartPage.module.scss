@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.row {
+  @include grid;
+  @include grid-container;
+  margin-bottom: $indent-32;
+
+  &:last-of-type {
+    margin-bottom: $indent-64;
+  }
+}
+
+
+.emptyTitle {
+  @include grid-with-offset((large: 1, huge: 1)) {
+    @include grid-columns-span((medium: 10, large: 11, huge: 11));
+  }
+  @include typo-make-h5;
+  color: $color-gray-deep;
+  text-transform: none;
+}
+
+.controls {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11));
+  }
+  display: flex;
+  gap: 0;
+
+  > button:first-child {
+    margin-right: $indent-16;
+  }
+}
+
+.products {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 7, huge: 8));
+  }
+}
+
+.deleteIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.basketOrderCard {
+  @include screen-medium-down {
+    margin-top: calc($indent-20 * 4);
+  }
+}

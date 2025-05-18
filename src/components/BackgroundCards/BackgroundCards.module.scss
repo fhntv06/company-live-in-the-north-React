@@ -1,0 +1,77 @@
+@use '../../styles/placeholders' as *;
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+
+.background {
+  position: absolute;
+  height: 640px;
+  width: 640px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  opacity: .6;
+}
+
+.right {
+  top: -25%;
+  right: -25%;
+}
+
+.left {
+  top: -55%;
+  left: -25%;
+}
+
+.right, .left {
+  background-image: url("../../images/background_store-card2.png");
+  animation: rotary 10s ease-in-out forwards infinite;
+
+  &:after {
+    z-index: 5;
+    background-image: url("../../images/background_store-card1.png");
+    animation: rotary_2 15s ease-in-out forwards infinite;
+  }
+  &:before {
+    z-index: 10;
+    background-image: url("../../images/background_store-card3.png");
+    animation: rotary_2 25s ease-in-out forwards infinite;
+  }
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@keyframes rotary {
+  0% {
+    transform: translate(0, 0) rotateZ(0deg);
+  }
+  50% {
+    transform: translate(10%, 20%) rotateY(20deg) rotateZ(-180deg) scale(1.2);
+  }
+  100% {
+    transform: translate(0, 0) rotateZ(0deg);
+  }
+}
+
+@keyframes rotary_2 {
+  0% {
+    transform: translate(0, 0) rotateZ(0deg);
+  }
+  50% {
+    transform: translate(20%, 10%) rotateZ(-270deg) scale(1.4);
+  }
+  100% {
+    transform: translate(0, 0) rotateZ(0deg);
+  }
+}

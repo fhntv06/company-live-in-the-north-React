@@ -1,0 +1,95 @@
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+@use '../../styles/placeholders/helpers' as *;
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+
+  background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33%, #B392F4 68%, #EBC2C6 100%);
+  color: $color-white;
+  border-radius: 16px;
+
+  padding: $indent-16 $indent-24;
+
+  @include screen-small-down {
+    padding: $indent-12 $indent-16;
+  }
+
+  @include typo-make-h5;
+
+  &:not(.warning) {
+    cursor: pointer;
+  }
+
+  a {
+    @include link-multiline-base($color-white);
+  }
+}
+
+.content {
+  display: flex;
+  gap: $indent-24;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-8;
+}
+
+.unreadNotifications {
+  display: inline-block;
+
+  @include typo-make-small;
+
+  padding-top: $indent-8;
+
+  text-align: left;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+  flex-shrink: 0;
+
+  @include screen-small-down {
+    width: 24px;
+    height: 24px;
+    display: none;
+  }
+}
+
+.closeBtn {
+  display: inline-flex;
+  width: 20px;
+  align-self: start;
+  flex-shrink: 0;
+  margin-left: $indent-8;
+
+  @include screen-small-down {
+    align-self: flex-start;
+    width: 24px;
+    height: 24px;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    @include screen-small-down {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.warning {
+  @include typo-make-big-text;
+  font-weight: 400;
+}

@@ -1,0 +1,48 @@
+@use '../../styles/variables/colors' as *;
+@use '../../styles/variables/indent-system' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-width(8);
+  }
+}
+
+.container {
+  grid-column: span 8;
+  @include grid-columns-span-all;
+}
+
+.sorting {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $indent-24;
+  @include typo-make-small;
+
+  @include screen-small-down() {
+    justify-content: flex-start;
+    margin-bottom: $indent-12;
+    @include typo-make-tiny;
+  }
+
+  &:global(.select__button),
+  :global(.select--button),
+  :global(.select__button__content) {
+    height: auto;
+  }
+}
+
+.more {
+  @include grid-columns-span((large: 3, huge: 2));
+  white-space: nowrap;
+  @include screen-small-down {
+    width: 100%;
+  }
+}
+
+.buttonWrapper {
+  @include grid-columns-span((large: 3, huge: 2));
+  margin-top: $indent-64;
+}

@@ -1,0 +1,84 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+.calendar {
+  position: relative;
+  --calendar-left-position: 0px;
+
+}
+
+.datesWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  overflow: hidden;
+}
+
+.dates {
+  display: flex;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+
+  @extend %helper-hidden-system-scrollbar;
+
+}
+
+.prev,
+.next {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  z-index: 1;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-black;
+    transition: fill .1s linear;
+  }
+
+  &:hover svg {
+    fill: $color-bluemarin;
+  }
+}
+
+.prev {
+  left: -30px;
+  transform: rotate(90deg);
+}
+
+.next {
+  right: -30px;
+  transform: rotate(-90deg);
+}
+
+.month {
+  position: relative;
+  &:not(:last-child) {
+    margin-right: 6px;
+  }
+}
+
+.days {
+  display: flex;
+  margin-top: $indent-12;
+
+  > div {
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+  }
+}
+
+.monthName {
+  position: sticky;
+  left: 0;
+  color: $color-gray-deep;
+}

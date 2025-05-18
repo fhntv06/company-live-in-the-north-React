@@ -1,0 +1,100 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.gift {
+    @include grid-with-inner-context {
+        @include grid-columns-span((large: 10));
+    }
+    padding: $indent-32 $indent-80;
+    position: relative;
+    border-radius: 16px;
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
+    z-index: 1;
+    transition: box-shadow .2s ease-out;
+
+    &:not(:first-child) {
+        margin-top: $indent-16;
+    }
+
+    &.new {
+        .status {
+            color: $color-violet;
+        }
+    }
+
+    &.accepted {
+        border-color: $color-bluemarin;
+        .status {
+            color: $color-bluemarin;
+        }
+    }
+
+    &.rejected {
+        border-color: $color-error-field;
+        .status {
+            color: $color-error-field;
+        }
+    }
+
+    &.delivered {
+        border-color: $color-violet;
+        .status {
+            color: $color-violet;
+        }
+    }
+
+    &.completed {
+        border-color: $color-bluemarin;
+        .status {
+            color: $color-bluemarin;
+        }
+    }
+
+    @include screen-medium-down {
+        display: flex;
+        flex-direction: column
+    }
+}
+
+.giftNumber {
+    @include typo-make-small;
+    color: $color-blue-gray;
+    text-transform: uppercase;
+    @include screen-large-up {
+        text-align: right;
+    }
+}
+
+.giftInfo {
+    @include grid-with-offset((large: 2)) {
+        @include grid-columns-span((large: 4));
+      }
+    @include typo-medium-text;
+    margin-right: $indent-24;
+    color: $color-black;
+
+    @include screen-small-down {
+      margin-right: 12px;
+    }
+}
+
+.status {
+    @include grid-columns-span((large: 2));
+    font-weight: 500;
+
+    @include screen-medium-down {
+        order: -1;
+        margin-bottom: $indent-12;
+    }
+}
+
+.municipality {
+    @include grid-columns-span((large: 2));
+    color: $color-gray-deep;
+    @include screen-large-up {
+        text-align: right;
+    }
+}

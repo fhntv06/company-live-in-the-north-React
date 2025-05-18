@@ -1,0 +1,73 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+
+  &:hover {
+    .format {
+      background-color: $color-bluemarin-light;
+    }
+
+    .name {
+      background-color: $color-gray-extra-light;
+    }
+  }
+
+  &:active {
+    .format {
+      background-color: $color-bluemarin-extra-light;
+    }
+
+    .name {
+      color: $color-blue-gray;
+    }
+  }
+
+  .format {
+    background-color: $color-bluemarin;
+  }
+
+  .name {
+    background-color: $color-gray-light;
+  }
+
+  &:not(:last-child) {
+    margin-right: $indent-16;
+  }
+}
+
+.format {
+  @include typo-make-small;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 6px;
+  height: 32px;
+  line-height: 16px;
+  color: $color-white;
+  border-radius: 8px;
+  transition: color .1s linear, background-color .1s linear;
+}
+
+.name {
+  @include typo-make-small;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 16px;
+  height: 32px;
+  border-radius: 8px;
+  line-height: 16px;
+  color: $color-gray-blue;
+  transition: color .1s linear, background-color .1s linear;
+
+  @include screen-medium-down {
+    padding: $indent-8;
+    width: max-content;
+  }
+}

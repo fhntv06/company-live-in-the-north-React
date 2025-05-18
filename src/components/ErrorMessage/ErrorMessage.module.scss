@@ -1,0 +1,29 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+    margin-top: calc($indent-32 + 4px);
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+
+    @include screen-medium-down {
+        margin-top: $indent-24;
+    }
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: $indent-16;
+
+    @include screen-medium-down {
+        margin-right: $indent-8;
+    }
+}
+
+.text {
+    @include typo-make-small;
+    color: $color-error-field;
+}

@@ -1,0 +1,97 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+@use '../../../styles/mixins' as *;
+
+.date {
+  padding: $indent-12 $indent-12 calc($indent-12 + 2px); 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  position: relative;
+  border-radius: 16px;
+  height: max-content;
+  min-width: 87px;
+  height: 118px;
+  transition: height .3s ease-out;
+
+  &::after {
+    @extend %border-gradient;
+  }
+
+  &.enter:not(.archive) {
+    height: 44px;
+    @include screen-small-down {
+      box-shadow: none;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+
+    .date {
+      flex-direction: row;
+      padding: $indent-12 $indent-12 calc($indent-12 + 2px);
+    }
+
+    .dateInfo {
+      height: 0;
+      width: 0;
+    }
+
+    .enterView {
+      display: flex;
+      text-transform: uppercase;
+    }
+
+    .datePrefix {
+      display: block;
+    }
+
+    .day {
+      @include typo-make-tiny;
+      margin-top: 0;
+    }
+  }
+}
+
+.datePrefix {
+  display: none;
+}
+
+.dateInfo,
+.enterView {
+  overflow: hidden;
+  @include typo-make-tiny;
+  color: $color-blue-gray;
+  transition:
+    max-height 3.3s ease-in,
+    width .1s linear,
+    height .1s linear,
+    visibility .1s linear;
+}
+
+.dateInfo {
+  line-height: 12px;
+  height: auto;
+}
+
+.day {
+  @include typo-make-big-text;
+  line-height: 18px;
+  margin-top: $indent-32;
+  font-weight: 700;
+  color: $color-blue-gray;
+  transition: margin-right .1s linear;
+}
+
+.datePrefix,
+.month {
+  text-transform: uppercase;
+  transition:
+    margin-top .1s linear,
+    margin-right .1s linear, 
+    line-height .1s linear, 
+    font-size .1s linear,
+    font-weight .1s linear;
+}

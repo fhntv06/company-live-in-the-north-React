@@ -1,0 +1,30 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+
+.page h3 {
+  @include typo-make-h4;
+}
+
+.main {
+  position: relative;
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-64;
+  padding-bottom: $indent-80;
+
+  @include screen-small-down {
+    padding-top: calc($indent-20 + $indent-20);
+  }
+
+  &:after {
+    content: "";
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: $color-white;
+  }
+}

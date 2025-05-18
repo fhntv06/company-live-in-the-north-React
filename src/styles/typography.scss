@@ -1,0 +1,56 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+
+$body-font-family: 'PT Russia', Helvetica, Arial, sans-serif;
+
+@font-face {
+    font-family: 'PT Russia';
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+    src: url('../fonts/PT_Russia_Text-Regular.ttf');
+  }
+
+@font-face {
+    font-family: 'PT Russia';
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+    src: url('../fonts/PT_Russia_Text-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'PT Russia';
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+  src: url('../fonts/PT_Russia_Text-DemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'PT Russia';
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+    src: url('../fonts/PT_Russia_Text-Bold.ttf');
+}
+
+body {
+    font-family: $body-font-family;
+    @include typo-medium-text;
+    color: $color-dark-color;
+}
+
+h1,
+.h1 {
+  @include typo-make-h1;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h2,
+.h2 {
+  @include typo-make-h2;
+  font-weight: 700;
+}

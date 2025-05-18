@@ -1,0 +1,67 @@
+////
+/// Placeholders for simplifying the grid styles creation.
+/// @access public
+/// @group grid
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+@use '../mixins/media-queries' as screen;
+@use '../variables/grid' as *;
+@use '../mixins/grid' as *;
+@use '../variables/indent-system' as *;
+
+
+/// The grid container placeholder.
+%grid-container {
+  @extend %grid-container-base;
+  display: grid;
+  column-gap: $grid-gutter-tiny;
+
+  @include screen.screen-small-up {
+    column-gap: $grid-gutter-small;
+  }
+
+  @include screen.screen-medium-up {
+    column-gap: $grid-gutter-medium;
+  }
+
+  @include screen.screen-large-up {
+    column-gap: $grid-gutter-large;
+  }
+
+  @include screen.screen-huge-up {
+    column-gap: $grid-gutter-huge;
+  }
+
+  @include screen.screen-oversized-up {
+    column-gap: $grid-gutter-oversized;
+  }
+}
+
+/// The grid container's base styles placeholder.
+%grid-container-base {
+  padding-left: $grid-padding-tiny;
+  padding-right: $grid-padding-tiny;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include screen.screen-small-up {
+    padding-left: $grid-padding-small;
+    padding-right: $grid-padding-small;
+  }
+
+  @include screen.screen-medium-up {
+    padding-left: $grid-padding-medium;
+    padding-right: $grid-padding-medium;
+  }
+
+  @include screen.screen-large-up {
+    padding-left: $grid-padding-large;
+    padding-right: $grid-padding-large;
+  }
+
+  @include screen.screen-huge-up {
+    padding-left: $grid-padding-huge;
+    padding-right: $grid-padding-huge;
+  }
+}

@@ -1,0 +1,212 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1, huge: 1)) {
+      @include grid-columns-span((large: 8, huge: 8))
+    }
+  }
+}
+
+.innerWrapper {
+  @include grid-with-inner-context {
+      @include grid-columns-span((large: 8, huge: 6))
+  }
+
+  & > .row {
+    @include grid-columns-span-all;
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $indent-24 $indent-40;
+  }
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $indent-40;
+
+  @include screen-medium-down {
+    flex-direction: column;
+    row-gap: $indent-12;
+    margin-top: $indent-24;
+  }
+}
+
+.info {
+  flex-basis: 55%;
+  flex-shrink: 0;
+  @include typo-make-big-text;
+}
+
+.disclaimer {
+  @include typo-make-small;
+  color: $color-gray-deep;
+}
+
+.form {
+  margin-top: $indent-48;
+  margin-bottom: $indent-64;
+
+  @include screen-medium-down {
+    margin-top: $indent-32;
+  }
+
+  input {
+    width: 100%;
+    line-height: 24px;
+  }
+
+  :global(.select) {
+    button {
+      max-height: 48px;
+    }
+
+    :global(.select__single-value) {
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
+
+.lastRow {
+  margin-top: $indent-32;
+
+  @include screen-medium-down {
+    margin-top: $indent-20;
+  }
+
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 8, huge: 6));
+  }
+}
+
+.additionalInputGroup {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 4, huge: 4));
+  }
+}
+
+.submitButton {
+  @include grid-columns-span((large: 4, huge: 2));
+
+  @include screen-medium-down {
+    margin-top: $indent-24;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+.files {
+  @include grid-columns-span((large: 3, huge: 2));
+  height: fit-content;
+}
+
+.confirm {
+  color: $color-gray-deep;
+
+  @include grid-columns-span((large: 4, huge: 2));
+
+  @include screen-medium-down {
+    margin-top: $indent-24;
+  }
+
+  a {
+    color: $color-bluemarin-light;
+
+    &:hover {
+      color: $color-bluemarin;
+    }
+  }
+
+  & > :global(.input-field__error) {
+    margin-left: calc($indent-16 + 24px);
+  }
+
+  & + .confirm {
+    @include screen-large-only {
+      margin-top: $indent-12;
+    }
+  }
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: $indent-16;
+}
+
+.successWrapper {
+  color: $color-bluemarin;
+  margin-top: $indent-24;
+}
+
+.loader {
+  @include grid-columns-span((large: 6, huge: 6));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: $indent-64;
+
+  .title {
+    margin-top: $indent-32;
+    @include typo-make-big-text;
+  }
+}
+
+.textRow {
+  @include grid-columns-span((large: 4, huge: 3));
+  @include typo-make-text;
+
+  margin: $indent-48 0;
+}
+
+.map {
+    @include grid-columns-span((large: 8, huge: 8));
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 320px;
+    padding-bottom: $indent-64;
+
+    @include screen-huge-up {
+        aspect-ratio: 1216/320;
+    }
+}
+
+.contacts {
+    @include grid-with-inner-context {
+        @include grid-columns-span((large: 8, huge: 8))
+    }
+    margin-bottom: $indent-48;
+
+    @include screen-medium-down {
+        padding: 0 $indent-24;
+    }
+}
+  
+.left {
+    @include grid-columns-span((large: 4, huge: 4));
+
+    h2 {
+        margin-bottom: $indent-32;
+    }
+  
+    p {
+      @include typo-make-middle;
+      color: $color-black;
+    }
+}

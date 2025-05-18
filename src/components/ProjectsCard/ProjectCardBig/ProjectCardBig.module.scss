@@ -1,0 +1,168 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+@mixin hover-effect {
+  .year,
+  .months {
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+    background-clip: text;
+  }
+
+  .info {
+    box-shadow: inset 0 4px 100px rgba($color-white,.25);
+  }
+
+  .background {
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  .title,
+  .description,
+  .months,
+  .year {
+    transform: translateY(-2px);
+  }  
+}
+
+.wrapper {
+  grid-column: span 4;
+  @include grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+
+  &:hover {
+    @include screen-large-up {
+      @include hover-effect;
+    }
+  }
+
+  &:active {
+    @include hover-effect;
+  }
+
+  @include screen-large-down {
+    grid-column: span 5;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @include screen-medium-down {
+    @include grid-columns-span-all;
+    grid-template-columns: repeat(8, 1fr);
+    margin-bottom: $indent-16;
+  }
+}
+
+.time {
+  grid-column: span 1;
+  position: relative;
+  padding: 0 $indent-24 $indent-32;
+  background: $color-white;
+  border-radius: 16px;
+
+  @include screen-small-down {
+    max-width: 83px;
+    min-width: 83px;
+  }
+
+  &::after {
+    @extend %border-gradient;
+  }
+
+  @include screen-large-down {
+    padding: 0 $indent-16;
+    padding-bottom: $indent-12;
+  }
+}
+
+.months {
+  @include typo-make-tiny;
+  line-height: 14px;
+}
+
+.year {
+  @include typo-make-big-text;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.months,
+.year {
+  background-image: linear-gradient($color-blue-gray 0% ,$color-blue-gray 100%);
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  transition: background .2s ease-out, transform .2s ease-out;
+}
+
+.info {
+  grid-column: span 3;
+  position: relative;
+  align-items: flex-start;
+  margin-left: calc($grid-gutter-size * -1);
+  padding: $indent-32;
+  -webkit-mask-image: -webkit-linear-gradient(white, black);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .2s ease-out;
+
+  @include screen-large-down {
+    grid-column: span 4;
+  }
+
+  @include screen-medium-down {
+    grid-column: 2/ -1;
+  }
+}
+
+.info,
+.time {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.info {
+  @include screen-medium-down {
+    justify-content: center;
+  }
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  & > img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease-out;
+  }
+}
+
+.title {
+  @include typo-make-h4;
+  font-weight: 600;
+}
+
+.description {
+  @include typo-medium-text;
+  margin-top: $indent-16;
+  line-height: 20px;
+
+  @include screen-medium-down {
+    display: none;
+  }
+}
+
+.title,
+.description {
+  max-width: 70%;
+  color: $color-dark-color;
+  transition: transform .2s ease-out;
+}
+

@@ -1,0 +1,145 @@
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+@use '../../styles/mixins' as *;
+
+.wrapper {
+  @include grid-columns-span-all;
+
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: fit-content;
+
+  @include screen-small-down {
+    @include grid-with-inner-context {
+      @include grid-columns-span((small: 7));
+    }
+  }
+
+  .firstRowWrapper {
+    @include grid-columns-span-all;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $indent-12;
+
+    @include screen-medium-up {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.walletWrapper {
+  align-self: flex-end;
+
+  @include screen-medium-up {
+    display: none !important;
+  }
+
+  :global(.wallet-label) {
+    display: none;
+  }
+}
+
+.infoWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: $indent-8;
+  text-transform: uppercase;
+  color: $color-blue-gray;
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+  }
+
+  b {
+    font-weight: 700;
+  }
+
+  span {
+    display: flex;
+    column-gap: $indent-8;
+  }
+
+  span::after {
+    content: '';
+    width: 1px; 
+    height: 16px;
+    background-color: $color-gray-middle;  
+    align-self: center
+  }
+
+  span:only-child:after {
+    display: none
+  }
+
+  span:last-child::after {
+    display: none
+  }
+
+  * {
+    @include typo-make-ultrasmall;
+
+    white-space: nowrap;
+    transition: transform .1s linear;  
+  }
+}
+
+.resultsInfoWrapper {
+  row-gap: $indent-12;
+}
+
+.label {
+  @include typo-make-small;
+  @include indent-horizontal-pair(12);
+  @include indent-vertical-pair(4);
+  background-color: $color-yellow-yamal;
+  border-radius: 8px;
+  color: $color-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include screen-medium-down {
+    @include typo-make-tiny;
+    margin-right: 0;
+  }
+}
+
+.resultsInfoWrapper {
+  display: flex;
+  column-gap: $indent-8;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  @include screen-medium-down {
+    margin-right: 0;
+  }
+}
+
+.svg {
+  width: 15px;
+  height: 16px;
+  fill: $color-gray-deep;
+  margin-right: 4px;
+}
+
+.date {
+  @include screen-medium-down {
+    width: 100%;
+  }
+}  
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0;
+  row-gap: $indent-8;
+
+  .tagMark {
+    margin-right: $indent-8;
+  }
+}

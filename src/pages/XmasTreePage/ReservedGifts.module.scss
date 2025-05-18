@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.content {
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-48;
+  padding-bottom: $indent-96;
+}
+
+.title {
+  @include grid-columns-span-all;
+
+  margin-top: calc($indent-24);
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.overlay {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 12));
+  }
+  background-color: $color-gray-extra-light;
+  padding: $indent-48 0;
+  border-radius: 16px;
+  margin-top: $indent-64;
+  position: relative;
+  overflow: hidden;
+
+  .wrapper {
+    margin-bottom: $indent-48;
+  }
+}
+
+.overlay,
+.content > .wrapper {
+  @include screen-small-down {
+    margin-left: calc(-1 * $grid-padding-size);
+    margin-right: calc(-1 * $grid-padding-size);
+  }
+}
+
+.wrapper {
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+}
+
+.subtitle {
+  margin-bottom: $indent-32;
+  @include screen-small-down {
+    margin-left: $grid-padding-size;
+  }
+}

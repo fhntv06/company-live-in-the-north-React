@@ -1,0 +1,162 @@
+@use '../../../styles/variables/colors' as *;
+@use '../../../styles/variables/indent-system' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+
+.idea {
+  background-color: $gray-extra-light;
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 8, large: 8, huge: 8));
+  }
+
+  padding: $indent-32 $indent-32 $indent-24 $indent-64;
+  border-radius: 16px;
+
+    & + .idea {
+    margin-top: $indent-32;
+
+    @include screen-small-down() {
+      margin-top: 12px;
+    }
+  }
+
+  @include screen-small-down {
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+    padding: $indent-16 $indent-20;
+  }
+}
+
+.publicFigure {
+  background-color: $gray-light;
+
+  .user {
+    @include grid-columns-span((medium: 2, large: 3, huge: 3));
+  }
+
+  .ideaContent {
+    @include grid-columns-span((medium: 6, large: 5, huge: 5));
+  }
+
+  .gallery {
+    @include grid-with-offset((medium: 3, huge: 3)) {
+      @include grid-columns-span((medium: 5, large: 5, huge: 5));
+    }
+  }
+}
+
+.user {
+  @include grid-columns-span((medium: 2, large: 2, huge: 2));
+  display: flex;
+  gap: $indent-16;
+
+  @include screen-small-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: $indent-16;
+
+  color: $dark-color;
+  @include typo-make-text;
+  font-weight: 600;
+
+  .publicFigureIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include screen-small-down {
+    gap: $indent-12;
+  }
+}
+
+.roleDescription {
+  margin-top: $indent-16;
+  @include typo-make-small;
+  color: $blue-gray;
+
+  @include screen-small-down {
+    margin-top: $indent-12;
+  }
+}
+
+.socialLinks {
+  margin-top: $indent-32;
+
+  @include screen-small-down {
+    margin-top: $indent-12;
+  }
+}
+
+.ideaContent {
+  @include grid-columns-span((medium: 6, large: 6, huge: 6));
+  @include typo-make-text;
+  display: flex;
+}
+
+.share {
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.shareIcon {
+  width: 16px;
+  height: 16px;
+  fill: $bluemarin;
+}
+
+.likes {
+  margin-top: $indent-16;
+  @include grid-columns-span-all();
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+
+  .publicFigureText {
+    padding-right: $indent-16;
+    @include typo-make-small;
+    color: $blue-gray;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.gallery {
+  @include grid-with-offset((medium: 2, huge: 2)) {
+    @include grid-columns-span((medium: 5, large: 5, huge: 5));
+  }
+  display: flex;
+  gap: 0;
+  margin-bottom: $indent-24;
+  margin-top: $indent-24;
+  height: 64px;
+
+  @include screen-small-down {
+    margin-bottom: 0;
+  }
+
+  :global(.gallery__item) {
+    min-width: initial;
+    min-height: initial;
+    &:not(:first-child) {
+      margin-left: $indent-8;
+    }  
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,156 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wallet {
+  z-index: 1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  @include typo-make-text;
+  font-weight: 500;
+  padding: $indent-8 $indent-16;
+  border-radius: 16px;
+  color: $color-white;
+
+  @include screen-small-down {
+    @include typo-make-small;
+    font-weight: 400;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    @extend %background-gradient-violet;
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity .1s linear;
+  }
+
+  &::before {
+    @extend %background-gradient-purpur ;
+    opacity: 1;
+  }
+
+  &.storeGradient {
+    &::before,
+    &::after  {
+      @extend %background-gradient-store ;
+    }
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    .svg {
+      transform: translateX(2px);
+    }
+
+    span {
+      transform: translateX(-2px);
+    }
+  }
+
+  @include screen-small-down {
+    padding: 6px $indent-8;
+    line-height: 20px;
+  }
+}
+
+.label {
+  @include typo-make-ultrasmall;
+  line-height: 12px;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $color-violet;
+}
+
+.svg {
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+  margin-right: $indent-8;
+
+  @include screen-small-down {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+span,
+.svg {
+  transition: transform .1s linear;
+}
+
+.wallet.balanceChangeAnimation {
+  &::after {
+    animation: backgroundAnimation 1.5s ease-out forwards alternate;
+  }
+
+  .svg {
+    animation: bonusCoinAnimation 1.5s ease-in-out forwards alternate;
+  }
+}
+
+@keyframes backgroundAnimation {
+  35% {
+    opacity: 0;
+    background: $color-bluemarin-extra-light;
+  }
+
+  65% {
+    opacity: 1;
+    background: $color-bluemarin-extra-light;
+  }
+
+  100% {
+    opacity: 0;
+    background: $color-bluemarin-extra-light;
+  }
+}
+
+@keyframes bonusCoinAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.5);
+  }
+
+  25% {
+    transform: scale(0.1, 1.5);
+  }
+
+  40% {
+    transform: scale(1, 1.5);
+  }
+
+  55% {
+    transform: scale(0.1, 1.5);
+  }
+
+  70% {
+    transform: scale(1, 1.5);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+}

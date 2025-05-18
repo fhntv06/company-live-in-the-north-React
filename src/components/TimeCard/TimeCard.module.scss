@@ -1,0 +1,136 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.container {
+  position: relative;
+  max-height: 100%;
+  min-height: 40px;
+  border-radius: 16px;
+  padding: $indent-12;
+  color: $color-blue-gray;
+
+  &.thin {
+    justify-content: flex-end;
+    height: 100%;
+
+    @include screen-small-down {
+      min-height: 140px;
+    }
+  }
+  &.thick {
+    grid-column: span 1;
+    min-height: 128px;
+    justify-content: space-between;
+  }
+
+  &::after {
+    @extend %border-gradient;
+    pointer-events: none;
+  }
+
+  &.thin,
+  &.thick {
+    @include screen-medium-down {
+      padding: $indent-12 $indent-8 $indent-16;
+    }
+  }
+}
+
+.container,
+.time {
+  display: flex;
+  flex-direction: column;
+
+  &.firstdate {
+    flex-direction: column-reverse;
+  }
+}
+
+.time {
+  @include screen-small-down {
+    flex-direction: row;
+  }
+}
+
+.date {
+  @include typo-make-big-text;
+  font-weight: 600;
+  line-height: 18px;
+  width: fit-content;
+
+  @include screen-small-down {
+    font-weight: 400;
+    @include typo-make-ultrasmall;
+  }
+}
+
+.month {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  width: var(--time-card-width);
+
+  @include screen-small-down {
+    @include typo-make-ultrasmall;
+    font-weight: 400;
+  }
+}
+
+.text,
+.month {
+  @include screen-medium-up {
+    @include typo-make-tiny;
+  }
+}
+
+.text {
+  margin-bottom: $indent-12;
+  line-height: 12px;
+}
+
+.cozyYamal {
+  background-color: $color-yellow-yamal;
+
+  width: initial;
+
+  color: $color-dark-color;
+  display: flex;
+
+  .date {
+    font-weight: 700;
+  }
+
+  @include screen-medium-down {
+    min-height: 94px;
+    padding: $indent-8 5px $indent-8 $indent-12;
+    justify-content: space-between;
+    align-content: space-between;
+
+    @include screen-medium-down {
+      padding-bottom: $indent-8;
+    }
+
+    .text {
+      @include screen-medium-down {
+        margin-bottom: calc($indent-20 / 2);
+      }
+    }
+
+    .date {
+      @include typo-make-big-text;
+      font-weight: 700;
+    }
+  }
+
+  @include screen-small-down {
+    .time {
+      flex-direction: column;
+    }
+  }
+
+  &:after {
+    display: none;
+  }
+}

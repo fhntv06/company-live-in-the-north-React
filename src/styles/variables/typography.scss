@@ -1,0 +1,349 @@
+////
+/// Global typography variables.
+/// @group typography
+/// @type Length
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+@use "../mixins/media-queries" as *;
+@use "../functions/linear-interpolation" as *;
+@use "grid" as *;
+
+@function _small-sizes-interpolation($min, $max) {
+  @return linear-interpolation($grid-container-small-min, $min, $grid-container-small-max, $max);
+}
+
+@function _medium-sizes-interpolation($min, $max) {
+  @return linear-interpolation($grid-container-medium-min, $min, $grid-container-medium-max, $max);
+}
+
+@function _large-sizes-interpolation($min, $max) {
+  @return linear-interpolation($grid-container-large-min, $min, $grid-container-large-max, $max);
+}
+
+@function _huge-sizes-interpolation($min, $max) {
+  @return linear-interpolation($grid-container-huge-min, $min, $grid-container-huge-max, $max);
+}
+
+@function _oversized-sizes-interpolation($min, $max) {
+  @return linear-interpolation($grid-container-oversized-min, $min, $grid-container-oversized-max, $max);
+}
+
+/// The design system's h1 heading's smallest size.
+$typo-h1-size-small-down: 28px;
+/// The design system's h1 heading's largest size.
+$typo-h1-size-oversized-up: 48px;
+/// The design system's h1 heading's size on small screens 320-767.
+$typo-h1-size-small: $typo-h1-size-small-down;
+/// The design system's h1 heading's size on medium screens 768-1023.
+$typo-h1-size-medium: _medium-sizes-interpolation($typo-h1-size-small-down, 28px);
+/// The design system's h1 heading's size on large screens 1024-1279.
+$typo-h1-size-large: _large-sizes-interpolation(28px, 32px);
+/// The design system's h1 heading's size on huge screens 1280-1599.
+$typo-h1-size-huge: _huge-sizes-interpolation(32px, 36px);
+/// The design system's h1 heading's size on oversized screens 1600-1920.
+$typo-h1-size-oversized: _oversized-sizes-interpolation(36px, $typo-h1-size-oversized-up);
+
+/// The design system's h2 heading's smallest size.
+$typo-h2-size-small-down: 24px;
+/// The design system's h2 heading's largest size.
+$typo-h2-size-oversized-up: 32px;
+/// The design system's h2 heading's size on small screens 320-767.
+$typo-h2-size-small: $typo-h2-size-small-down;
+/// The design system's h2 heading's size on medium screens 768-1023.
+$typo-h2-size-medium: $typo-h2-size-small-down;
+/// The design system's h2 heading's size on large screens 1024-1279.
+$typo-h2-size-large: _large-sizes-interpolation(24px, 28px);
+/// The design system's h1 heading's size on huge screens 1280-1599.
+$typo-h2-size-huge: _huge-sizes-interpolation(24px, 28px);
+/// The design system's h2 heading's size on oversized screens 1600-1920.
+$typo-h2-size-oversized: _oversized-sizes-interpolation(28px, $typo-h2-size-oversized-up);
+
+
+/// The design system's h3 heading's smallest size.
+$typo-h3-size-small-down: 20px;
+/// The design system's h3 heading's largest size.
+$typo-h3-size-oversized-up: 28px;
+/// The design system's h3 heading's size on small screens 320-767.
+$typo-h3-size-small: $typo-h3-size-small-down;
+/// The design system's h3 heading's size on medium screens 768-1023.
+$typo-h3-size-medium: $typo-h3-size-small-down;
+/// The design system's h3 heading's size on large screens 1024-1279.
+$typo-h3-size-large: $typo-h3-size-small-down;
+/// The design system's h3 heading's size on huge screens 1280-1599.
+$typo-h3-size-huge: _huge-sizes-interpolation(20px, 24px);
+/// The design system's h3 heading's size on oversized screens 1600-1920.
+$typo-h3-size-oversized: _oversized-sizes-interpolation(24px, $typo-h2-size-oversized-up);
+
+/// The design system's h4 heading's smallest size.
+$typo-h4-size-small-down: 18px;
+/// The design system's h4 heading's largest size.
+$typo-h4-size-oversized-up: 24px;
+/// The design system's h4 heading's size on small screens 320-767.
+$typo-h4-size-small: _small-sizes-interpolation($typo-h4-size-small-down, 20px);
+/// The design system's h4 heading's size on medium screens 768-1023.
+$typo-h4-size-medium: 20px;
+/// The design system's h4 heading's size on large screens 1024-1279.
+$typo-h4-size-large: 20px;
+// $typo-h4-size-large: _large-sizes-interpolation(32px, 40px);
+/// The design system's h4 heading's size on huge screens 1280-1599.
+$typo-h4-size-huge: 20px;
+/// The design system's h4 heading's size on oversized screens 1600-1920.
+$typo-h4-size-oversized: _oversized-sizes-interpolation(20px, $typo-h4-size-oversized-up);
+
+/// The design system's h5 heading's smallest size.
+$typo-h5-size-small-down: 16px;
+/// The design system's h5 heading's largest size.
+$typo-h5-size-oversized-up: 20px;
+/// The design system's h5 heading's size on small screens 320-767.
+$typo-h5-size-small: _small-sizes-interpolation($typo-h5-size-small-down, 18px);
+/// The design system's h5 heading's size on medium screens 768-1023.
+$typo-h5-size-medium: 18px;
+/// The design system's h5 heading's size on large screens 1024-1279.
+$typo-h5-size-large: 18px;
+/// The design system's h5 heading's size on huge screens 1280-1599.
+$typo-h5-size-huge: 18px;
+/// The design system's h5 heading's size on oversized screens 1600-1920.
+$typo-h5-size-oversized: _oversized-sizes-interpolation(18px, $typo-h5-size-oversized-up);
+
+/// The design system's default text's smallest size.
+$typo-big-text-size-small-down: 16px;
+/// The design system's default text's largest size.
+$typo-big-text-size-oversized-up: 18px;
+/// The design system's default text's size on small screens 320-767.
+$typo-big-text-size-small: _small-sizes-interpolation($typo-big-text-size-small-down, $typo-big-text-size-oversized-up);
+/// The design system's default text's size on medium screens 768-1023.
+$typo-big-text-size-medium: $typo-big-text-size-oversized-up;
+/// The design system's default text's size on large screens 1024-1279.
+$typo-big-text-size-large: $typo-big-text-size-oversized-up;
+/// The design system's default text's size on huge screens 1280-1599.
+$typo-big-text-size-huge: $typo-big-text-size-oversized-up;
+/// The design system's h5 heading's size on oversized screens 1600-1920.
+$typo-big-text-size-oversized: $typo-big-text-size-oversized-up;
+
+/// The design system's navigation link's smallest size.
+$typo-middle-size-small-down: 14px;
+/// The design system's navigation link's largest size.
+$typo-middle-size-oversized-up: 18px;
+/// The design system's navigation link's size on small screens 320-767.
+$typo-middle-size-small: _small-sizes-interpolation($typo-middle-size-small-down, 16px);
+/// The design system's navigation link's size on medium screens 768-1023.
+$typo-middle-size-medium: _medium-sizes-interpolation($typo-middle-size-small-down, 16px);
+/// The design system's navigation link's size on large screens 1024-1279.
+$typo-middle-size-large: _large-sizes-interpolation($typo-middle-size-small-down, 16px);
+/// The design system's navigation link's size on huge screens 1280-1599.
+$typo-middle-size-huge: _huge-sizes-interpolation(16px, $typo-middle-size-oversized-up);
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-middle-size-oversized: $typo-middle-size-oversized-up;
+
+/// The design system's default text's smallest size.
+$typo-text-size-small-down: 14px;
+/// The design system's default text's largest size.
+$typo-text-size-oversized-up: 16px;
+/// The design system's default text's size on small screens 320-767.
+$typo-text-size-small: _small-sizes-interpolation($typo-text-size-small-down, 16px);
+/// The design system's default text's size on medium screens 768-1023.
+$typo-text-size-medium: $typo-text-size-oversized-up;
+/// The design system's default text's size on large screens 1024-1279.
+$typo-text-size-large: $typo-text-size-oversized-up;
+/// The design system's default text's size on huge screens 1280-1599.
+$typo-text-size-huge: $typo-text-size-oversized-up;
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-text-size-oversized: $typo-text-size-oversized-up;
+
+/// The design system's navigation link's smallest size.
+$typo-medium-size-small-down: 14px;
+/// The design system's navigation link's largest size.
+$typo-medium-size-oversized-up: $typo-medium-size-small-down;
+/// The design system's navigation link's size on small screens 320-767.
+$typo-medium-size-small: $typo-medium-size-small-down;
+/// The design system's navigation link's size on medium screens 768-1023.
+$typo-medium-size-medium: $typo-medium-size-small-down;
+/// The design system's navigation link's size on large screens 1024-1279.
+$typo-medium-size-large: $typo-medium-size-small-down;
+/// The design system's navigation link's size on huge screens 1280-1599.
+$typo-medium-size-huge: $typo-medium-size-small-down;
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-medium-size-oversized: $typo-medium-size-small-down;
+
+/// The design system's small text's smallest size.
+$typo-small-size-small-down: 12px;
+/// The design system's small text's largest size.
+$typo-small-size-oversized-up: $typo-small-size-small-down;
+/// The design system's small text's size on small screens 320-767.
+$typo-small-size-small: $typo-small-size-small-down;
+/// The design system's small text's size on medium screens 768-1023.
+$typo-small-size-medium: $typo-small-size-small-down;
+/// The design system's small text's size on large screens 1024-1279.
+$typo-small-size-large: $typo-small-size-small-down;
+/// The design system's small text's size on huge screens 1280-1599.
+$typo-small-size-huge: $typo-small-size-small-down;
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-small-size-oversized: $typo-small-size-small-down;
+
+/// The design system's tiny text's smallest size.
+$typo-tiny-size-small-down: 10px;
+/// The design system's tiny text's largest size.
+$typo-tiny-size-oversized-up: $typo-tiny-size-small-down;
+/// The design system's tiny text's size on small screens 320-767.
+$typo-tiny-size-small: $typo-tiny-size-small-down;
+/// The design system's tiny text's size on medium screens 768-1023.
+$typo-tiny-size-medium: $typo-tiny-size-small-down;
+/// The design system's tiny text's size on large screens 1024-1279.
+$typo-tiny-size-large: $typo-tiny-size-small-down;
+/// The design system's tiny text's size on huge screens 1280-1599.
+$typo-tiny-size-huge: $typo-tiny-size-small-down;
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-tiny-size-oversized: $typo-tiny-size-small-down;
+
+/// The design system's ultrasmall text's smallest size.
+$typo-ultrasmall-size-small-down: 8px;
+/// The design system's ultrasmall text's largest size.
+$typo-ultrasmall-size-oversized-up: $typo-ultrasmall-size-small-down;
+/// The design system's ultrasmall text's size on small screens 320-767.
+$typo-ultrasmall-size-small: $typo-ultrasmall-size-small-down;
+/// The design system's ultrasmall text's size on medium screens 768-1023.
+$typo-ultrasmall-size-medium: $typo-ultrasmall-size-small-down;
+/// The design system's ultrasmall text's size on large screens 1024-1279.
+$typo-ultrasmall-size-large: $typo-ultrasmall-size-small-down;
+/// The design system's ultrasmall text's size on huge screens 1280-1599.
+$typo-ultrasmall-size-huge: $typo-ultrasmall-size-small-down;
+/// The design system's default text's size on oversized screens 1600-1920.
+$typo-ultrasmall-size-oversized: $typo-ultrasmall-size-small-down;
+
+
+:root {
+  --typo-h1-size: #{$typo-h1-size-small-down};
+  --typo-h2-size: #{$typo-h2-size-small-down};
+  --typo-h3-size: #{$typo-h3-size-small-down};
+  --typo-h4-size: #{$typo-h4-size-small-down};
+  --typo-h5-size: #{$typo-h5-size-small-down};
+  --typo-big-text-size: #{$typo-big-text-size-small-down};
+  --typo-middle-size: #{$typo-middle-size-small-down};
+  --typo-text-size: #{$typo-text-size-small-down};
+  --typo-medium-size: #{$typo-medium-size-small-down};
+  --typo-small-size: #{$typo-small-size-small-down};
+  --typo-tiny-size: #{$typo-tiny-size-small-down};
+  --typo-ultrasmall-size: #{$typo-ultrasmall-size-small-down};
+
+  @include screen-small-up {
+    --typo-h1-size: #{$typo-h1-size-small};
+    --typo-h2-size: #{$typo-h2-size-small};
+    --typo-h3-size: #{$typo-h3-size-small};
+    --typo-h4-size: #{$typo-h4-size-small};
+    --typo-h5-size: #{$typo-h5-size-small};
+    --typo-big-text-size: #{$typo-big-text-size-small};
+    --typo-middle-size: #{$typo-middle-size-small};
+    --typo-text-size: #{$typo-text-size-small};
+    --typo-medium-size: #{$typo-medium-size-small};
+    --typo-small-size: #{$typo-small-size-small};
+    --typo-tiny-size: #{$typo-tiny-size-small};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-small};
+  }
+
+  @include screen-medium-up {
+    --typo-h1-size: #{$typo-h1-size-medium};
+    --typo-h2-size: #{$typo-h2-size-medium};
+    --typo-h3-size: #{$typo-h3-size-medium};
+    --typo-h4-size: #{$typo-h4-size-medium};
+    --typo-h5-size: #{$typo-h5-size-medium};
+    --typo-big-text-size: #{$typo-big-text-size-medium};
+    --typo-middle-size: #{$typo-middle-size-medium};
+    --typo-text-size: #{$typo-text-size-medium};
+    --typo-medium-size: #{$typo-medium-size-medium};
+    --typo-small-size: #{$typo-small-size-medium};
+    --typo-tiny-size: #{$typo-tiny-size-medium};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-medium};
+  }
+
+  @include screen-large-up {
+    --typo-h1-size: #{$typo-h1-size-large};
+    --typo-h2-size: #{$typo-h2-size-large};
+    --typo-h3-size: #{$typo-h3-size-large};
+    --typo-h4-size: #{$typo-h4-size-large};
+    --typo-h5-size: #{$typo-h5-size-large};
+    --typo-big-text-size: #{$typo-big-text-size-large};
+    --typo-middle-size: #{$typo-middle-size-large};
+    --typo-text-size: #{$typo-text-size-large};
+    --typo-medium-size: #{$typo-medium-size-large};
+    --typo-small-size: #{$typo-small-size-large};
+    --typo-tiny-size: #{$typo-tiny-size-large};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-large};
+  }
+
+  @include screen-huge-up {
+    --typo-h1-size: #{$typo-h1-size-huge};
+    --typo-h2-size: #{$typo-h2-size-huge};
+    --typo-h3-size: #{$typo-h3-size-huge};
+    --typo-h4-size: #{$typo-h4-size-huge};
+    --typo-h5-size: #{$typo-h5-size-huge};
+    --typo-big-text-size: #{$typo-big-text-size-huge};
+    --typo-middle-size: #{$typo-middle-size-huge};
+    --typo-text-size: #{$typo-text-size-huge};
+    --typo-medium-size: #{$typo-medium-size-huge};
+    --typo-small-size: #{$typo-small-size-huge};
+    --typo-tiny-size: #{$typo-tiny-size-huge};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-huge};
+  }
+
+  @include screen-oversized-up {
+    --typo-h1-size: #{$typo-h1-size-oversized};
+    --typo-h2-size: #{$typo-h2-size-oversized};
+    --typo-h3-size: #{$typo-h3-size-oversized};
+    --typo-h4-size: #{$typo-h4-size-oversized};
+    --typo-h5-size: #{$typo-h5-size-oversized};
+    --typo-big-text-size: #{$typo-big-text-size-oversized};
+    --typo-middle-size: #{$typo-middle-size-oversized};
+    --typo-text-size: #{$typo-text-size-oversized};
+    --typo-medium-size: #{$typo-medium-size-oversized};
+    --typo-small-size: #{$typo-small-size-oversized};
+    --typo-tiny-size: #{$typo-tiny-size-oversized};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-oversized};
+  }
+
+  @include screen-min($grid-container-oversized-max + 1px) {
+    --typo-h1-size: #{$typo-h1-size-oversized-up};
+    --typo-h2-size: #{$typo-h2-size-oversized-up};
+    --typo-h3-size: #{$typo-h3-size-oversized-up};
+    --typo-h4-size: #{$typo-h4-size-oversized-up};
+    --typo-h5-size: #{$typo-h5-size-oversized-up};
+    --typo-big-text-size: #{$typo-big-text-size-oversized-up};
+    --typo-middle-size: #{$typo-middle-size-oversized-up};
+    --typo-text-size: #{$typo-text-size-oversized-up};
+    --typo-medium-size: #{$typo-medium-size-oversized-up};
+    --typo-small-size: #{$typo-small-size-oversized-up};
+    --typo-tiny-size: #{$typo-tiny-size-oversized-up};
+    --typo-ultrasmall-size: #{$typo-ultrasmall-size-oversized-up};
+  }
+}
+
+/// The design system's base text line-height value.
+$typo-line-height-text: calc(1em + 8px) !default;
+
+/// The design system's headings line-height value.
+$typo-line-height-heading: calc(1em + 4px) !default;
+
+/// The design system's h1 heading's variable size.
+$typo-h1-size: var(--typo-h1-size);
+/// The design system's h2 heading's variable size.
+$typo-h2-size: var(--typo-h2-size);
+/// The design system's h3 heading's variable size.
+$typo-h3-size: var(--typo-h3-size);
+/// The design system's h4 heading's variable size.
+$typo-h4-size: var(--typo-h4-size);
+/// The design system's h5 heading's variable size.
+$typo-h5-size: var(--typo-h5-size);
+/// the design system's large text's variable size.
+$typo-big-text-size: var(--typo-big-text-size);
+/// The design system's default text's variable size.
+$typo-text-size: var(--typo-text-size);
+/// The design system's navigation link's variable size.
+$typo-middle-size: var(--typo-middle-size);
+/// The design system's navigation link's variable size.
+$typo-medium-size: var(--typo-medium-size);
+/// The design system's small text's variable size.
+$typo-small-size: var(--typo-small-size);
+/// The design system's tiny text's variable size.
+$typo-tiny-size: var(--typo-tiny-size);
+/// The design system's ultrasmall text's variable size.
+$typo-ultrasmall-size: var(--typo-ultrasmall-size);

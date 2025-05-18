@@ -1,0 +1,138 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.bonuses {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $indent-20 $indent-20 $indent-40 $indent-24;
+  height: 300px;
+  border-radius: 12px;
+  background-color: transparent;
+  color: $color-dark-color;
+  @include typo-make-middle;
+  transition:
+    box-shadow .3s,
+    background-color .3s  ;
+  overflow: hidden;
+
+  @include screen-medium-down {
+    height: 320px;
+  }
+
+  &::after {
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background: linear-gradient(50deg, #54E8D3 0, #5166F5 50%, #9963EF 100%);
+    background-origin: border-box;
+    background-clip: border-box;
+    -webkit-mask: linear-gradient($color-white 0 0) padding-box, linear-gradient($color-white 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    -webkit-mask-repeat: no-repeat;
+    transition: inherit;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background-image: url('../../images/background_bonuses_gradient.png');
+    background-repeat: no-repeat;
+    transition:
+      right .2s,
+      width .2s,
+      height .2s,
+      background-size .2s,
+      background-position .2s ease-in,
+      transform .2s ease-in;
+    pointer-events: none;
+    height: 100%;
+    width: 110%;
+    background-size: 60%;
+    right: -45%;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+  }
+
+  &:hover {
+    @include screen-medium-up {
+      &::before {
+        height: 100%;
+        width: 100%;
+        background-size: 100%;
+        right: 0;
+      }
+
+      .header,
+      .content {
+        transform: translateY(-4px);
+      }
+    }
+
+    &:active {
+      background-color: $color-white;
+
+      .title,
+      .description {
+        transform: translateY(2px);
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: calc($indent-24 + 4px);
+    right: calc($indent-20 + 2px);
+    height: 64px;
+    width: 64px;
+    fill: $color-white;
+
+    @include screen-large-down {
+      display: none;
+    }
+  }
+}
+
+.header {
+  color: $color-blue;
+  @include typo-make-small;
+  text-transform: uppercase;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: $indent-8;
+  margin-right: calc($indent-8 + 4px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin-bottom: $indent-16;
+    @include typo-make-h4;
+    font-weight: 600;
+
+    @include screen-small-down {
+      @include typo-make-h5;
+    }
+  }
+
+  .description {
+    @include typo-make-small;
+  }
+}
+
+.header,
+.content {
+  transition: transform .2s ease-in;
+}

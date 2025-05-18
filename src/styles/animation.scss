@@ -1,0 +1,103 @@
+.animation-page-enter {
+  opacity: 0;
+}
+
+.animation-page-active {
+  opacity: 1;
+}
+
+.animation-page-enter-active {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.animation-page-exit {
+  opacity: 1;
+}
+
+.animation-page-exit-active {
+  opacity: 0;
+}
+
+.fade-enter{
+  opacity: 0;
+}
+
+.fade-exit{
+  opacity: 1;
+}
+
+.fade-enter-active{
+  opacity: 1;
+}
+
+.fade-exit-active{
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-exit-active{
+  transition: opacity 500ms;
+}
+
+.pop-enter {
+  transform: scale(0);
+}
+
+.pop-enter-active {
+  transform: scale(1);
+  transition: transform 300ms ease-in-out;
+}
+
+.pop-exit {
+  transform: scale(1);
+}
+
+.pop-exit-active {
+  transform: scale(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(-50%);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.slideOut-enter {
+  opacity: 0;
+  transform: translateX(50%);
+}
+
+.slideOut-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.slideOut-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slideOut-exit-active {
+  opacity: 0;
+  transform: translateX(50%);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}

@@ -1,0 +1,224 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  --wrapper-height: 603px;
+  position: relative;
+  border-radius: 0 0 16px 16px;
+  z-index: 0;
+  max-height: var(--wrapper-height);
+  min-height: var(--wrapper-height) !important;
+
+  @include screen-medium-up {
+    --wrapper-height: 646px;
+  }
+
+  @media (min-width: 1921px) {
+    --wrapper-height: 846px;
+  }
+
+  .tickerPrice {
+    background-color: transparent;
+    border: 1px solid $color-white;
+    margin-right: $indent-8;
+  }
+
+  &.withoutBackground {
+    background-color: $color-gray-background-light;
+  }
+}
+
+.withoutBackground {
+  .tag {
+    border-color: $color-gray-deep;
+    color: $color-gray-deep;
+
+    svg {
+      fill: $color-gray-deep;
+    }
+  }
+
+  .header,
+  .locations,
+  .dates {
+    color: $color-black;
+  }
+
+  .locations svg {
+    fill: $color-black;
+  }
+
+  .tickerPrice {
+    border: none;
+    background-color: $color-bluemarin;
+  }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  border-radius: 0 0 16px 16px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(0deg, rgba(63, 87, 186, 0.3), rgba(63, 87, 186, 0.3));
+  }
+
+  &.alignToTop {
+    background-position: center top;
+  }
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.content,
+.visibleWrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((medium: 11));
+  }
+  grid-auto-rows: max-content;
+  margin-top: auto;
+}
+
+.middle {
+  @include grid-columns-span((small: 6, medium: 8, large: 7, huge: 5));
+  height: 100%;
+}
+
+.tags {
+  margin-bottom: 32px;
+  display: flex;
+  gap: $indent-8;
+}
+
+.tag {
+  @include typo-make-ultrasmall;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px 8px;
+  color: $color-white;
+  border: 1px solid $color-white;
+  border-radius: 8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    fill: $color-white;
+  }
+}
+
+.header {
+  @include typo-make-h1;
+  margin-bottom: $indent-24;
+  font-weight: 700;
+  color: $color-white;
+  text-transform: uppercase;
+}
+
+.bottom {
+  @include grid-columns-span((small: 6, medium: 11));
+  @include screen-medium-down {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: fit-content;
+
+  @include screen-large-down {
+    margin-top: $indent-16;
+  }
+
+  @include screen-small-down {
+    margin-top: 8px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: $indent-8;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.eventPlaceInfo {
+  display: flex;
+  flex-direction: column;
+
+  @include screen-medium-down {
+    & + .buttons {
+      margin-top: $indent-16;
+    }
+  }
+}
+
+.locations {
+  @include typo-make-text;
+  display: flex;
+  gap: 0;
+  color: $color-white;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-white;
+    margin-right: $indent-8;
+    flex-shrink: 0;
+  }
+}
+
+.more {
+  @extend %link-base;
+  opacity: .5;
+  transition: opacity .1s linear, color .1s linear;
+  margin-left: $indent-8;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.dates {
+  display: flex;
+  gap: 0;
+  @include typo-make-text;
+  color: $color-white;
+  margin-top: $indent-8;
+}
+
+.iconWatch {
+  stroke: currentColor;
+  fill: none;
+  width: 24px;
+  height: 24px;
+  margin-right: $indent-8;
+}

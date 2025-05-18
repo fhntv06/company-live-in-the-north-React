@@ -1,0 +1,95 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders/helpers' as *;
+
+.main {
+  position: relative;
+  background-color: $color-gray-extra-light;
+  border-radius: 16px;
+  padding: $indent-64 0;
+
+  &::after,
+  &::before {
+    @include screen-medium-up {
+      content: '';
+    }
+
+    z-index: 4;
+    position: absolute;
+    background-color: $color-white;
+    height: 100%;
+    width: $grid-padding-size;
+  }
+
+  &::after {
+    left: 100%;
+  }
+
+  &::before {
+    right: 100%;
+  }
+
+  @include screen-small-down {
+    @include grid-container;
+  }
+}
+
+.graphSlider {
+  @include grid-columns-span-all;
+  margin-bottom: $indent-80;
+
+  @include screen-small-down {
+    margin-right: -24px;
+  }
+}
+
+.main,
+.wrapper {
+  @include grid;
+  @include grid-columns-span-all;
+}
+
+.text {
+  @include grid-with-offset((small:1)) {
+    @include grid-columns-span((small: 5, medium: 6));
+  }
+  @include typo-make-text;
+  color: $color-black;
+  margin-bottom: $indent-32;
+}
+
+.container {
+  display: flex;
+  gap: $indent-16 $indent-32;
+  flex-wrap: wrap;
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+
+  @include screen-huge-down {
+    @include grid-with-inner-context {
+      @include grid-with-offset((medium: 1)) {
+        @include grid-columns-span((medium: 10));
+      }
+    }
+  }
+}
+
+.card {
+  height: max-content;
+  @include grid-columns-span((small: 6, medium: 10, large: 5, huge: 5));
+
+
+  @include screen-oversized-up {
+    width: 30%;
+  }
+  @include screen-huge-down {
+    width: 100%;
+  }
+}
+
+.more {
+  @include grid-columns-span-all;
+  margin-top: $indent-56;
+  text-align: center;
+}

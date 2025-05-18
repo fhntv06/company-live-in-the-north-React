@@ -1,0 +1,127 @@
+////
+/// A set of mixins to simplify the creation of typography styles.
+/// @group typography
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+@use "../variables/colors" as *;
+@use "../variables/typography" as *;
+
+/// Base mixin for applying `font-size` and `line-height` values according to the design system.
+/// @param {Length} $size - Variable or static font-size value.
+/// @param {Boolean} $isHeading [false] - Whether styles are applying to some sort of heading.
+@mixin typo-make-sizes($size, $isHeading: false) {
+  font-size: $size;
+  @if ($isHeading) {
+    line-height: $typo-line-height-heading;
+    font-weight: 500;
+  } @else {
+    line-height: $typo-line-height-text;
+    font-weight: 400;
+  }
+}
+
+
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the h1 heading.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-h1($isHeading: true) {
+  @include typo-make-sizes($typo-h1-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the h2 heading.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-h2($isHeading: true) {
+  @include typo-make-sizes($typo-h2-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the h3 heading.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-h3($isHeading: true) {
+  @include typo-make-sizes($typo-h3-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the h4 heading.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-h4($isHeading: true) {
+  @include typo-make-sizes($typo-h4-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the h5 heading.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-h5($isHeading: true) {
+  @include typo-make-sizes($typo-h5-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the big text.
+/// @param {Boolean} $isHeading [true]
+@mixin typo-make-big-text($isHeading: true) {
+  @include typo-make-sizes($typo-big-text-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the navigation link.
+/// @param {Boolean} $isHeading [true] - Whether styles are applying to some sort of heading.
+@mixin typo-make-middle($isHeading: true) {
+  @include typo-make-sizes($typo-middle-size, $isHeading);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the base text.
+@mixin typo-make-text {
+  @include typo-make-sizes($typo-text-size, false);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the middle text.
+@mixin typo-medium-text {
+  @include typo-make-sizes($typo-medium-size, false);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the small text.
+@mixin typo-make-small {
+  @include typo-make-sizes($typo-small-size, false);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the small text.
+@mixin typo-make-tiny {
+  @include typo-make-sizes($typo-tiny-size, false);
+}
+/// A mixin for applying `font-size` and `line-height` values according to the design system for
+/// the ultrasmall text.
+@mixin typo-make-ultrasmall {
+  @include typo-make-sizes($typo-ultrasmall-size, false);
+}
+
+/// A mixin for creating a text link with animated underline on hover.
+@mixin typo-text-link {
+  border-bottom: 1px solid transparent;
+  background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+  background-position: 100% calc(100% + 1px);
+  background-size: calc(200% + 1px) 1px;
+  background-repeat: repeat-x;
+  transition: background-position $color-transition-settings;
+
+  &.blur {
+    background-position-x: -100%;
+  }
+
+  &:hover {
+    background-position-x: 0;
+  }
+
+  &.no-transition {
+    transition-duration: 0s;
+  }
+}
+
+
+
+@mixin link-multiline-base($color: $bluemarin, $hoverColor: $bluemarin-extra-light) {
+  display: inline;
+  text-decoration: none;
+  transition: color 0.1s linear, border-color 0.1s linear;
+  border-bottom: 1px solid rgba($color, 0.2);
+
+  &:hover, &:focus {
+    color: $hoverColor;
+    border-bottom-color: rgba($hoverColor, 0.2);
+  }
+}

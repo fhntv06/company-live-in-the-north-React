@@ -1,0 +1,131 @@
+@use '../../styles/variables.scss' as *;
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  background-color: $color-white;
+}
+
+@keyframes test {
+  0% {
+    background-position-y: -50%;
+  }
+  100% {
+    background-position-y: 50%;
+  }
+}
+
+.snowflakes {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+}
+
+.snowflakeWrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  animation: horizontalMotion 2.5s ease-in-out infinite alternate;
+}
+
+.snowflakeWrapper1 {
+  width: 16px;
+  height: 18px;
+}
+
+.snowflakeWrapper2 {
+  width: 28px;
+  height: 31px;
+}
+
+.snowflakeWrapper3 {
+  width: 19px;
+  height: 21px;
+}
+
+.snowflakeWrapper4 {
+  width: 12px;
+  height: 13px;
+}
+
+.snowflake {
+  position: absolute;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  opacity: 0;
+  fill: #fff;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.snowflake1 {
+  left: -4px;
+  animation-name: snowflakeOpacity, snowflakeLeft;
+  animation-delay: 0.75s;
+}
+
+.snowflake2 {
+  left: -40px;
+  animation-name: snowflakeOpacity, snowflakeRight;
+  animation-delay: 0.5s;
+}
+
+.snowflake3 {
+  left: 4px;
+  animation-name: snowflakeOpacity, snowflakeLeft;
+  animation-delay: 0.25s;
+}
+
+.snowflake4 {
+  left: -20px;
+  animation-name: snowflakeOpacity, snowflakeRight;
+}
+
+@keyframes horizontalMotion {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes snowflakeOpacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes snowflakeLeft {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(50px) rotate(-360deg);
+  }
+}
+
+@keyframes snowflakeRight {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(50px) rotate(360deg);
+  }
+}

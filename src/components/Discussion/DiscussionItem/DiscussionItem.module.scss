@@ -1,0 +1,337 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/placeholders' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders/helpers' as *;
+
+.container {
+  display: flex;
+  gap: 0;
+  min-height: 120px;
+  border-radius: 16px;
+  background-color: transparent;
+  transition: background-color .1s linear;
+
+  @include screen-small-down {
+    display: flex;
+  }
+
+  &:hover.colorGradient {
+    @extend %text-gradient;
+    text-transform: none;
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    gap: 0;
+  }
+}
+
+.discussion {
+  &:hover {
+    @include screen-medium-up {
+      .content {
+        &::before {
+          box-shadow: 20px 8px 30px rgba(0,16,94,.1);
+        }
+      }
+  
+      .timeText,
+      .month,
+      .day  {
+        background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+        background-clip: text;
+        color: transparent;
+      }
+  
+      .question {
+        transform: translateY(-2px);
+      }  
+    }
+  }
+
+  &:active {
+    box-shadow: none;
+
+    .question {
+      transform: translateY(0px);
+    }
+  }
+
+  .content {
+    border-radius: 16px;
+    background-color: $color-white;
+
+    &::after {
+      @extend %helper-full-size-pseudo-layer;
+      pointer-events: none;
+    }
+  }
+
+  @include screen-small-down {
+    background-color: $color-white;
+  }
+}
+
+.vote {
+  position: relative;
+
+  &:hover {
+    @include screen-medium-up {
+      .status {
+        background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+        background-clip: text;
+        color: transparent;
+      }
+  
+      .question {
+        transform: translateY(-2px);
+      }
+
+      .timeText,
+      .month,
+      .day  {
+        background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+        background-clip: text;
+        color: transparent;
+      }
+  
+      .content {
+        &::before {
+          box-shadow: 20px 8px 30px rgba(0,16,94,.1);
+        }
+      }
+    
+      .content {
+        background-color: $color-white;
+      }
+    }
+  }
+
+  &:active {
+    box-shadow: none;
+    .question {
+      transform: translateY(0);
+    }
+  }
+
+  .content::after {
+    @extend %border-gradient;
+  }
+
+  &::after {
+    @extend %border-gradient;
+    display: none;
+
+    @include screen-small-down {
+      display: block;
+    }
+  }
+}
+
+.status {
+  @include typo-make-tiny;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-left: $indent-24;
+  color: $color-blue-gray;
+
+  @include screen-medium-down {
+    align-items: flex-start;
+    padding: $indent-20 12px;
+    min-width: 110px;
+    width: 110px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: $indent-8;
+  }
+}
+
+.time {
+  @include indent-vertical-pair(12);
+  padding: 0 $indent-16;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  position: relative;
+  border-radius: 16px;
+  min-width: 86px;
+  max-width: calc(86px + $grid-gutter-size);
+  max-width: 87px;
+  transition: box-shadow .1s linear;
+
+  position: relative;
+  z-index: 1;
+
+  @include screen-medium-down {
+    padding: $indent-20 12px;
+  }
+
+  &::after {
+    @extend %border-gradient;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    transition: box-shadow .1s linear;
+  }
+}
+
+.timeText,
+.month,
+.day  {
+  color: $color-blue-gray;
+}
+
+.timeText {
+  @include typo-make-tiny;
+  line-height: 1.2;
+
+  @include screen-small-down {
+    width: min-content;
+  }
+}
+
+.day {
+  @include typo-make-big-text;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.month {
+  @include typo-make-tiny;
+}
+
+.content {
+  position: relative;
+  @include grid;
+  grid-template-columns: repeat(9, 1fr);
+  flex-grow: 1;
+  border-radius: 16px;
+  background-color: transparent;
+  padding: $indent-20 0 $indent-16 $indent-16;
+  transition:
+    background-color .2s ease-in-out,
+    box-shadow .1s linear;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    transition: box-shadow .1s linear;
+  }
+
+  @include screen-medium-down {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    padding-right: $indent-16;
+    padding-left: $indent-16;
+  }
+  @include screen-small-down {
+    align-items: flex-start;
+    padding-top: $indent-16;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.questionBlock {
+  @include grid-columns-span(( small: 4, medium: 5 ));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  padding-left: $indent-48;
+  height: 100%;
+
+  @include screen-small-down {
+    padding-left: 0;
+    padding-right: $indent-16;
+  }
+}
+
+.question {
+  @include typo-make-text;
+  font-weight: 500;
+  color: $color-black;
+  margin-bottom: $indent-16;
+  transition: transform .1s linear;
+
+  @include screen-small-down {
+    margin-bottom: $indent-12;
+    @include typo-make-big-text;
+    font-weight: 400;
+  }
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  @include screen-small-down {
+    overflow-x: auto;
+    margin-top: auto;
+  }
+}
+
+.tag {
+  @include typo-make-ultrasmall;
+  margin-right: $indent-8;
+  padding: 4px $indent-8;
+  line-height: 12px;
+  border-radius: 16px;
+  color: $color-gray-deep;
+  text-transform: uppercase;
+  border: 1px solid $color-gray-deep;
+  white-space: nowrap;
+}
+
+.addIdia {
+  @include grid;
+  @include grid-with-inner-context {
+    @include grid-with-offset((tiny: 0, small: 0,medium: 0, large: 5, huge: 6)) {
+      @include grid-columns-span((tiny: 1, small: 1,medium: 1, large: 4, huge: 3));
+    }
+  }
+  align-items: center;
+}
+
+.AddIdiaWrapper{
+  @include grid-columns-span((large: 3, huge: 2));
+  background-color: transparent;
+
+  @include screen-medium-down {
+    display: none;
+  }
+}
+
+.discussionBtn {
+  justify-self: end;
+  padding-right: $indent-40;
+
+  @include grid-with-offset((large: 3, huge: 2)) {
+    @include grid-columns-span((large: 1, huge: 1));
+  }
+
+  @include screen-medium-down {
+    padding: 0;
+  }
+}

@@ -1,0 +1,117 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.wrapper {
+  @include grid;
+  @include screen-medium-down {
+    margin: 0 calc($grid-padding-size * -1);
+  }
+}
+
+.tabContentWrapper {
+  @include grid-columns-span-all;
+  overflow: hidden;
+}
+
+.tabContent {
+  @include grid;
+  position: relative;
+
+  padding: $indent-64 0;
+  border-radius: 16px;
+  background-color: $color-gray-extra-light;
+
+  @include screen-medium-down {
+    padding: $indent-64 calc($grid-padding-size);
+  }
+}
+
+.tabsWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: calc(-1 * $indent-12);
+  height: calc($indent-12 + $indent-16 + $indent-20);
+
+  @include grid-with-offset((large: 1, huge: 1)) {
+    @include grid-columns-span((large: 10, huge: 10));
+  }
+  @include screen-medium-down {
+    padding: 0 calc($grid-padding-size * -1) calc(-1 * $indent-12);
+    @include helper-hidden-system-scrollbar;
+    height: calc($indent-12 + $indent-16 + $indent-16);
+  }
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $indent-24;
+  width: max-content;
+
+  @include screen-medium-down {
+    @include grid-columns-span-all;
+    padding-right: $grid-padding-size;
+    padding-left: $grid-padding-size;
+  } 
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  z-index: 50;
+
+
+  &::after {
+    margin-top: 16px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='12' viewBox='0 0 80 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0C6.01485 0 11.2212 3.77806 16.0096 7.2521L16.8631 7.87094C20.4466 10.4582 24.955 12 29.854 12L50.143 12C55.042 12 59.5505 10.4582 63.133 7.87094L63.9855 7.25323C68.7749 3.77885 73.9842 0 80 0L0 0Z' fill='white'/%3E%3C/svg%3E%0A");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateX(-50%);
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    opacity: 0;
+    transition:
+      top .3s ease-in,
+      opacity .3s ease-in;
+
+    @include screen-medium-down {
+      margin-top: $indent-12;
+    }
+  }
+
+  @include typo-medium-text;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 600;
+  line-height: 16px;
+  transition: color .2s ease-out;
+
+  @include screen-medium-down {
+    @include typo-make-small;
+    font-weight: 600;
+  }
+
+  &.isActive {
+    color: $color-blue-dark;
+
+    &::after {
+      top: 19px;
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+}

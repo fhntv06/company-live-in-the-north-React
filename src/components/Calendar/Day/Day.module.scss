@@ -1,0 +1,100 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+.container {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  background-color: $color-gray-extra-light;
+  color: $color-black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color .1s linear;
+  z-index: 1;
+
+  &:hover:not(.disabled) {
+    color: $color-white;
+
+    &::after {
+      background-color: $color-violet;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    transition: background-color .1s linear;
+  }
+}
+
+.date {
+  @include typo-make-h5;
+}
+
+.day {
+  @include typo-make-tiny;
+  line-height: 12px;
+  opacity: .48;
+}
+
+.disabled {
+  pointer-events: none;
+  color: $color-gray-middle;
+  background-color: transparent;
+}
+
+.red {
+  background-color: $color-gray-extra-light;
+  color: $color-error-field;
+}
+
+:global(.is-select) {
+  color: $color-white;
+  background-color: transparent;
+
+  &:global(.one-select),
+  &:global(.first-select) {
+    &:before {
+      content: '';
+      position: absolute;
+      height: 40px;
+      width: calc(var(--calendar-background-width) * 46px - 6px);
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+      border-radius: 16px;
+      z-index: -1;
+    }
+  }
+
+  &:global(.one-select):before {
+    border-radius: 8px;
+  }
+}
+
+.children {
+  @include typo-medium-text;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  color: $color-gray-deep;
+  pointer-events: none;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: -24px;
+  }
+}

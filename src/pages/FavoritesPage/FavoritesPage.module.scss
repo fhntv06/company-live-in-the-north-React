@@ -1,0 +1,130 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables' as *;
+
+
+.container {
+  padding-top: 0;
+
+  @include screen-small-down {
+    padding-bottom: 40px;
+  }
+}
+
+.tabs {
+  display: flex;
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 11));
+  }
+  gap: $indent-24;
+  margin-bottom:$indent-40;
+
+  @include screen-small-down {
+    margin-bottom: 24px;
+  }
+}
+
+.title {
+  margin-top: calc($indent-24);
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.content {
+  @include grid-with-offset((medium: 1)) {
+    @include grid-columns-span((medium: 10));
+  }
+  @include grid;
+
+  @include screen-small-down {
+    margin: 0 calc($grid-padding-size * -1);
+  }
+}
+
+.view {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 7, medium: 12))
+  }
+  gap: $indent-32;
+
+  @include screen-small-down {
+    padding: 0 $indent-24;
+    display: flex;
+    gap: $indent-16;
+  }
+}
+
+.viewProducts,
+.viewEvents {
+  @include screen-medium-up {
+    margin: 0 calc($indent-12 * -1);
+    gap: calc($indent-32 - $indent-24);
+  }
+
+  @include screen-small-down {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    @include screen-small-down {
+      max-width: calc(50% - 8px);
+    }
+  }
+
+}
+
+.viewActivities {
+  @include screen-small-down {
+    flex-direction: column;
+  }
+
+  .card {
+    @include screen-small-down {
+      flex: 0 0 auto;
+    }
+  }
+
+}
+
+.viewPlaces {
+  @include screen-medium-down {
+    display: flex;
+    flex-direction: column;
+    gap: $indent-12;
+  }
+
+  .card {
+    @include screen-medium-down {
+      flex: 1 0 auto;
+    }
+  }
+}
+
+.card {
+  @include grid-columns-span((medium: 6, large: 4, huge: 3));
+  flex: 0 0 100%;
+}
+
+.discussionCard,
+.discussionItem {
+  position: relative;
+  border: 1px solid $color-gray-light;
+
+  @include screen-small-down {
+    :global(.time-card) {
+      &::after {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+.notFound {
+  @include typo-make-h5;
+  color: $color-gray-deep;
+
+  @include grid-columns-span-all;
+  
+  padding-bottom: $indent-80;
+}

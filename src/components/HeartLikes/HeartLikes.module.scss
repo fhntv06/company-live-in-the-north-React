@@ -1,0 +1,87 @@
+@use '../../styles/variables/colors' as *;
+@use '../../styles/variables/indent-system' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  color: $bluemarin;
+  gap: 0;
+  @include typo-medium-text;
+
+  @include screen-small-down() {
+    line-height: 20px;
+    margin-left: auto;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  margin: 0 4px 0 $indent-24;
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &:hover .svg {
+    @include screen-medium-up {
+      fill: $bluemarin-light;
+      stroke: $bluemarin-light;
+    }
+  }
+
+  &:active .svg {
+    @include screen-medium-up {
+      fill: $bluemarin-extra-light;
+      stroke: $bluemarin-extra-light;
+      transform: scale(1.05);
+    }
+  }
+
+  @include screen-small-down() {
+    margin-left: 0;
+  }
+}
+
+.svg {
+  z-index: 1;
+  height: 24px;
+  width: 24px;
+  fill: transparent;
+  stroke: $bluemarin;
+  transition:
+    transform .5s ease-in,
+    fill .3s;
+}
+
+.like .svg {
+  fill: $bluemarin-light;
+  stroke: $bluemarin-light;
+}
+
+.loaderContainer {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  border-top: 2px solid $bluemarin-light;
+  border-right: 2px solid transparent;
+  border-radius: 50%;
+  animation: 1s spin linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

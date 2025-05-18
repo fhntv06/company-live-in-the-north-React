@@ -1,0 +1,100 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  padding: $indent-32 $indent-80;
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+  cursor: pointer;
+  background-color: $color-white;
+  transition: border-color 0.2s linear, box-shadow 0.2s linear;
+  width: 100%;
+
+  a {
+    color: $color-bluemarin;
+    @extend %link-base;
+  }
+
+  &.new {
+    border-color: $color-bluemarin;
+
+    .title {
+      font-weight: 500;
+    }
+  }
+
+  &.open {
+    .chevron {
+      transform: rotate(-180deg);
+    }
+
+    &:hover {
+      @extend %card-shadow;
+    }
+  }
+
+  &:hover {
+    @extend %card-shadow;
+    .chevron {
+      fill: $color-bluemarin;
+    }
+  }
+}
+
+.top {
+  display: flex;
+  gap: $indent-24;
+  align-items: flex-start;
+
+  @include screen-medium-up {
+    align-items: center;
+  }
+}
+
+.title {
+  @include typo-make-text;
+  flex-grow: 1;
+}
+
+.date {
+  @include typo-make-small;
+  color: $color-blue-gray;
+
+  @include screen-small-down {
+    line-height: 24px;
+  }
+}
+
+.chevron {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+
+.content {
+  position: relative;
+}
+
+.line {
+  width: 100%;
+  height: $indent-48;
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+    height: 1px;
+  }
+}
+
+.dropdownBtn {
+  transform: translateY(2px);
+
+  @include screen-small-down {
+    transform: translateY(-2px)
+  }
+}

@@ -1,0 +1,92 @@
+@use '../../styles/mixins/media-queries' as *;
+@use '../../styles/placeholders' as *;
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/variables.scss' as *;
+
+.link {
+  @extend %link-base;
+}
+
+.burger__link {
+  @extend %link-base;
+  @include typo-make-h3($isHeading: true);
+  font-weight: 700;
+  padding: 4px 0;
+
+  @include screen-small-down {
+    @include typo-make-h1($isHeading: true);
+    font-weight: 600;
+  }
+}
+
+.link__bigBold {
+  @extend %link-base;
+  @include typo-make-big-text;
+  font-weight: 600;
+  height: max-content;
+}
+
+.menu__link {
+  @extend %link-base;
+  @include typo-make-text;
+  padding: 4px 0;
+
+  @include screen-small-down {
+    @include typo-make-big-text($isHeading: false);
+  }
+}
+
+.medium__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  @extend %link-base;
+  @include typo-medium-text;
+  position: relative;
+  &::after {
+    content: '';
+    display: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='63' height='8' viewBox='0 0 63 8' fill='none'%3E%3Cpath d='M0 0H63C57.6808 0 53.0764 2.51758 48.8417 4.83301L48.0845 5.24707C44.9149 6.97168 40.9271 8 36.594 8H26.406C22.0729 8 18.0851 6.97168 14.9155 5.24707L14.1605 4.83496C9.92517 2.51855 5.32019 0 0 0Z' fill='white'/%3E%3C/svg%3E%0A");     
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 2;
+    bottom: -7px;
+    width: 66.6px;
+    height: 8px;
+    z-index: -1;
+    animation: active-link .3s ease-in-out forwards;
+  }
+
+
+  &:global(.active) {
+    color: $color-bluemarin;
+
+    &::after {
+      display: block;
+    }
+  }
+}
+
+.submenu__link {
+  @extend %link-base;
+  @include typo-make-text();
+
+  &:global(.active) {
+    color: $color-bluemarin;
+  }
+}
+
+@keyframes active-link {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}

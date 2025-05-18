@@ -1,0 +1,494 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders/helpers' as *;
+
+.textBig {
+  @include typo-make-h3;
+  font-weight: 700;
+
+  @include screen-small-down {
+    @include typo-make-h2;
+    font-weight: 700;
+  }
+}
+
+.textMedium {
+  @include typo-make-h4;
+}
+
+.textSmall {
+  @include typo-make-text;
+}
+
+.textUpper {
+  text-transform: uppercase;
+}
+
+.title {
+  @include typo-make-h1;
+  font-weight: 700;
+}
+
+.example {
+  @include typo-make-h2;
+  font-weight: 600;
+}
+
+.wrapper {
+  @include grid;
+  @include grid-container;
+}
+
+.mainHeader {
+  padding-top: calc($indent-40 * 10);
+  padding-bottom: $indent-64;
+  @include grid-columns-span-all;
+  @include grid;
+
+  @include screen-medium-down {
+    padding-top: calc($indent-20 * 6 + $indent-16);
+    padding-bottom: calc($indent-20 + $indent-20);
+  }
+
+  &::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='775' height='568' viewBox='0 0 775 568' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M153.549 418.593C146.014 413.638 139.922 406.781 135.89 398.714C131.858 390.648 130.029 381.659 130.589 372.659L142.039 188.908C142.546 180.756 141.095 172.601 137.806 165.125C134.517 157.648 129.486 151.068 123.134 145.933L83.2763 113.728C73.8591 106.115 67.4446 95.41 65.1715 83.5151L59.7891 55.2813C58.0778 46.3038 58.8024 37.0317 61.8874 28.4289C64.9724 19.8262 70.3052 12.2067 77.3316 6.36253L77.7513 6.01121C85.7442 -0.639057 91.5214 -9.56655 94.3136 -19.5824C97.1058 -29.5981 96.7805 -40.2268 93.3809 -50.0531L73.9304 -106.278C73.7476 -96.6106 70.8695 -87.1861 65.6202 -79.0656C60.3709 -70.9453 52.9589 -64.4515 44.2187 -60.3157L43.709 -60.0835C35.3006 -56.1233 28.1063 -49.9835 22.8736 -42.3021C17.6409 -34.6208 14.5609 -25.6782 13.9537 -16.4038L12.0403 12.7561C11.231 25.047 14.8119 37.2261 22.1449 47.123L53.145 89.0067C58.0903 95.6828 61.3645 103.447 62.6934 111.648C64.0224 119.849 63.3675 128.249 60.7835 136.146L2.5866 314.093C-0.266428 322.81 -0.764079 332.126 1.144 341.097C3.05208 350.068 7.29808 358.375 13.4516 365.177L180.814 550.181C189.931 560.26 202.63 566.371 216.195 567.208C229.76 568.045 243.114 563.541 253.401 554.659L299.703 514.684L153.549 418.593Z' fill='%23E3F655'/%3E%3Cpath d='M75.1488 -500.054L26.723 -416.559C20.5119 -405.851 18.3216 -393.28 20.5456 -381.103C22.7696 -368.926 29.2622 -357.94 38.8573 -350.119C44.3045 -345.678 48.7955 -340.18 52.0593 -333.956C55.3231 -327.732 57.2921 -320.911 57.8475 -313.905L73.9118 -111.501C74.0054 -109.77 74.0109 -108.035 73.9285 -106.303L73.9285 -106.287L93.3782 -50.0606C96.7771 -40.2343 97.1022 -29.6057 94.3099 -19.5901C91.5177 -9.5744 85.7408 -0.646911 77.7485 6.00372L77.3212 6.35413C70.2964 12.1997 64.9647 19.8192 61.8796 28.4216C58.7945 37.0239 58.0686 46.2953 59.7773 55.2729L65.1612 83.5068C67.4331 95.404 73.8505 106.11 83.2724 113.722L123.122 145.922C129.477 151.055 134.51 157.636 137.799 165.113C141.089 172.591 142.539 180.748 142.029 188.901L130.578 372.649C130.019 381.649 131.849 390.638 135.88 398.704C139.912 406.771 146.004 413.629 153.538 418.584L299.7 514.677L299.709 514.677L477.767 360.949C483.568 355.941 488.192 349.714 491.308 342.712L561.722 184.42C565.167 176.685 570.446 169.906 577.102 164.672C583.757 159.437 591.589 155.905 599.918 154.381L638.583 141.118L638.599 141.092L638.599 141.085C643.857 132.852 653.066 128.881 664.274 123.69L763.584 76.7781L763.593 76.7781C764.71 73.4752 765.488 70.0671 765.915 66.6066L774.022 -5.09619C776.582 -27.7126 716.705 -95.9204 719.42 -118.639L719.697 -120.93C721.172 -133.255 718.193 -145.702 711.295 -156.023C704.398 -166.344 694.039 -173.86 682.086 -177.212L616.368 -195.657C603.66 -199.221 592.782 -207.481 585.935 -218.764C579.089 -230.047 576.785 -243.51 579.491 -256.427L581.289 -264.986L581.289 -265.003C569.812 -266.941 559.343 -272.743 551.616 -281.448C543.89 -290.152 539.369 -301.235 538.805 -312.86L538.329 -322.907C538.001 -329.078 536.554 -335.139 534.058 -340.792L534.058 -340.801C534.058 -340.775 491.282 -374.616 491.282 -374.616L491.275 -374.627L256.59 -478.073C249.998 -480.978 242.866 -482.459 235.662 -482.419C228.458 -482.378 221.343 -480.817 214.784 -477.838L178.786 -461.481C170.67 -457.795 161.732 -456.294 152.857 -457.125C143.982 -457.957 135.478 -461.093 128.188 -466.222L89.843 -493.2C85.3489 -496.265 80.3897 -498.585 75.1566 -500.07L75.1488 -500.054Z' fill='%23E3F655'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: bottom $indent-64 left 40%;
+    background-size: contain;
+
+    @include screen-medium-down {
+      background-image: url("data:image/svg+xml,%3Csvg width='227' height='207' viewBox='0 0 227 207' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M44.833 162.777C42.6329 161.33 40.8541 159.328 39.6768 156.973C38.4996 154.618 37.9656 151.993 38.129 149.365L41.4724 95.7126C41.6204 93.3324 41.1966 90.9513 40.2363 88.7684C39.276 86.5854 37.8071 84.6641 35.9524 83.1649L24.3146 73.7615C21.5649 71.5384 19.692 68.4128 19.0283 64.9397L17.4567 56.6959C16.957 54.0746 17.1686 51.3673 18.0694 48.8554C18.9701 46.3435 20.5272 44.1188 22.5788 42.4123L22.7014 42.3098C25.0352 40.368 26.722 37.7613 27.5373 34.8369C28.3526 31.9124 28.2576 28.809 27.265 25.9399L21.5857 9.52302C21.5324 12.3458 20.692 15.0976 19.1593 17.4687C17.6266 19.8397 15.4624 21.7358 12.9104 22.9434L12.7616 23.0112C10.3064 24.1675 8.2058 25.9602 6.67795 28.203C5.15009 30.4459 4.25078 33.0569 4.07347 35.7649L3.5148 44.2792C3.2785 47.8679 4.32407 51.424 6.46518 54.3138L15.5167 66.5431C16.9607 68.4925 17.9167 70.7593 18.3047 73.154C18.6927 75.5486 18.5015 78.0014 17.7471 80.307L0.754462 132.265C-0.0785765 134.81 -0.223886 137.53 0.33325 140.15C0.890379 142.769 2.13014 145.195 3.92689 147.18L52.794 201.199C55.4561 204.142 59.164 205.926 63.1247 206.17C67.0855 206.415 70.9846 205.1 73.9882 202.506L87.5078 190.834L44.833 162.777Z' fill='%23E3F655'/%3E%3Cpath d='M21.9324 -105.453L7.79286 -81.0741C5.97927 -77.9476 5.33976 -74.277 5.98913 -70.7215C6.63851 -67.1659 8.53422 -63.9583 11.3359 -61.6747C12.9264 -60.378 14.2376 -58.7726 15.1906 -56.9553C16.1436 -55.1379 16.7185 -53.1463 16.8807 -51.1006L21.5712 7.99801C21.5985 8.50351 21.6002 9.01004 21.5761 9.51568L21.5761 9.52061L27.2551 25.9377C28.2475 28.8069 28.3424 31.9102 27.5272 34.8346C26.7119 37.759 25.0251 40.3657 22.6915 42.3076L22.5667 42.4099C20.5156 44.1167 18.9588 46.3415 18.058 48.8533C17.1572 51.365 16.9453 54.0721 17.4441 56.6934L19.0162 64.9373C19.6796 68.4111 21.5533 71.5371 24.3043 73.7595L35.9399 83.1617C37.7954 84.6604 39.2649 86.5818 40.2254 88.7651C41.1858 90.9484 41.6093 93.3301 41.4602 95.7106L38.1169 149.362C37.9537 151.99 38.4878 154.615 39.6651 156.97C40.8423 159.325 42.621 161.328 44.8209 162.775L87.4979 190.832L87.5006 190.832L139.491 145.946C141.184 144.484 142.534 142.666 143.444 140.621L164.004 94.4023C165.01 92.1438 166.551 90.1645 168.495 88.6362C170.438 87.1078 172.725 86.0764 175.157 85.6314L186.446 81.759L186.451 81.7512L186.451 81.7492C187.986 79.3455 190.675 78.186 193.948 76.6701L222.945 62.9726L222.947 62.9726C223.273 62.0082 223.5 61.0131 223.625 60.0027L225.992 39.0666C226.74 32.463 209.257 12.5474 210.049 5.91388L210.13 5.24509C210.561 1.64622 209.691 -1.98807 207.677 -5.00168C205.663 -8.01529 202.639 -10.2096 199.149 -11.1885L179.96 -16.5741C176.249 -17.6149 173.073 -20.0266 171.074 -23.321C169.075 -26.6155 168.402 -30.5465 169.193 -34.3182L169.717 -36.8171L169.717 -36.822C166.366 -37.388 163.31 -39.0822 161.053 -41.6237C158.797 -44.1652 157.478 -47.4013 157.313 -50.7957L157.174 -53.7292C157.078 -55.5311 156.655 -57.3006 155.927 -58.9514L155.927 -58.954C155.927 -58.9465 143.437 -68.8275 143.437 -68.8275L143.435 -68.8305L74.9105 -99.0351C72.9856 -99.8835 70.9033 -100.316 68.7998 -100.304C66.6962 -100.292 64.6189 -99.8365 62.7036 -98.9666L52.1928 -94.1905C49.823 -93.1144 47.2132 -92.6761 44.6219 -92.9189C42.0305 -93.1617 39.5476 -94.0772 37.419 -95.5748L26.2229 -103.452C24.9107 -104.347 23.4627 -105.024 21.9347 -105.458L21.9324 -105.453Z' fill='%23E3F655'/%3E%3C/svg%3E%0A");
+      background-position: top right $indent-36;
+      background-size: auto 70%;
+    }
+  }
+
+  .buttons,
+  & > .button {
+    @include grid-with-offset((small: 0, large: 10)) {
+      @include grid-columns-span((small: 6, medium: 5, large: 2));
+    }
+  }
+}
+
+.region {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  @include screen-medium-down {
+    left: 40%;
+    height: 100%;
+    width: 60%;
+  }
+}
+
+.headerContent {
+  @include grid-with-inner-context {
+    @include grid-with-offset((small: 0,medium: 0, large: 1)) {
+      @include grid-columns-span((small: 6, medium: 8, large: 6));
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin-bottom: $indent-32;
+    @include grid-columns-span-all;
+
+    @include screen-medium-down {
+      margin-bottom: $indent-12;
+    }
+  }
+
+  .textMedium {
+    @include grid-columns-span((small: 4, large: 3));
+  }
+
+  @include screen-medium-down {
+    margin-bottom: calc($indent-20 + $indent-24);
+  }
+}
+
+.mainWrapper {
+  @include grid;
+  @include grid-columns-span-all;
+  background-color: $color-white;
+  padding-top: $indent-64;
+
+  &::before {
+    background-color: $color-white;
+  }
+
+  @include screen-medium-down {
+    padding-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.mainTopContent {
+  margin-bottom: calc($indent-64 * 2);
+
+  .contentLeft {
+    @include grid-columns-span((large: 4));
+
+    @include screen-medium-down {
+      margin-bottom: $indent-24;
+    }
+
+    .textBig {
+      font-weight: 500;
+    }
+  }
+
+  .contentRight {
+    @include grid-with-offset((large: 5)) {
+      @include grid-columns-span((large: 4));
+    }
+
+    p + p {
+      margin-top: $indent-24;
+    }
+  }
+
+  @include screen-medium-down {
+    margin-bottom: calc($indent-20 + $indent-20);
+  }
+}
+
+.mainTopContent,
+.sloganContainer {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 11));
+    }
+  }
+}
+
+.sloganContainer {
+  margin-bottom: $indent-56;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-24;
+  }
+}
+
+.sloganIcon {
+  @include grid-columns-span((large: 4));
+  justify-self: end;
+  margin-right: $grid-padding-size;
+  width: 234px;
+  height: 284px;
+
+  @include screen-medium-down {
+    display: none;
+  }
+}
+
+.sloganText {
+  @include grid-with-offset((large: 4)) {
+    @include grid-columns-span((large: 6));
+  }
+
+
+  p {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  text-transform: uppercase;
+  @include typo-make-h1;
+  @include screen-huge-up {
+    line-height: 56px;
+  }
+  font-weight: 700;
+}
+
+.mainHeader,
+.mainWrapper,
+.mainFooter {
+  position: relative;
+  @include grid-columns-span-all;
+}
+
+.mainHeader,
+.mainWrapper {
+  // * {
+  //   z-index: 1;
+  //   position: relative;
+  // }
+
+  &::before {
+    @extend %helper-full-size-pseudo-layer;
+    // z-index: 4;
+    width: calc(100% + $grid-padding-size * 2);
+    left: calc($grid-padding-size * -1);
+    pointer-events: none;
+  }
+}
+
+.headerContent,
+.sloganContainer,
+.mainTopContent,
+.mainDescription {
+  z-index: 1;
+  position: relative;
+}
+
+.mainContent {
+  width: calc(100% + $grid-padding-size * 2);
+  margin-left: calc($grid-padding-size * -1);
+  margin-bottom: $indent-80;
+  overflow: hidden;
+
+  position: relative;
+
+  :global(.slider-control-next) {
+    right: $grid-padding-size;
+  }
+
+  @include screen-medium-down {
+    margin-bottom: calc($indent-20 + $indent-20 + $indent-8);
+  }
+
+  .button {
+    align-self: self-start;
+  }
+}
+
+.mainContent,
+.mainFooter {
+  @include grid-columns-span-all;
+}
+
+.mainDescriptionWrapper {
+  @include grid;
+  @include grid-columns-span-all;
+  justify-content: space-between;
+
+  margin-bottom: $indent-80;
+
+  @include screen-large-down {
+    margin-bottom: calc($indent-20 + $indent-20);
+  }
+
+  @include screen-medium-down {
+    margin-bottom: calc($indent-24 + $indent-24);
+  }
+
+  .buttonWrapper {
+    @include grid-with-inner-context {
+      @include grid-columns-span((large: 5));
+    }
+    .buttons,
+    >.button {
+      align-self: start;
+      @include grid-with-offset((large: 3)) {
+        @include grid-columns-span((large: 2))
+      }
+    }
+
+    .button:first-child {
+      @include screen-medium-down {
+        margin-top: calc($indent-24 + $indent-24);
+      }
+    }
+  }
+
+}
+
+.button {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  justify-self: end;
+  align-self: end;
+  padding: $indent-20 0;
+  @include screen-small-down {
+    padding: $indent-16 0;
+  }
+  text-align: center;
+  width: 100%;
+
+  & + .button {
+    margin-top: $indent-24;
+  }
+}
+
+
+.mainDescription {
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 0, large: 1)) {
+      @include grid-columns-span((medium: 8, large: 6));
+    }
+  }
+
+  .textMedium {
+    @include screen-small-down {
+      font-weight: 400;
+      padding-right: calc($indent-16 * 4);
+    }
+  }
+}
+
+.mainDescription,
+.mainDescriptionText,
+.mainFooterContent,
+.mainFooterText {
+  .textMedium {
+    @include screen-large-down {
+      margin-bottom: $indent-16;
+    }
+  }
+}
+
+.mainDescriptionText,
+.mainFooterText {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 6));
+  }
+
+  .textMedium,
+  .textSmall {
+    @include grid-columns-span((large: 6, huge: 3));
+  }
+
+}
+
+.mainFooterContent,
+.mainDescription {
+  align-self: start;
+
+  .textBig {
+    @include grid-columns-span-all;
+    margin-bottom: $indent-32;
+
+    @include screen-medium-down {
+      margin-bottom: calc($indent-24 + $indent-8);
+    }
+  }
+}
+
+.mainHeader,
+.mainFooter {
+  border-radius: 16px;
+
+  &::before {
+    border-radius: 16px;
+    background-color: $color-gray-extra-light;
+  }
+}
+
+.mainFooter {
+  position: relative;
+  @include grid;
+  padding: $indent-64 0;
+  margin-bottom: $indent-80;
+  background-color: $color-gray-extra-light;
+
+  .mask {
+    top: 0;
+    height: 100%;
+    width: $grid-padding-size;
+
+    &:first-child {
+      right: 100%;
+    }
+
+    &:last-child {
+      left: 100%;
+    }
+  }
+
+  &::after {
+    content: '';
+    bottom: 0;
+  }
+
+  &::after,
+  .mask {
+    display: none;
+    z-index: 4;
+    position: absolute;
+    background-color: $color-white;
+  }
+
+  @include screen-medium-down {
+    width: calc(100% + $grid-padding-size * 2);
+    margin-left: calc($grid-padding-size * -1);
+    margin-bottom: calc($indent-20 * 2);
+    padding: calc($indent-16 * 2) $grid-padding-size;
+    padding-bottom: calc($indent-20 + $indent-20);
+  }
+}
+
+.mainFooterContent {
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 1)) {
+      @include grid-columns-span((medium: 6));
+    }
+  }
+
+  .textUpper {
+    @include screen-small-down {
+      font-size: 32px;
+      line-height: 36px;
+      font-weight: 700;
+    }
+  }
+
+  .textMedium {
+    @include typo-make-h2;
+  }
+
+  .textSmall {
+    @include typo-make-big-text;
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .textBig,
+  .textSmall {
+    @include screen-medium-down {
+      margin-bottom: calc($indent-16 * 2);
+    }
+  }
+
+  .example {
+    display: none;
+    @include grid-columns-span-all;
+    justify-self: end;
+    margin-top: $indent-32;
+    margin-bottom: 0;
+
+    @include screen-medium-up {
+      display: block;
+    }
+  }
+}
+
+.mainFooterCard {
+  align-self: end;
+  @include grid-columns-span((medium: 4));
+
+  .example {
+    display: none;
+
+    @include screen-medium-down {
+      display: block;
+      margin-bottom: $indent-16;
+    }
+  }
+
+  // .cardWrapper {
+  //   max-height: 400px;
+
+  //   @include screen-medium-down {
+  //     max-height: 300px;
+  //   }
+  // }
+}

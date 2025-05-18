@@ -1,0 +1,33 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.socialList {
+  display: flex;
+  align-items: center;
+  gap: 0 $indent-16;
+
+  @include screen-small-down {
+    //justify-content: space-between;
+    gap: 0 $indent-16;
+  }
+}
+
+.linkIcon {
+  width: 24px;
+  height: 24px;
+
+  &:hover svg {
+    fill: $color-bluemarin;
+  }
+}
+
+.svg {
+  width: 24px;
+  height: 24px;
+  fill: $color-white;
+  transition: fill .1s linear;
+}
+
+.linkContrast svg {
+  fill: $color-black;
+}

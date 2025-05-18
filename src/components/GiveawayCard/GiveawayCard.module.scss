@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.card {
+  padding: $indent-12;
+  padding-bottom: $indent-16;
+  width: 20%;
+  height: 292px;
+  border-radius: 20px;
+  position: relative;
+
+  @include screen-large-down {
+    width: 25%;
+  }
+
+  @include screen-medium-down {
+    width: 33.333%;
+  }
+
+  @include screen-small-down {
+    width: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+    transition: .2s linear;
+    z-index: -1;
+    top: $indent-12;
+    left: $indent-12;
+    right: $indent-12;
+    bottom: $indent-16;
+  }
+
+  &:hover {
+    @include screen-medium-up {
+      &::after {
+        transform: scale(1.055);
+        background-color: $color-white;
+      }
+    }
+
+    &::after {
+      @extend %card-shadow;
+      @include screen-small-down {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  padding: $indent-24;
+  width: 100%;
+  height: calc(100% - 52px);
+  background-color: $color-gray-light;
+  border-radius: inherit;
+}
+
+.image {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.winnerID {
+  @include typo-make-h5;
+  font-size: 20px;
+  display: inline-block;
+  padding-top: $indent-12;
+}
+
+.category {
+  display: inline-block;
+  padding: 4px $indent-12;
+  position: absolute;
+  top: $indent-24;
+  left: $indent-24;
+  background-color: $color-bluemarin;
+  border-radius: 8px;
+  font-size: 10px;
+  line-height: 14px;
+  color: $color-white;
+  text-transform: uppercase;
+}

@@ -1,0 +1,60 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.menu__items {
+  @include grid-columns-span(( medium: 3 ));
+  height: 100%;
+}
+
+.menuTop {
+  grid-row-gap: $indent-24;
+  align-items: center;
+}
+
+.menuSub {
+  @include grid-columns-span(( small: 3, large: 3,  huge: 3 ));
+
+  @include screen-small-down {
+    @include grid-columns-span-all;
+    margin-bottom: $indent-96;
+  }
+}
+
+.item {
+  margin-bottom: $indent-20;
+}
+
+.subitems {
+  grid-row-gap: $indent-16;
+  margin-top: $indent-16;
+}
+
+.subitems,
+.menu__items {
+  display: flex;
+}
+
+.subitems,
+.menuSub {
+  flex-direction: column;
+}
+
+.social {
+  @include grid-columns-span-all;
+  margin-top: $indent-8;
+
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.subitemsButton {
+  @extend %link-base;
+  @include typo-make-text;
+  padding: 4px 0;
+
+  @include screen-small-down {
+    @include typo-make-big-text($isHeading: false);
+  }
+}

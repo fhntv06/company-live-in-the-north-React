@@ -1,0 +1,9 @@
+////
+/// A module forwarding all the placeholders for ease of use.
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+@forward './placeholders/grid';
+@forward './placeholders/typography';
+@forward './placeholders/gui';
+@forward './placeholders/helpers';

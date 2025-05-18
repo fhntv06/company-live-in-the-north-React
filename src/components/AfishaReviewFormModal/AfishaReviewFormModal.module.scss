@@ -1,0 +1,26 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.form {
+  padding: 0 $grid-padding-size $indent-24;
+  border-radius: 16px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  
+  @include typo-make-h4;
+  margin-bottom: $indent-12;
+  color: $color-black;
+}
+
+.text {
+  margin-bottom: $indent-12;
+}
+
+.submit {
+  width: 100%;
+  margin-top: $indent-24;
+}

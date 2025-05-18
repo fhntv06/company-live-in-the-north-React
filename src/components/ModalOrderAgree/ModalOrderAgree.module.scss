@@ -1,0 +1,106 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.content {
+  @include grid;
+  grid-column: 2/ span 10;
+  grid-template-columns: repeat(10, 1fr);
+  margin-top: auto;
+  margin-bottom: $indent-80;
+  padding-top: $indent-64;
+  position: relative;
+  background-color: $color-white;
+  border-radius: 16px;
+}
+
+.close {
+  position: absolute;
+  top: $indent-64;
+  right: $indent-48;
+
+  &:hover svg {
+    fill: $color-bluemarin;
+    transform: rotate(90deg);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: $color-blue-gray;
+    transition: .1s linear;
+  }
+}
+
+.header {
+  @include typo-make-h2;
+  grid-column: 2/ 9;
+  margin-bottom: $indent-40;
+  font-weight: 700;
+  color: $color-black;
+}
+
+.info {
+  @include typo-make-text;
+  grid-column: 2/ span 5;
+  margin-bottom: $indent-48;
+  color: $color-black;
+}
+
+.contacts {
+  @include grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-column: 2/-1;
+  margin-bottom: $indent-48;
+}
+
+.left {
+  grid-column: 1 / span 3;
+
+  .text {
+    @include typo-medium-text;
+    color: $color-black;
+
+    &:not(:last-child) {
+      margin-bottom: $indent-24;
+    }
+  }
+}
+
+.right {
+  grid-column: span 3;
+}
+
+.phone {
+  @include typo-make-h2;
+  color: $color-black;
+}
+
+.attention {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: $indent-16;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: calc($indent-8 + 4px);
+  }
+
+  .text {
+    @include typo-make-text;
+    font-weight: 500;
+    color: $color-black;
+  }
+}
+
+.map {
+  grid-column: 2/ span 8;
+  aspect-ratio: 1216/320;
+  position: relative;
+  margin-bottom: $indent-48;
+  border-radius: 16px;
+  overflow: hidden;
+}
+

@@ -1,0 +1,26 @@
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/placeholders' as *;
+
+.wrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((large: 11, huge: 11));
+  }
+}
+
+.headerWrapper {
+  @include grid-columns-span((large: 6, huge: 4));
+
+  p {
+    @include typo-make-h5;
+    margin-bottom: $indent-48;
+  }
+}
+
+.title {
+  margin-bottom: $indent-32;
+
+  @include screen-small-down {
+    margin-bottom: $indent-16;
+  }
+}

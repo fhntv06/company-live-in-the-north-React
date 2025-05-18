@@ -1,0 +1,408 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.form {
+    @include grid-with-inner-context {
+        @include grid-with-offset((small: 0, medium: 1)) {
+            @include grid-columns-span((small: 6, medium: 10, large: 8))
+        }
+    }
+
+    height: min-content;
+    margin-top: $indent-32;
+
+    @include screen-small-down {
+        margin-top: 40px;
+    }
+
+    &.registerForm {
+        margin-top: $indent-48;
+
+        @include screen-small-down {
+            margin-top: 16px;
+        }
+    }
+
+    &.loginForm {
+        margin-top: $indent-64;
+
+        @include screen-small-down {
+            margin-top: 40px;
+        }
+    }
+}
+
+.inputsWrapper {
+    @include grid-columns-span((medium: 10, large: 6));
+    height: min-content;
+
+    &.error {
+        @include screen-medium-up {
+            margin-bottom: -22px;
+        }
+    }
+}
+
+.buttonWrapper {
+    @include grid-columns-span((small: 6, medium: 10, large: 2));
+    align-self: flex-end;
+
+    @include screen-medium-down {
+        margin-top: calc($indent-24 + $indent-8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        order: 1;
+    }
+
+    @include screen-small-down {
+        margin-top: $indent-24;
+
+        .confirm {
+            margin-top: 0;
+            margin-bottom: $indent-24;
+        }
+    }
+
+    &.buttonWrapperSingleRow {
+      align-self: flex-start;
+    }
+
+    & + .singleBottomLink {
+        @include grid-with-offset((large: 3)) {
+            @include grid-columns-span((large: 3))
+        }
+
+        @include screen-medium-down {
+            order: 1;
+            justify-content: flex-end;
+        }
+    }
+}
+
+.submit {
+    padding: 20px;
+    width: 100%;
+
+    @include screen-small-down {
+        padding: 16px;
+    }
+
+    & + .singleBottomLink {
+        @include screen-medium-down {
+            margin-left: auto;
+        }
+    }
+}
+
+.bottom {
+    @include grid-with-offset((small: 0, medium: 3, large: 6)) {
+        @include grid-columns-span((small: 6, medium: 6, large: 4, huge: 3))
+    }
+
+    margin-top: $indent-20;
+    display: flex;
+
+    a {
+        @extend %link-multiline-base;
+        @include typo-medium-text;
+        color: $color-bluemarin;
+    }
+
+    .confirm {
+        margin-top: 0;
+    }
+
+    @include screen-medium-down {
+        margin-top: $indent-12;
+
+        &:not(:first-child) {
+            margin-top: $indent-24;
+        }
+    }
+}
+
+.captcha {
+    margin-top: $indent-24;
+
+    @include screen-small-down {
+        margin-top: 12px;
+    }
+}
+
+.codeCheck {
+    @include grid-with-inner-context {
+        @include grid-columns-span((small: 6))
+    }
+
+    margin-top: $indent-24;
+
+    @include screen-large-down {
+        display: flex;
+    }
+
+    @include screen-large-down {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    @include screen-small-down {
+        margin-top: 18px;
+    }
+
+    .singleBottomLink {
+      margin-top: calc($indent-8 * -1);
+      margin-left: auto;
+      @include grid-with-offset((large: 3, huge: 4)) {
+        @include grid-columns-span((small: 6, large: 3, huge: 2))
+      }
+    }
+
+    .codeField + .singleBottomLink {
+      margin-top: 0;
+      margin-left: auto;
+
+      @include screen-huge-down {
+        margin-top: $indent-16;
+        margin-bottom: calc($indent-48 * -1);
+      }
+    }
+}
+
+.codeField {
+    @include grid-columns-span((medium: 3, large: 3, huge: 3, oversized: 2));
+    @include screen-large-only {
+      min-width: 248px;
+    }
+  }
+
+.codeBtn {
+    @include grid-columns-span((medium: 3, large: 3, huge: 3, oversized: 2));
+    padding: $indent-20;
+
+    @include screen-large-only {
+      min-width: 248px;
+    }
+
+    @include screen-large-down {
+      margin-bottom: $indent-12;
+    }
+
+    @include screen-small-down {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    &.timer {
+        @include screen-small-down {
+            order: 1;
+            margin: 8px 0 0;
+        }
+    }
+}
+
+.section {
+    &+.section {
+        margin-top: $indent-40;
+
+        @include screen-small-down {
+            margin-top: 24px;
+        }
+    }
+}
+
+.sectionHeader {
+    @include typo-make-big-text;
+    margin-bottom: $indent-32;
+    color: $color-black;
+
+    @include screen-small-down {
+        margin-bottom: 16px;
+    }
+}
+
+.confirm {
+    margin-top: $indent-32;
+    @include typo-medium-text;
+    color: $color-gray-deep;
+
+    a {
+        color: $color-bluemarin;
+        transition: color .1s linear;
+
+        &:hover {
+            color: $color-bluemarin-light;
+        }
+    }
+
+    @include screen-small-down {
+        order: -1;
+        // margin: 0 0 24px;
+    }
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: $indent-16;
+
+    @include screen-medium-down {
+        gap: 14px;
+    }
+}
+
+.completeBtn {
+    @include grid-columns-span((large: 2));
+    margin-top: $indent-16;
+}
+
+.select {
+    :global(.select__control) {
+        height: 58px;
+
+        @include screen-small-down {
+            height: 48px;
+        }
+    }
+
+    :global(.select__menu) {
+        z-index: 5;
+    }
+
+    :global(.select__control input) {
+        padding: unset;
+      }
+
+    :global(.select__single-value) {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.referalWrapper {
+    @include grid-with-inner-context {
+        @include grid-columns-span((small: 6))
+    }
+
+    margin-top: $indent-48;
+
+    @include screen-small-down {
+        margin-top: $indent-12;
+    }
+
+    @include screen-large-up {
+        margin-bottom: calc(var(--btn-wrapper-height) - var(--referal-wrapper-height));
+    }
+
+}
+
+.referalField {
+    @include grid-with-offset((large: 3, huge: 3)) {
+        @include grid-columns-span((small: 6, large: 3, huge: 3))
+    }
+}
+
+.showPass {
+    position: absolute;
+    top: calc((58px - 16px) / 2);
+
+    @include screen-small-down {
+        top: calc((48px - 16px) / 2);
+    }
+
+    right: 24px;
+
+    &:hover {
+        svg {
+            stroke: $color-bluemarin-light;
+        }
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: $color-blue-gray;
+        transition: stroke .1s linear;
+    }
+}
+
+.columnsField {
+    margin-top: $indent-24;
+    @include grid-with-inner-context {
+        @include grid-columns-span((small: 6))
+    }
+
+    @include screen-small-down {
+        margin-top: 0;
+    }
+
+    :global(.input-field__inner),
+    .inputDescription {
+        @include typo-make-text;
+        @include grid-columns-span((medium: 3));
+
+        @include screen-small-down {
+            margin-top: 12px;
+        }
+    }
+}
+
+.formBottomWrapper {
+    @include grid-with-inner-context {
+        @include grid-columns-span((small: 6, medium: 10, large: 8))
+    }
+}
+
+.bottomCheckbox {
+    @include grid-columns-span((medium: 4));
+
+    @include screen-oversized-up {
+        padding-right: 40%;
+    }
+}
+
+.bottomLink {
+    @include grid-columns-span((small: 3 , medium: 5, large: 2));
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    @include screen-medium-only {
+        grid-row: 2;
+    }
+
+    @include screen-medium-down {
+        justify-content: flex-start;
+    }
+
+    & + .bottomLink {
+        justify-content: flex-start;
+        @include screen-medium-down {
+            justify-content: flex-end;
+        }
+    }
+
+    button {
+      @extend %link-multiline-base;
+      @include typo-medium-text;
+      color: $color-bluemarin;
+    }
+}
+
+.errorsText {
+    @include grid-columns-span((small: 6, medium: 10, large: 8));
+    color: $color-error;
+    margin-top: $indent-24;
+}
+
+.errorWrapper {
+    @include grid-with-offset((large: 6, huge: 6)) {
+        @include grid-columns-span((large: 2, huge: 2))
+    }
+
+    @include screen-medium-down {
+        order: 1;
+    }
+}

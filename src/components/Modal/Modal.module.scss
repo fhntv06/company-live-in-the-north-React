@@ -1,0 +1,103 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders' as *;
+
+.modal {
+  z-index: 9999;
+
+  @include grid;
+  @include helper-hidden-system-scrollbar;
+
+
+  &,
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    z-index: -1;
+    inset: 0 !important;
+    opacity: .5 !important;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) !important;
+    background-image: url('../../../public/images/modal-bg-min.jpg') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .closeBtn {
+    align-items: self-start;
+    justify-self: self-end;
+    margin-right: $indent-48;
+  }
+}
+
+.content {
+  background-color: $color-white;
+  height: fit-content;
+  z-index: 1;
+
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 1, large: 1, huge: 1)) {
+      @include grid-columns-span((small: 6, medium: 10, large: 10, huge: 10));
+    }
+  }
+
+  margin: auto 0 $indent-56;
+  padding: $indent-64 0;
+  background: $color-white;
+  border-radius: 16px;
+
+  &.gradientBorder {
+    &::before {
+      @extend %border-gradient;
+      background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+      background-origin: border-box;
+      z-index: -1;
+    }
+  }
+
+  &.narrow {
+    padding: $indent-56 0;
+
+    @include grid-with-inner-context {
+      @include grid-with-offset((medium: 1, large: 2, huge: 2)) {
+        @include grid-columns-span((small: 6, medium: 10, large: 8, huge: 8));
+      }
+    }
+
+    @include screen-large-up {
+    margin-bottom: calc($indent-96 + $indent-96 + $indent-80 + $indent-8);
+    }
+
+    .closeBtn {
+      display: none;
+      @include screen-huge-up {
+        display: flex;
+      }
+    }
+  }
+
+  &.extraNarrow {
+    @include grid-with-inner-context {
+      @include grid-with-offset((medium: 4, large: 4, huge: 4)) {
+        @include grid-columns-span((medium: 4, large: 5, huge: 4));
+      }
+    }
+  }
+
+}
+
+.headerWrapper {
+  position: relative;
+  z-index: 1;
+  height: 24px;
+  div {
+    transform: initial !important;
+  }
+}

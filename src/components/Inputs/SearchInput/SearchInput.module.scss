@@ -1,0 +1,94 @@
+@use '../../../styles/variables.scss' as *;
+
+.search {
+  position: relative;
+
+  input {
+    padding-left: 56px;
+
+    &:focus,
+    &:active {
+      border-color: $color-violet-light;
+    }
+
+    &::placeholder {
+      transition: opacity .5s;
+    }
+
+    &:not(:focus)::placeholder {
+      opacity: .5;
+    }
+  }
+
+  &.searchChanged .cross {
+    display: block;
+  }
+
+  &.searchFocus,
+  &.searchChanged {
+    .searchButton {
+      opacity: 1;
+    }
+  }
+
+  &.searchHidden .search__field {
+    width: 0;
+    visibility: hidden;
+  }
+}
+
+.searchButton {
+  left: 16px;
+  height: 20px;
+  opacity: .5;
+  cursor: default;
+  transition: opacity .5s;
+  position: relative;
+  z-index: 30;
+
+  &:hover svg {
+    fill: $color-bluemarin;
+    transform: rotate(-15deg);
+  }
+
+  svg {
+    height: 20px;
+    width: 20px;
+    transition: fill .1s, transform .2s;
+  }
+}
+
+.cross {
+  display: none;
+  right: 20px;
+  cursor: pointer;
+
+  svg {
+    height: 12px;
+    width: 12px;
+    transform: rotateZ(0);
+    transition: transform .3s;
+  }
+
+  &:hover svg {
+    fill: $color-bluemarin;
+    transform: rotateZ(-90deg);
+  }
+}
+
+.search__field {
+  width: 100%;
+  transition:
+    width .5s,
+    visibility .5s;
+}
+
+.cross,
+.searchButton {
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  outline-color: transparent;
+  border: none;
+  transform: translateY(-50%);
+}

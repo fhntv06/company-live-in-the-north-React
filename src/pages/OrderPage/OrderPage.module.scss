@@ -1,0 +1,76 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  @include grid;
+  @include grid-container;
+  padding-top: $indent-40;
+  padding-bottom: $indent-80;
+}
+
+.pageTitle {
+  @include grid-columns-span-all;
+
+  @include screen-small-down {
+    margin-top: calc($indent-20 + $indent-20);
+  }
+}
+
+.row {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 10));
+    }
+  }
+
+  & + .confirmation {
+    margin-top: $indent-24;
+  }
+
+  @include screen-small-down {
+    margin-bottom: $indent-24;
+
+    & + .confirmation {
+      margin-top: $indent-16;
+    }
+  }
+}
+
+.confirmation {
+  @include grid-columns-span((large: 11));
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+.price {
+  display: flex;
+  gap: 0;
+  align-items: center;
+
+  p {
+    @include typo-make-h4;
+    font-weight: 700;
+  }
+}
+
+.coinIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: $indent-8;
+}
+
+.confirmOrder {
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1, huge: 1)) {
+      @include grid-columns-span((large: 8, huge: 8))
+    }
+  }
+  padding: 0 $indent-24;
+  padding-bottom: $indent-24;
+  @include screen-medium-up {
+    padding: 0 $indent-48;
+  }
+}
+
+

@@ -1,0 +1,100 @@
+@use '../../styles/variables' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  padding: $indent-32 $indent-24 $indent-24 $indent-24;
+  border-radius: 16px;
+  transition: opacity .1s linear;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+    background-origin: border-box;
+    background-clip: border-box;
+    -webkit-mask:
+    linear-gradient($color-white 0 0) padding-box,
+    linear-gradient($color-white 0 0);
+    -webkit-mask-composite: xor;
+          mask-composite: exclude;
+    -webkit-mask-repeat: no-repeat;
+    transition: inherit;
+  }
+
+  &::after {
+    background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    opacity: 0;
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    .bottom {
+      background-image: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+    }
+
+    .top {
+      transform: translateX(10px);
+
+      svg:first-child {
+        opacity: 0;
+      }
+      svg:last-child {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.top {
+  align-self: flex-end;
+  position: relative;
+  width: 46px;
+  height: 10px;
+  transition: transform 0.3s ease-in-out;
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 46px;
+    height: 12px;
+    fill: none;
+    transition: opacity .1s linear;
+
+    &:last-child {
+      opacity: 0;
+    }
+  }
+}
+
+
+.bottom {
+  position: relative;
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  background-clip: text;
+  text-transform: uppercase;
+  transition: background-image .1s;
+  background-size: 100%;
+  background-repeat: repeat;
+  background-image: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  white-space: pre-wrap;
+}

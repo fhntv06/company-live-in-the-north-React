@@ -1,0 +1,143 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/variables/indent-system.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+.content {
+  @include grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-column: 2/-1;
+  position: relative;
+  z-index: 1;
+
+  @include screen-small-down {
+    grid-template-columns: repeat(6, 1fr);
+    grid-column: 1/-1;
+  }
+}
+
+.info {
+  @include typo-make-text;
+  grid-column: span 5;
+  margin-bottom: $indent-48;
+
+  @include screen-medium-down {
+    grid-column: span 8;
+  }
+
+  @include screen-small-down {
+    @include typo-medium-text;
+    grid-column: 1/-1;
+    margin-bottom: 24px;
+  }
+}
+
+.contacts {
+  @include grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-column: 1/-1;
+  margin-bottom: $indent-48;
+
+  @include screen-small-down {
+    margin-bottom: 24px;
+  }
+}
+
+.left {
+  grid-column: 1 / span 3;
+
+  @include screen-medium-down {
+    grid-column: 1/ span 4;
+  }
+
+  @include screen-small-down {
+    grid-column: 1/-1;
+  }
+
+  .text {
+    @include typo-medium-text;
+    color: $color-black;
+
+    &:not(:last-child) {
+      margin-bottom: $indent-24;
+    }
+  }
+}
+
+.right {
+  grid-column: span 3;
+
+  @include screen-medium-down {
+    grid-column: span 4;
+  }
+
+  @include screen-small-down {
+    order: -1;
+    grid-column: 1/-1;
+    margin-bottom: 32px;
+  }
+}
+
+.phone {
+  @extend %link-base;
+  @include typo-make-h2;
+  color: $color-black;
+}
+
+.attention {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: $indent-16;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: calc($indent-8 + 4px);
+  }
+
+  .text {
+    @include typo-make-text;
+    font-weight: 500;
+    color: $color-black;
+  }
+
+  @include screen-small-down {
+    svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+    }
+
+    .text {
+      @include typo-medium-text;
+      font-weight: 500;
+    }
+  }
+}
+
+.map {
+  grid-column: 1/-1;
+  aspect-ratio: 1324/480;
+  position: relative;
+  margin-bottom: $indent-24;
+  margin-right: $indent-48;
+  border-radius: 16px;
+  overflow: hidden;
+
+  @include screen-small-down {
+    aspect-ratio: 366/260;
+    margin-right: 0;
+  }
+}
+
+.bottom {
+  grid-column: 1/-1;
+  margin-bottom: $indent-48;
+
+  @include screen-small-down {
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+  }
+}

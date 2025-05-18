@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $indent-80;
+
+  &.inGridContainer {
+    @include grid-columns-span-all;
+    .events {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.animateWrapper {
+  display: inherit;
+  flex-direction: inherit;
+}
+
+.events {
+  @include grid-container;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $indent-16;
+
+  @include screen-medium-up {
+    gap: 0;
+  }
+}
+

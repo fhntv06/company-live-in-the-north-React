@@ -1,0 +1,344 @@
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables/indent-system.scss' as *;
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/placeholders.scss' as *;
+
+@mixin compact {
+  padding: $indent-24;
+  padding-bottom: $indent-36;
+
+  .calendarSvg {
+    width: 24px;
+    height: 24px;
+    margin-right: $indent-32;
+  }
+
+  .dropdownSvg,
+  .tags {
+    display: none;
+  }
+
+  .icons {
+    margin: 0;
+  }
+
+  .monthsControl {
+    margin-bottom: 10px;
+  }
+
+  .left {
+    justify-content: center;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+  }
+
+  .right {
+    display: j;
+  }
+
+  .right {
+      width: 32px;
+      margin-right: 16px;
+      flex: 0 1 auto;
+
+    span {
+      display: none;
+    }
+  }
+
+  .calendar {
+    margin-bottom: 48px;
+
+    .right {
+      display: none;
+    }
+  }
+
+  .reset {
+    @include typo-make-small;
+    margin-right: 40px;
+    margin-left: $indent-16;
+  }
+
+  .submit {
+    width: 100%;
+  }
+
+  .closeBtn {
+    @include screen-small-down {
+      display: flex !important;
+    }
+  }
+
+  .dateIndicator {
+    padding-left: calc(($indent-24 + $indent-8) * 2);
+  }  
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: $indent-24;
+}
+
+.icons {
+  margin-right: $indent-24;
+  cursor: pointer;
+}
+
+.calendarSvg {
+  width: 32px;
+  height: 32px;
+  fill: $color-blue-gray;
+
+  @include screen-medium-up {
+    width: 24px;
+    height: 24px;
+    margin-right: $indent-32;
+  } //
+}
+
+.dropdownSvg {
+  width: 16px;
+  height: 16px;
+  fill: $color-blue-gray;
+  transform: rotate(180deg);
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  color: $color-blue-gray;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  transition: color .1s linear;
+}
+
+.seporator {
+  display: block;
+  width: 10px;
+  height: 1px;
+  margin: 0 6px;
+  background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%);
+  transition: transform .1s linear;
+}
+
+.months {
+  @include typo-make-tiny;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  color: $color-blue-gray;
+  text-transform: uppercase;
+  transition: color .1s linear;
+}
+
+.tags {
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+}
+
+.tag>div {
+  height: auto;
+  padding: 6px 20px;
+  cursor: pointer;
+  transition: background-color .1s linear;
+
+  &:hover {
+    background-color: $color-gray-extra-light;
+  }
+}
+
+.monthsControl {
+  @include typo-make-tiny;
+  text-transform: uppercase;
+  color: $color-blue-gray;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: $indent-16;
+  padding: 4px 0;
+  border-radius: 16px;
+  border: 1px solid rgba($color: $color-blue-gray, $alpha: .3);
+
+  .right,
+  .left {
+    flex: 0 0 50%;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left {
+    span {
+      margin: 0 auto;
+    }
+  }
+
+  .right {
+    span {
+      margin: 0 auto;
+    }
+  } 
+}
+
+.prev,
+.next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-gray-extra-light;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+
+  svg {
+    width: 8px;
+    height: 13px;
+    stroke: $color-blue-gray;
+    transition: fill .1s linear;
+  }
+
+  &:hover svg {
+    stroke: $color-bluemarin;
+  }
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+
+.prev {
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.calendar {
+  margin-bottom: $indent-24;
+  display: flex;
+  gap: $indent-32;
+
+  .left,
+  .right {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+}
+
+.reset {
+  @extend %link-base;
+  @include typo-medium-text;
+  margin-right: $indent-32;
+  color: $color-gray-deep;
+  text-transform: uppercase;
+}
+
+.background {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 316px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+}
+
+.modal {
+  padding: 0;
+}
+
+.closeBtn {
+  display: none !important;
+  align-self: flex-start;
+
+  margin-left: auto;
+  align-items: flex-start;
+}
+
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 16px;
+  background-color: $color-white;
+  z-index: 10;
+
+  padding: $indent-24 $indent-16;
+
+  &:not(.compact) {
+    .icons {
+      @include screen-medium-up {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        margin-right: $indent-16;
+        padding: 4px 6px;
+        border-radius: 8px;
+        background-color: $color-gray-light;
+        transition: background-color .1s linear;
+    
+        &:hover {
+          background-color: $color-gray-extra-light;
+        }
+      }
+    }
+  }
+
+  &.compact {
+    @include compact;
+  }
+
+  @include screen-small-down {
+    position: relative;
+    @include grid-columns-span-all;
+    padding: 20px 24px 35px;
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    z-index: 0;
+  
+    @include compact;
+  }
+
+  &.calendarDesktop {
+    &::before {
+      @extend %border-gradient;
+      background: linear-gradient(50.39deg, #54E8D3 5.88%, #5166F5 55.27%, #9963EF 107.13%, #FFC194 154.78%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+      background-origin: border-box;
+      z-index: -1;
+    }
+  }
+}

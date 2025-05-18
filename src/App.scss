@@ -1,0 +1,20 @@
+@use "styles/reset";
+@use "styles/base";
+@use "styles/mixins" as *;
+@use "styles/placeholders";
+@use "styles/functions";
+@use "styles/components";
+@use "styles/typography";
+@use "styles/variables";
+@use "styles/animation";
+
+body {
+  margin: 0;
+  background-color: #FFFFFF;
+}
+
+// .page {
+//   @include screen-small-down {
+//     overflow: hidden;
+//   }
+// }

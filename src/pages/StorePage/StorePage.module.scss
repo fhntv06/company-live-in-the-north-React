@@ -1,0 +1,435 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.pageContent {
+  @include grid;
+  padding-top: $indent-40;
+  padding-bottom: $indent-80;
+
+  overflow-x: hidden;
+
+  .faqCard {
+    @include grid-with-offset((medium: 1)) {
+      @include grid-columns-span((medium: 9))
+    }
+  }
+}
+
+.pagePartners {
+  @include grid;
+  padding-top: $indent-40;
+  padding-bottom: calc($indent-96 + $indent-56);
+
+  @include screen-small-down {
+    @include grid-container;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  @include grid-columns-span((small: 4, medium: 10, large: 5));
+  line-height: 24px;
+  gap: 0;
+}
+
+.storeHeader,
+.fagHeader,
+.partnersHeader {
+  padding-top: calc($indent-96 + $indent-80) !important;
+  padding-bottom: 0 !important;
+}
+
+.fagHeader,
+.partnersHeader {
+  .subtitle {
+    visibility: hidden;
+  }
+}
+
+.subtitle {
+  margin-top: $indent-16;
+
+  @include screen-small-down {
+    margin-top: $indent-12;
+  }
+
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0;
+  color: $color-gray-blue;
+
+  @include screen-medium-down {
+    @include typo-medium-text;
+  }
+}
+
+.coinIcon {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  margin: 0 4px;
+}
+
+.tabsWrapper {
+  @include screen-medium-down {
+    margin-left: calc($grid-padding-size * -1);
+    margin-right: calc($grid-padding-size * -1);
+  }
+
+  margin-top: $indent-64;
+
+  @include grid-columns-span-all;
+  display: flex;
+  align-self: end;
+
+  @include screen-medium-down {
+    order: 1;
+    min-height: 32px;
+  }
+}
+
+.tabs {
+  @include screen-medium-down {
+    padding: 0 $grid-padding-size;
+  }
+
+  display: flex;
+  gap: $indent-24;
+}
+
+.tab {
+  @include typo-medium-text;
+  font-weight: 600;
+  line-height: 16px;
+  position: relative;
+  padding-bottom: $indent-24;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+  white-space: nowrap;
+  z-index: 1;
+
+  @include screen-small-down {
+    @include typo-make-tiny;
+    font-weight: 600;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: calc(100% - 12px);
+    left: 50%;
+    width: 80px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='12' viewBox='0 0 80 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 12C73.9851 12 68.7788 8.22194 63.9904 4.7479L63.1369 4.12906C59.5534 1.54181 55.045 4.49408e-06 50.146 4.0658e-06L29.857 2.29208e-06C24.958 1.86379e-06 20.4495 1.5418 16.867 4.12906L16.0145 4.74677C11.2251 8.22115 6.01584 12 0 12L80 12Z' fill='white'/%3E%3C/svg%3E%0A");
+    transform: translate(-50%, 100%);
+    z-index: 2;
+    opacity: 0;
+    -webkit-transition: transform 0.2s linear;
+    -moz-transition: transform 0.2s linear;
+    -ms-transition: transform 0.2s linear;
+    -o-transition: transform 0.2s linear;
+    transition: transform 0.2s linear, opacity 0.2s linear;
+  }
+}
+
+
+.active {
+  color: $color-blue-dark;
+
+  &:before {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.ordersLinkWrapper {
+  display: inline-flex;
+  justify-self: end;
+  align-self: end;
+  @include grid-columns-span((small: 2, medium: 2, large: 1));
+
+  @include screen-medium-down {
+    align-self: start;
+  }
+
+  &.desktop {
+    @include screen-small-down {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    @include screen-medium-up {
+      display: none;
+    }
+  }
+
+  .tab {
+    display: inline-flex;
+    gap: 1px;
+
+    // &:after {
+    //   content: '';
+    //   display: block;
+    //   width: 6px;
+    //   height: 6px;
+    //   border-radius: 50%;
+    //   background: $color-error-field;
+    //   flex-shrink: 0;
+    // }
+  }
+}
+
+.faqWrapper {
+  background-color: $color-white !important;
+}
+
+.separator {
+  position: relative;
+  height: 28px;
+  width: 1px;
+  background-color: $color-white;
+  border-left: 1px solid $color-gray;
+}
+
+.filtersRow {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 12));
+  }
+  @include grid-container;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: calc($indent-16 + $indent-16);
+
+  @include screen-large-down {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.searchField { 
+  height: 56px;
+  @include grid-columns-span-all;
+  @include grid-container;
+  margin-bottom: $indent-16;
+}
+
+.wrapper {
+  display: flex;
+  gap: $grid-padding-size;
+  @include screen-medium-up {
+    align-self: center;
+  }
+  gap: 0;
+  @include screen-small-down {
+    margin-bottom: $indent-40;
+  }
+}
+
+.filtersSecondColumn {
+  @include grid-columns-span((medium: 9, large: 8, huge: 8));
+  display: flex;
+  align-self: flex-start;
+  margin-left: $indent-24;
+
+  @include screen-large-up {
+    align-items: center;
+  }
+
+  @include screen-medium-down {
+    display: none;
+  }
+}
+
+.priceText {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin-right: $indent-32;
+}
+
+.sortFilters {
+  @include grid-columns-span((small: 6, medium: 12, large: 4, huge: 4));
+  margin: 0 calc($grid-padding-size * -1);
+  margin-bottom: $indent-8;
+}
+
+.sortFiltersInnerWrapper {
+  display: flex;
+  column-gap: 0;
+  z-index: 6;
+  padding: 0 $grid-padding-size;
+
+  @include screen-medium-down {
+    @include helper-hidden-system-scrollbar;
+  }
+
+  @include screen-large-up {
+    flex-wrap: wrap;
+  }
+}
+
+
+.searchButton {
+  display: inline-flex;
+  justify-content: center;
+  flex-shrink: 0;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: $color-gray-light;
+  border-radius: 8px;
+  margin-right: 8px;
+
+  .searchIcon {
+    transform: rotateZ(0);
+    transition: all transform .3s;
+    width: 24px;
+    height: 24px;
+    fill: $color-blue-gray;
+  }
+
+  &:hover {
+    background-color: $color-gray-extra-light;
+
+    .searchIcon {
+      fill: $color-bluemarin;
+      transform: rotateZ(-6deg);
+      }
+  }
+}
+
+.filterButton {
+  &.active {
+    background-color: $color-bluemarin;
+    color: #fff;
+  }
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdownIcon {
+    width: 16px;
+    height: 16px;
+    fill: $color-blue-gray;
+  }
+}
+
+.modalBtnWrapper {
+  @include grid-columns-span-all;
+  @include screen-large-up {
+    display: none;
+  }
+}
+
+.wrapperProducts {
+  position: relative;
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 12));
+  }
+
+
+  padding: 0 $grid-padding-size;
+
+  margin-bottom: $indent-48;
+}
+
+.products {
+  @include grid-columns-span-all;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: $indent-8;
+
+  @include screen-small-down {
+    column-gap: $indent-16;
+  }
+
+  row-gap: $indent-24;
+  @include screen-medium-up {
+    margin: 0 calc($indent-12 * -1);
+  }
+}
+
+.more {
+  height: fit-content;
+  margin-top: $indent-64;
+  @include grid-columns-span-all;
+  justify-self: center;
+
+  @include screen-small-down {
+    width: 100%;
+  }
+}
+
+.cards {
+  @include grid-columns-span-all;
+  @include screen-medium-up {
+    grid-column: 2 / 12;
+  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: $indent-32;
+
+  @include screen-small-down {
+    gap: $indent-12;
+  }
+}
+
+.partnerCard {
+  flex-basis: 100%;
+
+  @include screen-large-up {
+    flex-basis: 31%;
+  }
+
+  @include screen-small-down {
+    flex-shrink: 0;
+    height: fit-content;
+  }
+}
+
+.selectWrapper {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: flex-end;
+
+  @include screen-medium-up {
+    margin-bottom: $indent-16;
+  }
+
+  :global(.select__button) {
+    width: var(--fixed-width);
+  }
+
+  :global(.select__button__content) {
+    margin-left: auto;
+    height: fit-content;
+  }
+}
+
+.spinnerLoader {
+  @include grid-columns-span-all;
+}
+
+
+.emptyTitle {
+  @include grid-columns-span((medium: 10, huge: 11));
+  @include typo-make-h5;
+  color: $color-gray-deep;
+}
+
+.faqTitle {
+  @include typo-make-h1;
+  font-weight: 700;
+  margin-bottom: $indent-48;
+
+  @include screen-small-down {
+    margin-bottom: $indent-24;
+    margin-left: $grid-padding-size;
+  }
+}

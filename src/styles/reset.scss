@@ -1,0 +1,94 @@
+////
+/// Global reset styles.
+/// @author Daniil Filippov <d.filippov@make.st>
+////
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  column-gap: inherit;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-tap-highlight-color: rgba(#fff, 0);
+}
+
+ol, ul {
+  list-style: none;
+}
+
+input, a, textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+input, textarea {
+  -webkit-appearance: none;
+
+  &:invalid {
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: currentColor;
+    opacity: 1;
+  }
+
+  &:-webkit-autofill {
+    background-clip: text;
+  }
+}
+
+button {
+  background-color: transparent;
+  outline-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  // Remove dotted outline for buttons in FireFox:
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 700;
+}
+
+mark {
+  background-color: transparent;
+}
+svg[role="img"] {
+  pointer-events: none;
+  overflow: visible;
+}
+
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
+[tabindex="-1"]:focus {
+  outline: 0;
+}

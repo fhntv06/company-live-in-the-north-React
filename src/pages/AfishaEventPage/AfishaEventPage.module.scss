@@ -1,0 +1,42 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+
+.recommendations {
+  @include grid;
+  background-color: $color-gray-extra-light;
+  padding-top: $indent-80;
+  padding-bottom: $indent-48;
+  border-radius: 16px;
+  margin-bottom: $indent-64;
+  position: relative;
+  overflow: hidden;
+}
+
+.subtitle {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 4));
+  }
+  
+  @include grid-container;
+  margin-bottom: $indent-32;
+  @include screen-medium-down {
+    @include grid-container;
+  }
+}
+
+.slider {
+  @include grid-columns-span-all;
+}
+
+.sliderOffset {
+  margin-left: calc(-1 * $grid-gutter-size);
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 11));
+  }
+}
+
+.mask {
+  @extend %helper-full-size-pseudo-layer;
+  pointer-events: none;
+}

@@ -1,0 +1,20 @@
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+
+.button {
+  @include typo-make-middle($isHeading: false);
+  font-weight: 600;
+  color: $color-dark-color;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s linear;
+
+  &:hover {
+    color: $color-blue;
+  }
+
+  &:active {
+    color: $color-blue-dark;
+  }
+}

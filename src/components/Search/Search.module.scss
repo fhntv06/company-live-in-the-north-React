@@ -1,0 +1,121 @@
+@use '../../styles/placeholders' as *;
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.container {
+  @include grid-with-inner-context {
+    @include grid-columns-span(( small: 5, medium: 10 ));
+  }
+
+  @include screen-small-down {
+    padding: 0;
+    margin: 0;
+  }
+
+  &.withoutHint {
+    &::after {
+      display: none;
+    }
+  }
+
+  &::after {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    left: calc($indent-8 * -1);
+    top: calc($indent-8 * -1);
+    height: calc(100% + 24px);
+    width: calc(100% + ($indent-8 * 2));
+    border-radius: 16px;
+    background-color: $color-gray-extra-light;
+    transform-origin: 0 0;
+    transform: scaleY(0);
+    opacity: 0;
+    @extend %card-shadow;
+    transition:
+      opacity .3s,
+      transform .4s ease-out;
+  }
+
+  &.containerOpen {
+    &::after {
+      opacity: 1;
+      transform: scaleY(1);
+      transition:
+        opacity .1s,
+        transform .1s ease-in;
+    }
+
+    .result  {
+      height: max-content;
+      opacity: 1;
+      transition: opacity .5s ease-out;
+    }
+
+    .message {
+      opacity: 1;
+      transition: opacity .35s ease-in;
+    }
+  }
+}
+
+.inputField {
+  z-index: 2;
+  @include grid-columns-span-all;
+}
+
+.result {
+  margin-top: $indent-8;
+  z-index: 2;
+  grid-column: span 5;
+  position: relative;
+  height: 0;
+  opacity: 0;
+  grid-template-columns: repeat(5, 1fr);
+  transition: opacity 0.01s ease-in;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-8;
+  }
+
+  @include screen-large-down {
+    grid-column: span 7;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @include screen-medium-down {
+    @include grid-columns-span-all;
+  }
+}
+
+.message {
+  @include grid-columns-span-all;
+  @include typo-make-text;
+  @include indent-vertical-pair(12);
+  padding-left: 56px;
+  color: $color-black;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity .1s ease-in;
+}
+
+.allResults {
+  display: inline-block;
+  @include indent-vertical-pair(12);
+
+  width: 100%;
+  border-radius: 16px;
+
+  @include typo-make-text;
+  font-weight: 500;
+  color: $color-black;
+  padding-left: 56px;
+
+  &:hover {
+    background-color: $color-gray-light;
+  }
+
+  &:active {
+    background-color: $color-white;
+  }
+}

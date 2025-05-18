@@ -1,0 +1,96 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/mixins/media-queries' as *;
+@use '../../styles/variables' as *;
+
+.row {
+    @include grid;
+}
+
+.title {
+    @include typo-make-h1($isHeading: true);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    @include typo-make-h2($isHeading: true);
+    padding-bottom: $indent-48;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.description {
+    @include typo-make-big-text($isHeading: true);
+    padding-bottom: $indent-32;
+}
+
+.flexRow {
+    display: flex;
+}
+
+.col_6 {
+    grid-column: span 6;
+
+    @include screen-small-down {
+        grid-column: span 4;
+    }
+}
+
+.col_4 {
+    grid-column: span 4;
+    @include screen-medium-down {
+        grid-column: span 4;
+    }
+}
+
+.col_3 {
+    grid-column: span 3;
+    @include screen-medium-down {
+        grid-column: span 4;
+    }
+}
+
+.col_2 {
+    grid-column: span 2;
+    @include screen-medium-down {
+        grid-column: span 4;
+    }
+}
+
+.inputsWrapper {
+    grid-column: 2 / span 10;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    background: #FFFFFF;
+    box-shadow: 32px 0px 80px rgba(85, 232, 211, 0.12), 12px 24px 80px rgba(153, 99, 239, 0.12), 0px 24px 80px rgba(81, 102, 245, 0.12), -50px 0px 80px rgba(255, 193, 148, 0.12);
+    border-radius: 16px;
+    padding: $indent-80 0 $indent-96;
+    position: relative;
+    z-index: 200;
+    margin-bottom: $indent-64;
+    min-height: 480px;
+}
+
+.textContainer {
+    grid-column: 2 / span 5;
+}
+
+.containerWithOffset {
+    grid-column: 2 / span 6;
+}
+
+.buttonSubmit {
+    grid-column: 8 / span 2;
+}
+
+.formTextWrapper {
+    margin-top: $indent-32;
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.formText {
+    @include typo-medium-text;
+    margin-left: $indent-16;
+}

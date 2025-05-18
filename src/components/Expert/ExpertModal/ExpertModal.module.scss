@@ -1,0 +1,96 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/variables/indent-system' as *;
+@use '../../../styles/mixins' as *;
+
+.modalWrapper {
+  padding: 0;
+  padding-top: $indent-24;
+
+  @include screen-large-up {
+    padding: $indent-64 0 $indent-72 0;
+  }
+
+  width: 100%;
+
+  position: relative;
+}
+
+.innerWrapper {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 8));
+}
+
+  display: flex;
+  flex-direction: column;
+
+  @include typo-make-text;
+
+  .expertWrapper {
+    border-bottom: 1px solid $color-gray-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .expert {
+    width: 100%;
+    display: flex;
+    padding: $indent-16 $indent-24;
+  }
+
+  .expertInfo {
+    display: flex;
+    flex-direction: column;
+    column-gap: $indent-16;
+    row-gap: $indent-16;
+    flex-grow: 1  ;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+
+  .expertFirstRow {
+    display: flex;
+    gap: 0;
+
+    @include typo-make-h5; 
+    color: $color-dark-color;
+  }
+
+  .expertName {
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: $indent-12;
+      white-space: nowrap;
+    }
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .expertDescription {
+    color: $color-blue-gray;
+    padding-right: $indent-16;
+  }
+
+  .social {
+    justify-content: stretch;
+    column-gap: $indent-16;
+    svg {
+      fill: $color-black;
+    }
+  }
+
+  .closeBtn {
+    margin-left: auto;
+  }
+}
+

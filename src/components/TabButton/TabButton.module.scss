@@ -1,0 +1,45 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.tab {
+  position: relative;
+  @include typo-medium-text;
+  padding-top: $indent-24;
+  font-weight: 600;
+  color: $color-black;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include screen-small-down {
+    font-size: 12px;
+
+    &:before {
+      content: attr(data-small-name);
+    }
+  }
+
+  &:before {
+    content: attr(data-name);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% - 1px);
+    left: 50%;
+    width: 80px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='12' viewBox='0 0 80 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 12C73.9851 12 68.7788 8.22194 63.9904 4.7479L63.1369 4.12906C59.5534 1.54181 55.045 4.49408e-06 50.146 4.0658e-06L29.857 2.29208e-06C24.958 1.86379e-06 20.4495 1.5418 16.867 4.12906L16.0145 4.74677C11.2251 8.22115 6.01584 12 0 12L80 12Z' fill='white'/%3E%3C/svg%3E%0A");
+    transform: translate(-50%, 100%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &.active {
+    position: relative;
+    color: $color-blue-dark;
+
+    &:after {
+      transform: translate(-50%, 0);
+    }
+  }
+}

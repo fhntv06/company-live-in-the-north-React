@@ -1,0 +1,180 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.mainPage {
+  min-height: 100vh;
+}
+.container {
+  padding-top: calc($indent-80 + $indent-40);
+  padding-bottom: $indent-80;
+  background: $color-blue-extra-dark;
+  border-radius: 0 0 16px 16px;
+  position: relative;
+
+  @include screen-medium-down {
+    padding-top: 116px;
+  }
+
+  @include screen-small-down {
+    padding-top: calc($indent-24 + $indent-64 + $indent-24);
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: $indent-64;
+  padding-bottom: $indent-24;
+  @include grid-with-inner-context {
+    @include grid-with-offset((large: 1)) {
+      @include grid-columns-span((large: 11));
+    }
+  }
+}
+
+.title {
+  @include grid-columns-span((large: 11));
+  display: flex;
+  gap: 0;
+  align-items: center;
+
+  @include screen-small-down {
+    flex-direction: column;
+    align-items: unset;
+    gap: $indent-12;
+
+    a {
+      width: fit-content;
+    }
+
+    .selectButtonWrapper {
+      margin: 0;
+    }
+  }
+}
+
+.containerWrapper {
+  padding-top: $indent-32;
+
+  @include screen-medium-down {
+    padding-bottom: $indent-40;
+  }
+}
+
+.offsetWrapper {
+  display: grid;
+  position: relative;
+  z-index: 1;
+
+  @include grid-with-inner-context {
+    @include grid-with-offset((huge: 1)) {
+      @include grid-columns-span((small: 6, medium: 12, large: 12, huge: 11));
+    }
+  }
+}
+
+.offset {
+  @include grid-columns-span(( small: 6, medium: 12, large: 12, huge: 5, oversized: 5 ));
+  display: flex;
+  gap: 0;
+
+  &.single {
+    @include grid-columns-span((small: 6, medium: 9))
+  }
+
+  & + .offset {
+    @include grid-columns-span(( small: 6, medium: 10, large: 10, huge: 5, oversized: 5 ));
+
+    @include screen-large-down {
+      margin-top: $indent-16;
+    }
+  }
+}
+
+.buttonWrapper {
+  @include screen-medium-up {
+    margin-left: calc($grid-gutter-size * -1);
+  }
+
+  @include screen-large-down {
+    margin-top: $indent-24;
+    grid-column: span 2;
+  }
+
+  @include screen-medium-down {
+    grid-column: span 2;
+    display: none;
+  }
+}
+
+.mobilebuttonWrapper {
+  display: none;
+  grid-column: span 6;
+  margin-top: $indent-16;
+  @include screen-medium-down {
+    display: flex;
+    width: 100%;
+  }
+
+  .more {
+    width: 100%;
+
+    &:hover {
+      padding: 20px 70px;
+    }
+  }
+}
+
+.sliderDescription {
+  @include typo-make-h4;
+  grid-column: span 2;
+  font-weight: 600;
+}
+
+.otherSliderWrapper {
+  @include grid-with-inner-context {
+    @include grid-columns-span((small: 6, medium: 12));
+  }
+  padding-bottom: $indent-80;
+  margin-bottom: 0;
+  margin-top: $indent-24;
+
+  @include screen-large-down {
+    padding-top: $indent-80;
+  }
+}
+
+.mobileTitle {
+  @include grid-container;
+  @include grid-columns-span((small: 4, medium: 6));
+  @include typo-make-h4;
+  font-weight: 600;
+
+  @include screen-medium-down {
+    margin-bottom: 24px;
+  }
+
+  @include screen-large-up {
+    display: none;
+  }
+}
+
+.selectButtonWrapper {
+  margin-left: $indent-16;
+
+  @include screen-small-down {
+    margin-left: $indent-12;
+  }
+
+  @include typo-make-text;
+}
+
+.sliderWrapper {
+  @include grid-columns-span-all;
+}
+
+.mainContainerWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}

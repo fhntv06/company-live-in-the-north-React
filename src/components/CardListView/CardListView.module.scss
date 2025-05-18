@@ -1,0 +1,136 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.wrapper {
+  position: relative;
+}
+
+.table,
+.list {
+  @include screen-small-down {
+    display: none;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: $indent-8;
+  border-radius: 8px;
+  transition: background .1s linear;
+  overflow: hidden;
+
+  .svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-blue-dark;
+    opacity: .2;
+    transition: inherit;
+    transition-property: fill, opacity;
+  }
+
+  .info {
+    opacity: 0;
+    width: 0;
+  }
+
+  &:after {
+    z-index: 4;
+    @extend %helper-full-size-pseudo-layer;
+    background: $color-gray-light;
+    border-radius: 8px;
+  }
+
+  &:hover {
+    .svg {
+      fill: $color-blue;
+      opacity: 1;
+    }
+  }
+
+  &.active {
+    @include indent-right(12);
+    background: $color-white;
+    @extend %card-shadow;
+
+    &:after {
+      background: $color-white;
+    }
+
+    .svg {
+      margin-right: $indent-8;
+      opacity: 1;
+    }
+
+    .info {
+      @include typo-make-tiny;
+      opacity: 1;
+      width: auto;
+      color: $color-blue-dark;
+      text-transform: uppercase;
+      transition: inherit;
+      transition-property: color;
+    }
+
+    &:hover {
+      .svg {
+        fill: $color-blue;
+      }
+
+      .info {
+        color: $color-blue;
+      }
+    }
+  }
+
+  * {
+    z-index: 5;
+  }
+}
+
+.open {
+  animation: linear .4s alternate open;
+}
+
+.openLast {
+  animation: linear .5s alternate openLast;
+}
+
+.close {
+  animation: linear .4s alternate close;
+}
+
+@keyframes openLast {
+  0% {
+    width: 40px;
+  }
+
+  80% {
+    width: 100%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes open {
+  0% {
+    width: 40px;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes close {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 40px;
+  }
+}

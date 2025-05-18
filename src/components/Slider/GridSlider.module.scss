@@ -1,0 +1,29 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/placeholders' as *;
+
+.container {
+  @include grid;
+  @include grid-container;
+  position: relative;
+  transition: all 0.3s linear 0.4s;
+  overflow: hidden;
+
+  :global(.swiper) {
+    width: 100%;
+    overflow: visible;
+    @include grid-columns-span-all;
+  }
+
+  :global(.swiper-wrapper) {
+    gap: 0;
+  }
+
+  .slide {
+    width: fit-content;
+
+    &:not(:last-child):not(.withoutIndents) {
+      margin-right: $grid-gutter-size;
+    }
+  }
+}

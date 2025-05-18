@@ -1,0 +1,76 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.modal {
+  position: fixed;
+  display: flex;
+  inset: 0;
+  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: calc(($indent-96 + $indent-8) * 2);
+  @include grid;
+  @include helper-hidden-system-scrollbar;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: .5;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-image: url('../../../public/images/modal-bg.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.content {
+
+  position: relative;
+
+  z-index: 11;
+  @include grid-with-inner-context {
+    @include grid-with-offset((medium: 1, large: 1, huge: 1)) {
+      @include grid-columns-span((small: 6, medium: 10, large: 10, huge: 10));
+    }
+  }
+  margin: auto 0 $indent-56;
+  padding: $indent-64 0;
+  background: $color-white;
+  border-radius: 16px;
+
+  @include screen-medium-down {
+    margin-bottom: 0;
+    padding: $indent-24 0 calc($indent-24 + $indent-8);
+  }
+}
+
+.swipeHandleWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100px;
+  height: 75px;
+  touch-action: none;
+  display: none;
+
+  @include screen-medium-down {
+    display: block;
+  }
+}
+
+.swipeHandle {
+  position: absolute;
+  z-index: 1;
+  top: calc(-7px / 2);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 40px;
+  height: 7px;
+  border: 0;
+  border-radius: 63px;
+  background-color: $color-gray-middle;
+}

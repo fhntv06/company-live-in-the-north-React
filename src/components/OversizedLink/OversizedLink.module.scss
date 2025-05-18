@@ -1,0 +1,23 @@
+@use '../../styles/mixins/typography' as *;
+@use '../../styles/variables' as *;
+
+
+.link {
+  @include typo-make-h1($isHeading: true);
+  font-weight: 700;
+  color: $color-dark-color;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: color 0.2s linear, border-bottom 0.2s linear;
+
+  &:hover {
+    border-bottom: 1px solid rgba(56, 91, 180, 0.3);
+    color: $color-blue-dark;
+  }
+
+  &:active {
+    color: $color-blue;
+    border-bottom: 1px solid $color-blue;
+  }
+}

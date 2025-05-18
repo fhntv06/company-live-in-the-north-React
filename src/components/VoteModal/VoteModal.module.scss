@@ -1,0 +1,149 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.innerWrapper {
+  @include grid-with-offset((large: 1)) {
+    @include grid-columns-span((large: 8));
+}
+
+  display: flex;
+  flex-direction: column;
+
+  @include typo-make-text;
+
+  padding: $indent-24;
+  padding-top: 0;
+}
+
+.title {
+  margin-bottom: $indent-32;
+
+  @include typo-make-h1;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: first baseline;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.voteWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: $indent-16;
+
+  padding: $indent-16;
+  margin-bottom: $indent-32;
+
+  border: 1px solid $color-gray-light;
+  border-radius: 16px;
+
+  @include screen-medium-down {
+    margin-bottom: $indent-16;
+  }
+}
+
+.voteVolume {
+  display: flex;
+  align-items: center;
+  column-gap: $indent-8;
+}
+
+.line {
+  position: relative;
+  width: 0;
+  height: 8px;
+  transition: width 1s ease-in-out .5s;
+
+  &::before {
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33%, #B392F4 68%, #EBC2C6 100%);
+  }
+
+  &::after {
+    background: $color-white;
+    opacity: 0;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    border-radius: 4px;
+    transition: opacity .2s ease-in;
+  }
+}
+
+.disclaimer {
+  @include grid-with-inner-context {
+      @include grid-columns-span((large: 8));
+  }
+
+  justify-content: space-between;
+  
+  .text {
+    @include grid-columns-span((medium: 4));
+  }
+
+  .buttons {
+    @include grid-with-offset((large: 6)) {
+      @include grid-columns-span((large: 2));
+    }
+
+    display: flex;
+    flex-direction: column;
+    row-gap: $indent-8;
+  }  
+
+  .decideLaterBtn {
+    border-bottom: 1px dashed rgba(38, 175, 205, 0.20);
+    align-self: flex-end;
+  }
+
+  @include screen-medium-down {
+
+    .text {
+      margin-bottom: $indent-20;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .voteBtn {
+      width: 100%;
+      margin-bottom: $indent-16;
+    }
+
+    .decideLaterBtn {
+      align-self: flex-start;
+    }
+
+  }
+
+  .decideLaterBtn {
+    color: $color-bluemarin;
+  
+    &:active {
+      color: $color-bluemarin-extra-light
+    }
+  }
+}
+
+.votesAmount {
+  color: $color-bluemarin;
+  @include typo-medium-text;
+  line-height: 16px;
+  
+  @include screen-small-down() {
+    @include typo-make-small;
+  }
+}

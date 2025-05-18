@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+@use '../../styles/placeholders' as *;
+@use '../../styles/mixins' as *;
+
+.walletWrapper {
+  display: flex;
+  gap: 8px;
+
+  .wallet {
+    @include screen-small-down {
+      padding: 0px $indent-8 0 4px;
+    }
+  }
+}

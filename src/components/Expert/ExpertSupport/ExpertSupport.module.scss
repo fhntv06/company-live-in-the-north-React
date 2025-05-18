@@ -1,0 +1,85 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/variables/indent-system' as *;
+@use '../../../styles/mixins' as *;
+
+.wrapper {
+  grid-column: span 4;
+  position: absolute;
+  top: 8px;
+  left: 100%;
+  display: flex;
+  gap: 0 $indent-16;
+  height: max-content;
+  width: 500px;
+  opacity: 0;
+  transform: translate(-100%, -70%);
+  transition:
+    opacity .2s ease-out,
+    transform .2s ease-out;
+  text-align: left;
+}
+
+.container {
+  position: relative;
+  top: -16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  padding: $indent-16 $indent-40 $indent-16 $indent-24;
+  background-color: $color-white;
+  border: 1px solid $color-gray-light;
+  border-radius: 32px 32px 4px 32px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-weight: 500;
+}
+
+.post {
+  margin-top: $indent-8;
+  color: $color-blue-gray;
+  @include typo-make-small;
+
+  & + .social {
+    margin-top: $indent-16;
+  }
+}
+
+.avatar {
+  margin-right: $indent-16;
+  min-height: 32px;
+  max-height: 32px;
+  min-width: 32px;
+  max-width: 32px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  grid-column-gap: $indent-8;
+  color: $color-black;
+  @include typo-make-text;
+}
+
+.icon {
+  min-height: 24px;
+  max-height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+}
+
+.check {
+  color: $color-bluemarin;
+
+  .icon {
+    fill: transparent;
+    stroke: $color-bluemarin;
+    width: 16px;
+    height: 10px;
+    margin-right: $indent-20;
+  }
+}

@@ -1,0 +1,343 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/placeholders.scss' as *;
+
+@mixin hover-effect {
+  &::after {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+
+  .background {
+    background-color: $color-gray-light;
+
+    &::before {
+      animation: backgroundMove infinite 5s .2s linear;
+      opacity: 1;
+    }
+
+    &::after {
+      animation: secondBackgroundMove infinite 6s 1.2s linear;
+      opacity: 1;
+    }
+  }
+
+  .title,
+  .votes {
+    color: $color-white;
+  }
+
+  .graphLine {
+    max-height: 200px !important;
+    opacity: 0;
+  }
+
+  .label {
+    opacity: 0;
+  }
+
+  .middleLine {
+    &::before {
+      opacity: 1;
+      animation: lineMove infinite 5s .5s linear;
+      transition: opacity 1s ease-out .2s;
+    }
+
+    &::after {
+      opacity: 1;
+      animation: secondLineMove infinite 5s 0.5s linear;
+      transition: opacity 1s ease-out .2s;
+    }
+  }
+}
+
+.card {
+  @include indent-bottom(12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  border-radius: 16px;
+  user-select: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid $color-gray-middle;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc($indent-48 * -1);
+    right: calc($indent-48 * -1);
+    height: 60%;
+    width: 60%;
+    background-image: url('../../images/result/votings_done.webp');
+    background-position: top right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateX(-20px) translateY(20px);
+    opacity: 0;
+    transition: opacity .3s ease-out .2s, transform .3s ease-out .2s;
+
+    @include screen-small-down {
+      top: 0;
+    }
+  }
+
+  &:hover {
+    @include screen-medium-up {
+      @include hover-effect;
+    }
+  }
+
+  &.isActive {
+    @include hover-effect;
+  }
+
+  &.votesCount::after {
+    background-image: url('../../images/result/votes_count.webp');
+  }
+
+  &.activeUsersCount::after {
+    background-image: url('../../images/result/active_users.webp');
+  }
+  &.ideasCount::after {
+    background-image: url('../../images/result/collected_ideas.webp');
+  }
+  &.discussionsCount::after {
+    background-image: url('../../images/result/discussions_done.webp');
+  }
+}
+
+.withLabel {
+  .title,
+  .votes {
+    color: $color-black;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  padding: 32px 32px 0;
+
+  @include screen-small-down {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: auto;
+  }
+}
+
+.title {
+  @include typo-make-small;
+  max-width: min-content;
+  font-weight: 600;
+  line-height: 16px;
+  color: $color-blue-gray;
+  text-transform: uppercase;
+  transition: color .3s ease-out .2s;
+  z-index: 3;
+}
+
+.label {
+  @include indent-vertical-pair(4);
+  @include indent-horizontal-pair(12);
+  @include typo-make-small;
+  color: $color-black;
+  background: $color-yellow-yamal;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: opacity .1s linear .2s;
+
+  @include screen-small-down {
+    margin-top: 4px;
+  }
+}
+
+.graph {
+  position: relative;
+}
+
+.votes {
+  position: relative;
+  color: $color-black-gray;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: color .3s ease-out .2s;
+  z-index: 3;
+}
+
+.top {
+  position: relative;
+
+  .votes {
+    font-size: $indent-72;
+    line-height: 1;
+    font-weight: 600;
+    position: relative;
+    letter-spacing: -1.2px;
+    padding: $indent-80 32px 32px;
+  }
+
+  .graphLine {
+    bottom: 0;
+    background: linear-gradient(270deg, #87D9E6 0%, #8994F8 33.17%, #B392F4 68%, #EBC2C6 100%);
+  }
+}
+
+.bottom {
+  position: relative;
+
+  .votes {
+    @include typo-make-h1;
+    line-height: 1;
+    font-weight: 600;
+    padding: 32px 32px $indent-80;
+  }
+
+  .graphLine {
+    top: 0;
+    background: linear-gradient(89.69deg, #01E1B7 2.46%, #29C0E8 99.47%);
+    transform: rotate(180deg);
+  }
+}
+
+.graphLine {
+  position: absolute;
+  left: 0;
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(99.99862331639642% 99.99999972788612%, 99.19984058119903% 99.90838331840345%, 98.39914930117612% 99.63462279602597%, 97.60604987559137% 99.18607979877662%, 96.81510417116247% 98.56539501313868%, 96.03157522515797% 97.78254334160393%, 95.25532337465056% 96.84504688837508%, 94.48620895671299% 95.76042775765482%, 93.72920131454663% 94.54490211328955%, 92.98149256484642% 93.2037950864433%, 92.24287933965499% 91.74568718968652%, 91.51316125496928% 90.17900629317047%, 90.79460817464363% 88.5179298697902%, 90.08696426861206% 86.77155587082075%, 89.385125755631% 84.93563804932087%, 88.69378044942815% 83.03062822073875%, 88.0126874654088% 81.06488395108546%, 87.33687081036489% 79.03193573567722%, 86.67091360764502% 76.95330071489556%, 86.00991872793709% 74.82132858379016%, 85.35608498368585% 72.65026010347133%, 84.70694143953538% 70.4389962440157%, 84.06465569284408% 68.201949825815%, 83.42679235159196% 65.93762202473954%, 82.7909792573877% 63.64412393464169%, 82.159384063998% 61.335868027936336%, 81.52966258536567% 59.01097337078025%, 80.90173855458785% 56.67582345764828%, 80.27333518045661% 54.32871942717847%, 79.64685575425543% 51.99505005197864%, 79.01341880929772% 49.689897860796734%, 78.37436009336932% 47.424730282336384%, 77.7279345848953% 45.19442870910322%, 77.0759063702417% 43.00614804494853%, 76.4182930712884% 40.860769471790334%, 75.755113799706% 38.75917895691792%, 75.08460803192804% 36.696871498900464%, 74.4085687749322% 34.68043860647541%, 73.72522874707597% 32.70568904110848%, 73.0381914047461% 30.78387009993448%, 72.34389663424913% 28.905860052821%, 71.64416508171504% 27.07767231128375%, 70.93721739624284% 25.295751121687356%, 70.2267024376329% 23.570141003472887%, 69.50902979318462% 21.892973242018968%, 68.78604629375393% 20.269668843557128%, 68.0596174250738% 18.70502573525047%, 67.32430169882399% 17.18843809922795%, 66.5856226057546% 15.732417711244656%, 65.84179671106395% 14.334072602794514%, 65.09471145774168% 12.997578865011413%, 64.3388889260103% 11.71427284336146%, 63.58175222703959% 10.49764834044598%, 62.81966864502731% 9.342260429370148%, 62.0526910606956% 8.2490908481725%, 61.28087433915068% 7.219126128145521%, 60.50799358052089% 6.257813465465353%, 59.730398712484735% 5.3610282146075%, 58.948149698563256% 4.529766511376307%, 58.16317408758065% 3.7667579481796256%, 57.37740868798232% 3.0740664307737675%, 56.5853221462126% 2.4475105251915075%, 55.79258801747258% 1.892279825554097%, 54.99928332306541% 1.408375559405382%, 54.20173970542984% 0.994021859303816%, 53.403775992746596% 0.6516715547282929%, 52.6054703013922% 0.3813258906756264%, 51.80502592224097% 0.18260523912535478%, 51.004395108335196% 0.056230179459426904%, 50.201781196602504% 0.0021603503422611397%, 49.40288884739689% 0.020521850920596968%, 48.600295637679054% 0.11148834735288081%, 47.80158086085093% 0.27421093533911894%, 46.999323761219486% 0.5102187842059033%, 46.20110049097093% 0.8173074629949753%, 45.40323975641405% 1.1964120106584852%, 44.609562279254675% 1.6452474676097104%, 43.81639834760121% 2.165426636308305%, 43.02382498275683% 2.75695074429812%, 42.23565292331138% 3.4165267950886973%, 41.44821810534306% 4.146778733369339%, 40.665322493067485% 4.943745207763623%, 39.88702890928042% 5.8064272777735715%, 39.10968110911075% 6.738455303292833%, 38.33706483485262% 7.734874081491064%, 37.569237742672236% 8.794694112780766%, 36.8044050123604% 9.919736464701076%, 36.04447675370273% 11.106541129730633%, 35.287660820618676% 12.357262135142477%, 34.53585834375491% 13.668118317262325%, 33.79095557631396% 15.034684265200113%, 33.05115460485478% 16.459128595994724%, 32.31466977175633% 17.94426651293182%, 31.583381691835044% 19.485687196942745%, 30.857331617044434% 21.08243898001333%, 30.13655898846909% 22.733574926895656%, 29.42291517562244% 24.433748489439576%, 28.714613461852114% 26.18611570721225%, 28.009882903962037% 27.994460215581153%, 27.314169665306654% 29.84371440249529%, 26.62388519966909% 31.742079281887015%, 25.93726759356848% 33.69381281176358%, 25.257929129301075% 35.68781333500969%, 24.58587975207393% 37.72272394632571%, 23.9175776524487% 39.80844114706692%, 23.25659935257907% 41.932977444292426%, 22.60118493453963% 44.100917792894215%, 21.95311125787495% 46.305315740810066%, 21.310625781938246% 48.55106546948646%, 20.673743863898444% 50.83729584587091%, 20.044220305355207% 53.156643820754326%, 19.417817001224563% 55.49832578434146%, 18.78951024155255% 57.8405336707235%, 18.16164880038687% 60.16749724418611%, 17.529703474360154% 62.48925021888476%, 16.895819379360464% 64.79118784187449%, 16.259924647677682% 67.0670947409254%, 15.617360485227664% 69.32687349567388%, 14.972584166916455% 71.54811650443256%, 14.320873458755425% 73.74033589047858%, 13.66440598044831% 75.8891675424786%, 13.00070232591294% 77.99561222359097%, 12.329591355396014% 80.05266134656007%, 11.650899213762502% 82.05316665955479%, 10.96444930810445% 83.98983902693213%, 10.270062285270699% 85.85524720569252%, 9.565098139814335% 87.64788419330556%, 8.851788549173936% 89.35329276832017%, 8.127444424868411% 90.96890171416021%, 7.394329902470182% 92.48047830957182%, 6.649704410174551% 93.88427280902471%, 5.895866556500711% 95.16637031654797%, 5.1326121938622205% 96.31807141557778%, 4.362348453165995% 97.32736162672435%, 3.5822998863635767% 98.1894332204528%, 2.7949185911463035% 98.89310633333511%, 2.002755339361536% 99.42933261909879%, 1.2057492352552444% 99.79237126069667%, 0.4038418878547094% 99.97662602287927%, 0.3976933454396203% 100%, );
+  transition: .5s ease-out .2s;
+  z-index: 2;
+
+  &.byCities {
+    width: 70%;
+  }
+}
+
+.graphLineLocal {
+  width: 50%;
+}
+
+.middleLine {
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  overflow: hidden;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 725px;
+    height: 22px;
+    background-image: url('../../images/result/result-line.svg');
+    background-repeat: no-repeat;
+    background-position: center left;
+    opacity: 0;
+    z-index: 1;
+  }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  overflow: hidden;
+  transition: background-color .3s linear .2s;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    background-image: url('../../images/result/result-background.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: .6s ease-out .2s;
+    z-index: 0;
+  }
+
+  &::after {
+    background-position: left center;
+  }
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: center center;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0;
+    background-position: center right;
+  }
+
+  100% {
+    opacity: 1;
+    background-position: center center;
+  }
+}
+
+@keyframes secondBackgroundMove {
+  0% {
+    background-position: center left;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    background-position: center right;
+  }
+}
+
+@keyframes lineMove {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -725px;
+  }
+}
+
+@keyframes secondLineMove {
+  from {
+    left: 725px;
+  }
+
+  to {
+    left: 0;
+  }
+}
